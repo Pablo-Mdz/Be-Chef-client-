@@ -9,8 +9,9 @@ function Navbar() {
     const {isLoggedIn, user, logOutUser} = useContext(AuthContext);
 
     return (
-        <nav className="bg-[#325f9a] flex items-center justify-between flex-wrap bg-teal-500 p-6 ">
+        <nav className="bg-[#0284c7] flex items-center justify-between flex-wrap bg-sky-600 p-4 ">
             <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto ">
+                
                 <div className="text-sm lg:flex-grow ">
                     <Link
                         to="/"
@@ -18,14 +19,15 @@ function Navbar() {
                     >
                         <button>Home</button>
                     </Link>
+                    
 
                     {isLoggedIn && (
                         <>
-                            <button onClick={logOutUser}>Logout</button>
+                            <button  className="block ml-5 mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-white text-black mr-4" onClick={logOutUser}>Logout</button>
 
                             <Link
                                 to="/profile"
-                                className="block ml-5 mt-4 lg:inline-block lg:mt-0 text-teal-800 hover:text-white mr-4 text-yellow-600"
+                                className="block ml-5 mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-white text-black mr-4"
                             >
                                 <button>Profile</button>
                                 {/* <img
@@ -39,15 +41,16 @@ function Navbar() {
                                 /> */}
                             </Link>
 
-                            <span>{user && user.name}</span>
+                            <span  className="block ml-5 mt-4 lg:inline-block lg:mt-0 text-teal-700 text-black mr-4">{user && user.name}</span>
 
                             <Link 
                             to="/create"
-                                className="block mt-4 ml-5 lg:inline-block lg:mt-0 text-teal-800 hover:text-white mr-4 text-black"
+                                className="block mt-4 ml-5 lg:inline-block lg:mt-0 text-teal-700 hover:text-white text-black mr-4"
                             >
                                 <button>Create</button>
                             
                             </Link>
+                            
                         </>
                     )}
 
@@ -55,21 +58,27 @@ function Navbar() {
                         <>
                             <Link
                                 to="/signup"
-                                className="block mt-4 lg:inline-block lg:mt-0 text-teal-800 hover:text-white mr-4 text-yellow-600"
+                                className="block mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-white text-black mr-4"
                             >
                                 {" "}
                                 <button>Sign Up</button>{" "}
                             </Link>
                             <Link
                                 to="/login"
-                                className="block mt-4 lg:inline-block lg:mt-0 text-teal-800 hover:text-white mr-4 text-yellow-600"
+                                className="block mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-white text-black mr-4"
                             >
                                 {" "}
                                 <button>Login</button>{" "}
                             </Link>
                         </>
                     )}
+                    
                 </div>
+                <input
+                                        placeholder="Search"
+                                        type="text"
+                                        className="w-80 border rounded border-gray-400 h-10 focus:outline-none pl-4 pr-8 text-gray-700 text-sm text-gray-500"
+                                    />
             </div>
         </nav>
     );

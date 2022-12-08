@@ -2,6 +2,9 @@
 
 import "./App.css";
 import {Routes, Route} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+
+import axios from "axios";
 
 import HomePage from "./pages/HomePage/HomePage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
@@ -15,7 +18,17 @@ import Create from "./pages/CRUD/Create";
 import Details from "./pages/CRUD/Details";
 import SingleRecipe from "./pages/CRUD/SingleRecipe";
 
+const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
+
+
 function App() {
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        axios
+            .get(`${API_URL}/pages/CRUD/details`)
+            //   ${id}
+            .then((response) => setData(response.data), console.log(data));
+    }, []);
     return (
         <div className="App">
             <Navbar />
@@ -28,7 +41,7 @@ function App() {
                     path="/profile"
                     element={
                         <IsPrivate>
-                            <ProfilePage />
+                            <ProfilePage data={data}/>
                         </IsPrivate>
                     }
                 />
@@ -60,7 +73,7 @@ function App() {
                 <Route
                     path="/details"
                     element={
-                            <Details />
+                            <Details data={data}/>
                    
                     }
                 />

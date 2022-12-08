@@ -3,19 +3,24 @@ import {Link, NavLink} from "react-router-dom";
 import SingleRecipe from "../CRUD/SingleRecipe";
 import photo from "../../images/quesos.jpg";
 function HomePage() {
-    return (
+    return (<>
         <div >
-            <h1>Be Chef </h1>
             <NavLink to="/details">
-                <div className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 card" style={{width: "20rem"}}>
+                <div className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 card" >
                     <div className="card-body">
-                        <h5 className="card-title">All recepies</h5>
+                    <button
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    type="submit"
+                >
+                    See all recepies
+                </button>
                     </div>
                 </div>
-            </NavLink>
             <SingleRecipe />
-            <img className="opacity-30"  src={photo} alt="chees" />
+            </NavLink>
         </div>
+            {/* <img className="opacity-30"  src={photo} alt="chees" /> */}
+            </>
     );
 }
 
