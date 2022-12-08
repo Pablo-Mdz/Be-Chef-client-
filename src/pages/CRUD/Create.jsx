@@ -7,55 +7,63 @@ import {useContext} from "react";
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
-
 const CreateRecipe = () => {
     const [image, setImage] = useState("");
     const {user} = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
-        name: null,
-        region: null,
-        type: null,
-        image: null,
-        time: null,
-        service: null,
-        ingredients: null,
-        instructions: null,
-        tips: null,
-        reviews: null,
+        name: "",
+        region: "",
+        type: "",
+        time: "",
+        service: "",
+        ingredients: "",
+        instructions: "",
+        tips: "",
+        reviews: "",
         owner: user._id,
     });
     const navigate = useNavigate();
-    const data = new FormData();
-    data.append("file", image);
-    data.append("upload_preset", "pgd5xegv");
-    data.append("cloud_name", "dlawjeica");
-
-    fetch("cloudinary://269323742794592:_WgtBUGcAeV4he-C66TNZyGr8Dc@be-chef", {
-      method: "post",
-      body: data,
-    })
-    .then((resp) => console.log(resp))
-    .then((data) => {
-        data && console.log(data.url);
-        return data.url;
-      })
     //   .then((img) => {
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        axios
-        .post(`${API_URL}/pages/CRUD/create`, formData)
-        .then((response) => {
-            console.log("alright, updated with", response, formData);
 
-            setFormData({});
-            setImage("")
-            navigate("/profile")
-        });
-    // }});
-        // setFormData("")
+        const data = new FormData();
+        data.append("file", image);
+        data.append("upload_preset", "auh8nzbq");
+        data.append("cloud_name", "be-chef");
+
+        fetch("https://api.cloudinary.com/v1_1/be-chef/image/upload", {
+            method: "post",
+            body: data,
+        })
+            .then((resp) => {
+                resp.json();
+            })
+            .then((data) => {
+                data && console.log(data);
+                return data.url;
+            })
+            .then((img) => {
+                const body = {formData, img};
+                axios
+                    .post(`${API_URL}/pages/CRUD/create`, body)
+                    .then((response) => {
+                        console.log(
+                            "alright, updated with",
+                            response,
+                            formData
+                        );
+
+                        setFormData({});
+                        // setImage("");
+                        navigate("/profile");
+                    });
+            });
+
+        setFormData("");
     };
+    formData.image && console.log(formData.image);
 
     return (
         <>
@@ -112,10 +120,7 @@ const CreateRecipe = () => {
                     type="file"
                     className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     name="image"
-                    onChange={(e) =>
-                        setFormData({...formData, image: e.target.files[0]})
-                    }
-                    value={formData.image}
+                    onChange={(e) => setImage(e.target.files[0])}
                 />
 
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">

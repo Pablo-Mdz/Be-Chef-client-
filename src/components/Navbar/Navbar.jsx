@@ -74,11 +74,7 @@ function Navbar() {
                     )}
                     
                 </div>
-                <input
-                                        placeholder="Search"
-                                        type="text"
-                                        className="w-80 border rounded border-gray-400 h-10 focus:outline-none pl-4 pr-8 text-gray-700 text-sm text-gray-500"
-                                    />
+                
             </div>
         </nav>
     );

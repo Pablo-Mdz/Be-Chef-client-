@@ -7,6 +7,12 @@ import photo from "../../images/frutas1.jpg";
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
 const Details = (props) => {
+
+    const [search, setSearch] = useState('')
+    const filtered = props.data
+    .filter((oneData) => {if(  !oneData.type ) { return false} else if (!oneData.name ) { return false} else {
+        return oneData.name.toLowerCase().includes(search.toLowerCase()) || oneData.type.toLowerCase().includes(search.toLowerCase()) }
+     })
    
     return (
         <div>
@@ -14,19 +20,23 @@ const Details = (props) => {
        <input
                                         placeholder="Search"
                                         type="text"
+                                        value={search}
+                                        onChange={(e)=>{setSearch(e.target.value)}}
                                         className="w-96 border rounded border-gray-400 h-10 focus:outline-none pl-4 pr-8 text-gray-700 text-sm text-gray-500"
                                     />
             <div className="row g-3 flex flex-wrap">
                 {props.data &&
-                    props.data.map((recipe) => (
+                    filtered
+                            .map((recipe) => (
                         <>
                             <div className="max-w-md rounded overflow-hidden shadow-lg m-5 ">
                                 <Link to={`/single/${recipe._id}`}>
                                     <img
                                         className="w-full"
-                                        src={photo}
+                                        src={recipe.image}
                                         alt="image test"
                                     />
+                                    {recipe.image}
                                     <div className="px-6 py-4">
                                         <div className="font-bold text-xl mb-2">
                                             {recipe.name}
