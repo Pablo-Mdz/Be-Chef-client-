@@ -7,22 +7,20 @@ function ProfilePage(props) {
     console.log(user);
     return (
         <div>
-            
-
             <div className="h-screen w-screen bg-indigo-400 overflow-hidden absolute flex items-center">
                 <div className="w-screen h-64 absolute top-0 opacity-50 left-0 -my-40 -mx-64 bg-indigo-300 rounded-full"></div>
                 <div className="w-64 h-64 -mx-32 bg-sky-600 opacity-50 rounded-full"></div>
                 <div className="w-64 h-64 ml-auto relative opacity-50 -mr-32 bg-sky-300 rounded-full"></div>
                 <div className="w-screen h-64 absolute opacity-50 bottom-0 right-0 -my-40 -mx-64 bg-indigo-300 rounded-full"></div>
             </div>
-
+           
             <div className="container mx-auto h-screen py-16 px-8 relative">
                 <div className="flex w-full rounded-lg h-full lg:overflow-hidden overflow-auto lg:flex-row flex-col shadow-2xl">
                     <div className="lg:w-1/2 bg-white text-gray-800 flex flex-col">
                         <div className="p-8 shadow-md relative bg-white">
                             <div className="flex items-center">
                                 <img
-                                    src="https://randomuser.me/api/portraits/men/1.jpg"
+                                    src={user.image}
                                     className="w-10 h-10 block rounded object-cover object-top"
                                 />
                                 <div className="text-indigo-600 font-medium ml-3">
@@ -33,10 +31,10 @@ function ProfilePage(props) {
                                         stroke="currentColor"
                                         className="w-4 h-4"
                                         viewBox="0 0 24 24"
-                                        stroke-width="2.2"
+                                        strokeWidth="2.2"
                                         fill="none"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     >
                                         <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
                                     </svg>
@@ -45,6 +43,10 @@ function ProfilePage(props) {
                             <h1 className="font-medium text-lg mt-6">
                                 Your recepies
                             </h1>
+                            <img
+                                    src={user.image} alt='image'
+                                    className="w-10 h-10 block rounded object-cover object-top"
+                                />
                             <p className="text-gray-600 text-sm">
                                 Fingerstache godard blog, cornhole meh hoodie
                             </p>
@@ -64,10 +66,10 @@ function ProfilePage(props) {
                                     <svg
                                         stroke="currentColor"
                                         className="w-4 h-4 absolute right-0 top-0 mt-3 mr-2 text-gray-500"
-                                        stroke-width="2"
+                                        strokeWidth="2"
                                         fill="none"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                         viewBox="0 0 24 24"
                                     >
                                         <circle cx="11" cy="11" r="8" />
@@ -78,18 +80,21 @@ function ProfilePage(props) {
                         </div>
                     </div>
                     <div className="row g-3 flex flex-wrap">
-                    {props.data
-                .filter((myrecepie) => myrecepie.owner == user._id)
-                .map((recipe) => (
-                    <div >
-                        <div className="max-w-sm rounded overflow-hidden shadow-lg m-5 ">
-                            <h1 className="font-bold text-xl mb-2">{recipe.name}</h1>
-                            <h1>{recipe.type}</h1>
-                            <h1>{recipe.region}</h1>
-                        </div>
+                        {props.data
+                            .filter((myrecepie) => myrecepie.owner == user._id)
+                            .map((recipe) => (
+                                <div>
+                                    <div className="max-w-sm rounded overflow-hidden shadow-lg m-5 ">
+                                        <h1 className="font-bold text-xl mb-2">
+                                            {recipe.name}
+                                        </h1>
+                                        <h1>{recipe.type}</h1>
+                                        <h1>{recipe.region}</h1>
+                                        <img src={recipe.image} />
+                                    </div>
+                                </div>
+                            ))}
                     </div>
-                ))}
-                </div>
                 </div>
             </div>
         </div>

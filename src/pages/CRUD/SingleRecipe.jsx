@@ -27,7 +27,7 @@ const SingleRecipe = () => {
             {recipe && (
 
             <div className="max-w-xl rounded overflow-hidden shadow-lg ">
-                    <img className="w-full" src={photo} alt="image test"/>
+                    <img className="w-full" src={recipe.image} alt="image test"/>
                              <div className="px-6 py-4 place-self-start">
                                     <div className="font-bold text-xl mb-2">{recipe.name}</div>
                                 <h4 className="text-gray-700 text-base">
