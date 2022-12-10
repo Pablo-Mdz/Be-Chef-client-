@@ -47,19 +47,15 @@ const CreateRecipe = () => {
             })
             .then((image) => {
                 const body = {...formData, image};
-
                 console.log(" body before axios", body);
-
-                console.log("body", body);
-
                 axios
                     .post(`${API_URL}/pages/CRUD/create`, body)
-                    
+
                     .then((response) => {
                         console.log(
                             "alright, updated with",
                             response,
-                            formData,
+                            formData
                             // body
                         );
 
@@ -129,11 +125,9 @@ const CreateRecipe = () => {
                                             </select>
                                         </div>
                                         <div className="col-span-6 sm:col-span-3">
-                                            <input
-                                                type="text"
-                                                name="region"
-                                                placeholder="Region "
-                                                className="px-2  w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                            <select
+                                                name="type"
+                                                className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
                                                 onChange={(e) =>
                                                     setFormData({
                                                         ...formData,
@@ -141,11 +135,22 @@ const CreateRecipe = () => {
                                                     })
                                                 }
                                                 value={formData.region}
-                                            />
+                                            >
+                                                <option>Select Region</option>
+                                                <option>European</option>
+                                                <option>Sud America</option>
+                                                <option>
+                                                    Central America{" "}
+                                                </option>
+                                                <option>Nord America</option>
+                                                <option>Asia</option>
+                                                <option>Africa</option>
+                                                <option>Oceania</option>
+                                            </select>
                                         </div>
-                                        <div className="col-span-6 sm:col-span-3">
 
-                                        <select
+                                        <div className="col-span-6 sm:col-span-3">
+                                            <select
                                                 name="type"
                                                 className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
                                                 onChange={(e) =>
@@ -161,47 +166,20 @@ const CreateRecipe = () => {
                                                 </option>
                                                 <option>1</option>
                                                 <option>2</option>
+                                                <option>3</option>
                                                 <option>4</option>
+                                                <option>5</option>
                                                 <option>6</option>
+                                                <option>8</option>
                                                 <option>10</option>
                                                 <option>15</option>
                                                 <option>20</option>
-                                                
                                             </select>
-                                          
-                                          
-                                            {/* <input
-
-                                            <input
-
-                                                type="text"
-                                                name="service"
-                                                placeholder="Quantity of portions (only numbers) "
-                                                className="px-2 w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
-                                                onChange={(e) =>
-                                                    setFormData({
-                                                        ...formData,
-                                                        service: e.target.value,
-                                                    })
-                                                }
-                                                value={formData.service}
-
-                                            /> */}
                                         </div>
                                         <div className="col-span-6 sm:col-span-3">
                                             <select
                                                 name="type"
                                                 className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
-
-/>
-                                        </div>
-                                        <div className="col-span-6 sm:col-span-3">
-                                            <input
-                                                type="text"
-                                                name="time"
-                                                placeholder="Minutes (only numbers)"
-                                                className="px-2 w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
-
                                                 onChange={(e) =>
                                                     setFormData({
                                                         ...formData,
@@ -209,7 +187,6 @@ const CreateRecipe = () => {
                                                     })
                                                 }
                                                 value={formData.time}
-
                                             >
                                                 <option>
                                                     Select the Time to prepare
@@ -219,39 +196,28 @@ const CreateRecipe = () => {
                                                 <option>20 min.</option>
                                                 <option>25 min.</option>
                                                 <option>30 min.</option>
+                                                <option>35 min.</option>
                                                 <option>40 min.</option>
+                                                <option>45 min.</option>
                                                 <option>50 min.</option>
                                                 <option>1 Hour</option>
+                                                <option>1:15 Hour</option>
                                                 <option>1:30 hour</option>
+                                                <option>1:45 hour</option>
                                                 <option>2 hours or more</option>
                                             </select>
                                         </div>
-
+{/* test  */}
                                         <div className="col-span-6 sm:col-span-3">
                                             <input
                                                 type="file"
-                                                // className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                className="px-2 w-full  h-10 font-medium border border-gray-300 rounded-lg border border-gray-200 text-slate-600 placeholder:text-slate-900 focus:ring-sky-600 focus:border-sky-600 block shadow-lg md:text-md border-gray-800 rounded-md"
+                                                className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
                                                 name="image"
                                                 onChange={(e) =>
                                                     setImage(e.target.files[0])
                                                 }
-                                               
                                             />
                                         </div>
-
-                                            />
-                                        </div>
-                                        <input
-                                            type="file"
-                                            // className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            className="px-2 w-full  h-10 font-medium border border-gray-300 rounded-lg border border-gray-200 text-slate-600 placeholder:text-slate-900 focus:ring-sky-600 focus:border-sky-600 block shadow-lg md:text-md border-gray-800 rounded-md"
-                                            name="image"
-                                            onChange={(e) =>
-                                                setImage(e.target.files[0])
-                                            }
-                                        />
-
                                         <div className="col-span-6 sm:col-span-3">
                                             <textarea
                                                 name="ingredients"
