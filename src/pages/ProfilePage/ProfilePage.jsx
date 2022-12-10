@@ -1,5 +1,5 @@
 import "./ProfilePage.css";
-import {useState, createContext, useContext} from "react";
+import { useContext} from "react";
 import {AuthContext} from "../../context/auth.context";
 
 function ProfilePage(props) {
@@ -19,12 +19,18 @@ function ProfilePage(props) {
                     <div className="lg:w-1/2 bg-white text-gray-800 flex flex-col">
                         <div className="p-8 shadow-md relative bg-white">
                             <div className="flex items-center">
+
+                                
+                                <div className="text-indigo-600 ml-3">
+                                   <h2>Wellcome {user.name}</h2>
+
                                 <img
                                     src={user.image}
                                     className="w-10 h-10 block rounded object-cover object-top"
                                 />
                                 <div className="text-indigo-600 font-medium ml-3">
                                     {user.name}
+
                                 </div>
                                 <button className="bg-indigo-100 text-indigo-400 ml-auto w-8 h-8 flex items-center justify-center rounded">
                                     <svg
@@ -80,20 +86,24 @@ function ProfilePage(props) {
                         </div>
                     </div>
                     <div className="row g-3 flex flex-wrap">
-                        {props.data
-                            .filter((myrecepie) => myrecepie.owner == user._id)
-                            .map((recipe) => (
-                                <div>
-                                    <div className="max-w-sm rounded overflow-hidden shadow-lg m-5 ">
-                                        <h1 className="font-bold text-xl mb-2">
-                                            {recipe.name}
-                                        </h1>
-                                        <h1>{recipe.type}</h1>
-                                        <h1>{recipe.region}</h1>
-                                        <img src={recipe.image} />
-                                    </div>
-                                </div>
-                            ))}
+
+                    {props.data
+                .filter((myrecepie) => myrecepie.owner === user._id)
+                .map((recipe) => (
+                    <div >
+                        <img
+                                    src={recipe.image}
+                                    className="w-10 h-10 block rounded object-cover object-top"
+                                    alt="image"
+                                />
+                        <div className="max-w-sm rounded overflow-hidden shadow-lg m-5 ">
+                            <h1 className="font-bold text-xl mb-2">{recipe.name}</h1>
+                            <h1>{recipe.type}</h1>
+                            <h1>{recipe.region}</h1>
+                        </div>
+
+                      
+
                     </div>
                 </div>
             </div>
