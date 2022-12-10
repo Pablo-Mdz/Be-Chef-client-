@@ -49,24 +49,6 @@ function SignupPage() {
         <div className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <h1>Sign Up</h1>
 
-            {/* <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
-
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <label>Name:</label>
-        <input type="text" name="name" value={name} onChange={handleName} />
-
-        <button type="submit">Sign Up</button>
-      </form> */}
-
             <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
                 <form onSubmit={handleSignupSubmit}>
                     <div className="form-group mb-6">
@@ -165,11 +147,13 @@ function SignupPage() {
                     </button>
                 </form>
             </div>
-            <div  className="mt-5">
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <div className="mt-5">
+                {errorMessage && (
+                    <p className="error-message">{errorMessage}</p>
+                )}
 
-            <p>Already have account?</p>
-            <Link to={"/login"}> Login</Link>
+                <p>Already have account?</p>
+                <Link to={"/login"}> Login</Link>
             </div>
         </div>
     );

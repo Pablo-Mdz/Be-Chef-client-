@@ -7,23 +7,30 @@ function ProfilePage(props) {
     console.log(user);
     return (
         <div>
-            
-
             <div className="h-screen w-screen bg-indigo-400 overflow-hidden absolute flex items-center">
                 <div className="w-screen h-64 absolute top-0 opacity-50 left-0 -my-40 -mx-64 bg-indigo-300 rounded-full"></div>
                 <div className="w-64 h-64 -mx-32 bg-sky-600 opacity-50 rounded-full"></div>
                 <div className="w-64 h-64 ml-auto relative opacity-50 -mr-32 bg-sky-300 rounded-full"></div>
                 <div className="w-screen h-64 absolute opacity-50 bottom-0 right-0 -my-40 -mx-64 bg-indigo-300 rounded-full"></div>
             </div>
-
+           
             <div className="container mx-auto h-screen py-16 px-8 relative">
                 <div className="flex w-full rounded-lg h-full lg:overflow-hidden overflow-auto lg:flex-row flex-col shadow-2xl">
                     <div className="lg:w-1/2 bg-white text-gray-800 flex flex-col">
                         <div className="p-8 shadow-md relative bg-white">
                             <div className="flex items-center">
+
                                 
                                 <div className="text-indigo-600 ml-3">
                                    <h2>Wellcome {user.name}</h2>
+
+                                <img
+                                    src={user.image}
+                                    className="w-10 h-10 block rounded object-cover object-top"
+                                />
+                                <div className="text-indigo-600 font-medium ml-3">
+                                    {user.name}
+
                                 </div>
                                 <button className="bg-indigo-100 text-indigo-400 ml-auto w-8 h-8 flex items-center justify-center rounded">
                                     <svg
@@ -42,6 +49,10 @@ function ProfilePage(props) {
                             <h1 className="font-medium text-lg mt-6">
                                 Your recepies
                             </h1>
+                            <img
+                                    src={user.image} alt='image'
+                                    className="w-10 h-10 block rounded object-cover object-top"
+                                />
                             <p className="text-gray-600 text-sm">
                                 Fingerstache godard blog, cornhole meh hoodie
                             </p>
@@ -75,6 +86,7 @@ function ProfilePage(props) {
                         </div>
                     </div>
                     <div className="row g-3 flex flex-wrap">
+
                     {props.data
                 .filter((myrecepie) => myrecepie.owner === user._id)
                 .map((recipe) => (
@@ -89,9 +101,10 @@ function ProfilePage(props) {
                             <h1>{recipe.type}</h1>
                             <h1>{recipe.region}</h1>
                         </div>
+
+                      
+
                     </div>
-                ))}
-                </div>
                 </div>
             </div>
         </div>

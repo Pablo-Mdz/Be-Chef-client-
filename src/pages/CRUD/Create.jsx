@@ -47,7 +47,11 @@ const CreateRecipe = () => {
             })
             .then((image) => {
                 const body = {...formData, image};
+
                 console.log(" body before axios", body);
+
+                console.log("body", body);
+
                 axios
                     .post(`${API_URL}/pages/CRUD/create`, body)
                     
@@ -140,6 +144,7 @@ const CreateRecipe = () => {
                                             />
                                         </div>
                                         <div className="col-span-6 sm:col-span-3">
+
                                         <select
                                                 name="type"
                                                 className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
@@ -166,6 +171,9 @@ const CreateRecipe = () => {
                                           
                                           
                                             {/* <input
+
+                                            <input
+
                                                 type="text"
                                                 name="service"
                                                 placeholder="Quantity of portions (only numbers) "
@@ -177,12 +185,23 @@ const CreateRecipe = () => {
                                                     })
                                                 }
                                                 value={formData.service}
+
                                             /> */}
                                         </div>
                                         <div className="col-span-6 sm:col-span-3">
                                             <select
                                                 name="type"
                                                 className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+
+/>
+                                        </div>
+                                        <div className="col-span-6 sm:col-span-3">
+                                            <input
+                                                type="text"
+                                                name="time"
+                                                placeholder="Minutes (only numbers)"
+                                                className="px-2 w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+
                                                 onChange={(e) =>
                                                     setFormData({
                                                         ...formData,
@@ -190,6 +209,7 @@ const CreateRecipe = () => {
                                                     })
                                                 }
                                                 value={formData.time}
+
                                             >
                                                 <option>
                                                     Select the Time to prepare
@@ -219,6 +239,19 @@ const CreateRecipe = () => {
                                                
                                             />
                                         </div>
+
+                                            />
+                                        </div>
+                                        <input
+                                            type="file"
+                                            // className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            className="px-2 w-full  h-10 font-medium border border-gray-300 rounded-lg border border-gray-200 text-slate-600 placeholder:text-slate-900 focus:ring-sky-600 focus:border-sky-600 block shadow-lg md:text-md border-gray-800 rounded-md"
+                                            name="image"
+                                            onChange={(e) =>
+                                                setImage(e.target.files[0])
+                                            }
+                                        />
+
                                         <div className="col-span-6 sm:col-span-3">
                                             <textarea
                                                 name="ingredients"
