@@ -38,6 +38,7 @@ const Details = (props, user) => {
                 <div className="flex flex-wrap-reverse -mx-1 lg:-mx-4">
                     {filtered &&
                         filtered.map((recipe) => (
+                            // test
                             <>
                                 {/*  */}
                                 {/* <!-- Column --> */}
