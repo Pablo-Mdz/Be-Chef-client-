@@ -1,5 +1,5 @@
 import "./ProfilePage.css";
-import {useState, createContext, useContext} from "react";
+import { useContext} from "react";
 import {AuthContext} from "../../context/auth.context";
 
 function ProfilePage(props) {
@@ -21,22 +21,19 @@ function ProfilePage(props) {
                     <div className="lg:w-1/2 bg-white text-gray-800 flex flex-col">
                         <div className="p-8 shadow-md relative bg-white">
                             <div className="flex items-center">
-                                <img
-                                    src="https://randomuser.me/api/portraits/men/1.jpg"
-                                    className="w-10 h-10 block rounded object-cover object-top"
-                                />
-                                <div className="text-indigo-600 font-medium ml-3">
-                                    {user.name}
+                                
+                                <div className="text-indigo-600 ml-3">
+                                   <h2>Wellcome {user.name}</h2>
                                 </div>
                                 <button className="bg-indigo-100 text-indigo-400 ml-auto w-8 h-8 flex items-center justify-center rounded">
                                     <svg
                                         stroke="currentColor"
                                         className="w-4 h-4"
                                         viewBox="0 0 24 24"
-                                        stroke-width="2.2"
+                                        strokeWidth="2.2"
                                         fill="none"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     >
                                         <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
                                     </svg>
@@ -64,10 +61,10 @@ function ProfilePage(props) {
                                     <svg
                                         stroke="currentColor"
                                         className="w-4 h-4 absolute right-0 top-0 mt-3 mr-2 text-gray-500"
-                                        stroke-width="2"
+                                        strokeWidth="2"
                                         fill="none"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                         viewBox="0 0 24 24"
                                     >
                                         <circle cx="11" cy="11" r="8" />
@@ -79,9 +76,14 @@ function ProfilePage(props) {
                     </div>
                     <div className="row g-3 flex flex-wrap">
                     {props.data
-                .filter((myrecepie) => myrecepie.owner == user._id)
+                .filter((myrecepie) => myrecepie.owner === user._id)
                 .map((recipe) => (
                     <div >
+                        <img
+                                    src={recipe.image}
+                                    className="w-10 h-10 block rounded object-cover object-top"
+                                    alt="image"
+                                />
                         <div className="max-w-sm rounded overflow-hidden shadow-lg m-5 ">
                             <h1 className="font-bold text-xl mb-2">{recipe.name}</h1>
                             <h1>{recipe.type}</h1>
