@@ -11,6 +11,9 @@ const CreateRecipe = () => {
     const [image, setImage] = useState("");
     const {user} = useContext(AuthContext);
 
+    const [ingredient, setIngredient] = useState([]);
+    const [NewIngredient, setNewIngredient] = useState([]);
+
     const [formData, setFormData] = useState({
         name: "",
         region: "",
@@ -18,13 +21,24 @@ const CreateRecipe = () => {
         image: "",
         time: "",
         service: "",
-        ingredients: "",
-        instructions: "",
+        ingredients: [],
+        instructions: [],
         tips: "",
-        reviews: "",
+        reviews: [],
         owner: user._id,
     });
     const navigate = useNavigate();
+
+    const handleNewIngredient = (e) => {
+        const {value} = e.target;
+        console.log(value);
+        setNewIngredient(value);
+    };
+    const addIngredient = (e) => {
+        e.preventDefault();
+        setIngredient([...ingredient, NewIngredient]);
+        setNewIngredient("");
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -46,7 +60,7 @@ const CreateRecipe = () => {
                 return data.url;
             })
             .then((image) => {
-                const body = {...formData, image};
+                const body = {...formData, image, ingredients: ingredient};
                 console.log(" body before axios", body);
                 axios
                     .post(`${API_URL}/pages/CRUD/create`, body)
@@ -59,13 +73,13 @@ const CreateRecipe = () => {
                             // body
                         );
 
-                        setFormData({});
+                        // setFormData({});
                         setImage("");
                         navigate("/profile");
                     });
             });
 
-        setFormData("");
+        // setFormData("");
     };
     formData.image && console.log(formData.image);
 
@@ -189,7 +203,8 @@ const CreateRecipe = () => {
                                                 value={formData.time}
                                             >
                                                 <option>
-                                                    Select the Time to prepare
+                                                    Select the Time to
+                                                    ingredient
                                                 </option>
                                                 <option>10 min.</option>
                                                 <option>15 min.</option>
@@ -207,7 +222,7 @@ const CreateRecipe = () => {
                                                 <option>2 hours or more</option>
                                             </select>
                                         </div>
-{/* test  */}
+                                        {/* test  */}
                                         <div className="col-span-6 sm:col-span-3">
                                             <input
                                                 type="file"
@@ -219,7 +234,36 @@ const CreateRecipe = () => {
                                             />
                                         </div>
                                         <div className="col-span-6 sm:col-span-3">
-                                            <textarea
+                                            {/* <div
+                                                className=" px-8 pt-6 pb-8 mb-4 bg-white rounded-lg shadow-md "
+                                                onChange={handleNewIngredient}
+                                                placeholder="ingredients here"
+                                                value={NewIngredient}
+                                            > */}
+                                            <input
+                                                placeholder="ingredients"
+                                                onChange={handleNewIngredient}
+                                                value={NewIngredient}
+                                            />
+                                            <button onClick={addIngredient}>
+                                                Add ingredients
+                                            </button>
+                                            <div>
+                                                <ol className="list-decimal pl-6">
+                                                    <div>
+                                                        {ingredient.length ? (
+                                                            ingredient.map(
+                                                                (eachStep) => {
+                                                                    return <ul>{eachStep}</ul>;
+                                                                }
+                                                            )
+                                                        ) : <h3></h3>}
+                                                    </div>
+                                                </ol>
+                                            </div>
+
+                                            {/* </div> */}
+                                            {/* <textarea
                                                 name="ingredients"
                                                 rows="4"
                                                 type="text"
@@ -233,7 +277,7 @@ const CreateRecipe = () => {
                                                     })
                                                 }
                                                 value={formData.ingredients}
-                                            ></textarea>
+                                            ></textarea> */}
                                             <div className="col-span-6 sm:col-span-3">
                                                 <textarea
                                                     name="instructions"

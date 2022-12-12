@@ -28,7 +28,7 @@ function ProfilePage(props) {
                 <div className="w-64 h-64 ml-auto relative opacity-50 -mr-32 bg-sky-300 rounded-full"></div>
                 <div className="w-screen h-64 absolute opacity-50 bottom-0 right-0 -my-40 -mx-64 bg-indigo-300 rounded-full"></div>
             </div>
-            <div className=" container mx-auto  py-16 px-20 relative ">
+            <div className=" container mx-auto  py-10 px-10 relative ">
                 <div className=" w-full rounded-lg h-full lg:overflow-hidden overflow-auto lg:flex-row flex-col shadow-2xl ">
                     {/* TARJETA  */}
                     <div className=" bg-white text-gray-800 flex flex-col">
@@ -90,7 +90,7 @@ function ProfilePage(props) {
                                 </div>
                            
 
-                        <div className=" container  px-2 md:px-12 my-6 ">
+                        <div className=" container  px-1 md:px-12 my-3 ">
                                 <div className=" -mx-1 lg:-mx-4 flex flex-wrap-reverse">
                                     {filtered
                                         .filter(

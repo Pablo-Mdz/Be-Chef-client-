@@ -29,6 +29,7 @@ function App() {
             //   ${id}
             .then((response) => setData(response.data), console.log(data));
     }, []);
+    console.log(data)
     return (
         <div className="App">
             <Navbar />
