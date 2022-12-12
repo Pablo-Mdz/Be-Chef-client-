@@ -33,7 +33,7 @@ const Details = (props, user) => {
                 className="w-96 border rounded border-gray-400 h-10 focus:outline-none pl-4 pr-8 text-gray-700 text-sm text-gray-500"
             />
 
-            <div className=" container w-3/4 px-2 md:px-12 my-6 ">
+            <div className=" container w-1/2 px-2 md:px-12 my-6 ">
                 {/* mx-auto */}
                 <div className="flex flex-wrap-reverse -mx-1 lg:-mx-4">
                     {filtered &&

@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import Footer from "./components/Navbar/Footer";
 
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
@@ -19,7 +20,6 @@ import Details from "./pages/CRUD/Details";
 import SingleRecipe from "./pages/CRUD/SingleRecipe";
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
-
 
 function App() {
     const [data, setData] = useState([]);
@@ -32,7 +32,7 @@ function App() {
     return (
         <div className="App">
             <Navbar />
-
+           
 
             <Routes>
                 <Route path="/" element={<HomePage />} />
@@ -41,7 +41,7 @@ function App() {
                     path="/profile"
                     element={
                         <IsPrivate>
-                            <ProfilePage data={data}/>
+                            <ProfilePage data={data} />
                         </IsPrivate>
                     }
                 />
@@ -70,22 +70,12 @@ function App() {
                         </IsPrivate>
                     }
                 />
-                <Route
-                    path="/details"
-                    element={
-                            <Details data={data}/>
-                   
-                    }
-                />
-                <Route
-                    path="/single/:id"
-                    element={
-                        
-                            <SingleRecipe />
-                    }
-                />
-          
+                <Route path="/details" element={<Details data={data} />} />
+                <Route path="/single/:id" element={<SingleRecipe />} />
             </Routes>
+              
+            {/* <Footer /> */}
+
 
         </div>
     );
