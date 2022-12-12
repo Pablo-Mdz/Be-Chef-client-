@@ -14,6 +14,9 @@ const CreateRecipe = () => {
     const [ingredient, setIngredient] = useState([]);
     const [NewIngredient, setNewIngredient] = useState([]);
 
+    const [instruction, setInstruction] = useState([]);
+    const [NewInstruction, setNewInstruction] = useState([]);
+
     const [formData, setFormData] = useState({
         name: "",
         region: "",
@@ -29,6 +32,7 @@ const CreateRecipe = () => {
     });
     const navigate = useNavigate();
 
+    //new ingredients
     const handleNewIngredient = (e) => {
         const {value} = e.target;
         console.log(value);
@@ -38,6 +42,18 @@ const CreateRecipe = () => {
         e.preventDefault();
         setIngredient([...ingredient, NewIngredient]);
         setNewIngredient("");
+    };
+
+    //new instructions
+    const handleNewInstruction = (e) => {
+        const {value} = e.target;
+        console.log(value);
+        setNewInstruction(value);
+    };
+    const addInstruction = (e) => {
+        e.preventDefault();
+        setInstruction([...instruction, NewInstruction]);
+        setNewInstruction("");
     };
 
     const handleSubmit = (e) => {
@@ -60,7 +76,12 @@ const CreateRecipe = () => {
                 return data.url;
             })
             .then((image) => {
-                const body = {...formData, image, ingredients: ingredient};
+                const body = {
+                    ...formData,
+                    image,
+                    ingredients: ingredient,
+                    instructions: instruction,
+                };
                 console.log(" body before axios", body);
                 axios
                     .post(`${API_URL}/pages/CRUD/create`, body)
@@ -69,8 +90,8 @@ const CreateRecipe = () => {
                         console.log(
                             "alright, updated with",
                             response,
-                            formData
-                            // body
+                            formData,
+                            body
                         );
 
                         // setFormData({});
@@ -79,7 +100,7 @@ const CreateRecipe = () => {
                     });
             });
 
-        // setFormData("");
+        setFormData("");
     };
     formData.image && console.log(formData.image);
 
@@ -133,9 +154,11 @@ const CreateRecipe = () => {
                                                 <option>Meat</option>
                                                 <option>Chiken</option>
                                                 <option>Fish</option>
-                                                <option>Vegan</option>
                                                 <option>Vegetarian</option>
+                                                <option>Vegan</option>
                                                 <option>Bakery</option>
+                                                <option>Desserts</option>
+                                                <option>Others</option>
                                             </select>
                                         </div>
                                         <div className="col-span-6 sm:col-span-3">
@@ -222,7 +245,7 @@ const CreateRecipe = () => {
                                                 <option>2 hours or more</option>
                                             </select>
                                         </div>
-                                        {/* test  */}
+
                                         <div className="col-span-6 sm:col-span-3">
                                             <input
                                                 type="file"
@@ -233,69 +256,87 @@ const CreateRecipe = () => {
                                                 }
                                             />
                                         </div>
+
                                         <div className="col-span-6 sm:col-span-3">
-                                            {/* <div
-                                                className=" px-8 pt-6 pb-8 mb-4 bg-white rounded-lg shadow-md "
-                                                onChange={handleNewIngredient}
-                                                placeholder="ingredients here"
-                                                value={NewIngredient}
-                                            > */}
-                                            <input
-                                                placeholder="ingredients"
-                                                onChange={handleNewIngredient}
-                                                value={NewIngredient}
-                                            />
-                                            <button onClick={addIngredient}>
-                                                Add ingredients
-                                            </button>
+                                            <div className="flex ">
+                                                <input
+                                                    className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                    placeholder="ingredients"
+                                                    onChange={
+                                                        handleNewIngredient
+                                                    }
+                                                    value={NewIngredient}
+                                                />
+                                                <button
+                                                    className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                                                    onClick={addIngredient}
+                                                >
+                                                    +
+                                                </button>
+                                            </div>
+
                                             <div>
-                                                <ol className="list-decimal pl-6">
+                                                <ol className="list-decimal pl-6 text-left font-bold">
                                                     <div>
                                                         {ingredient.length ? (
                                                             ingredient.map(
                                                                 (eachStep) => {
-                                                                    return <ul>{eachStep}</ul>;
+                                                                    return (
+                                                                        <li>
+                                                                            {
+                                                                                eachStep
+                                                                            }
+                                                                        </li>
+                                                                    );
                                                                 }
                                                             )
-                                                        ) : <h3></h3>}
+                                                        ) : (
+                                                            <h3></h3>
+                                                        )}
                                                     </div>
                                                 </ol>
                                             </div>
+                                        </div>
 
-                                            {/* </div> */}
-                                            {/* <textarea
-                                                name="ingredients"
-                                                rows="4"
-                                                type="text"
-                                                className="mt-1 block w-full h-40 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
-                                                placeholder="Ingredients..."
-                                                onChange={(e) =>
-                                                    setFormData({
-                                                        ...formData,
-                                                        ingredients:
-                                                            e.target.value,
-                                                    })
-                                                }
-                                                value={formData.ingredients}
-                                            ></textarea> */}
-                                            <div className="col-span-6 sm:col-span-3">
-                                                <textarea
-                                                    name="instructions"
-                                                    rows="4"
-                                                    type="text"
-                                                    className=" mt-1 block w-full h-40 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
-                                                    placeholder="Instructions..."
-                                                    onChange={(e) =>
-                                                        setFormData({
-                                                            ...formData,
-                                                            instructions:
-                                                                e.target.value,
-                                                        })
+                                        <div className="col-span-6 sm:col-span-3">
+                                            <div className="flex ">
+                                                <input
+                                                    className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                    placeholder="Instructions"
+                                                    onChange={
+                                                        handleNewInstruction
                                                     }
-                                                    value={
-                                                        formData.instructions
-                                                    }
-                                                ></textarea>
+                                                    value={NewInstruction}
+                                                />
+                                                <button
+                                                    className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                                                    onClick={addInstruction}
+                                                >
+                                                    +
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <ol className="list-decimal pl-6 text-left font-bold">
+                                                    <div>
+                                                        {instruction.length ? (
+                                                            instruction.map(
+                                                                (
+                                                                    eachInstruction
+                                                                ) => {
+                                                                    return (
+                                                                        <li>
+                                                                            {
+                                                                                eachInstruction
+                                                                            }
+                                                                        </li>
+                                                                    );
+                                                                }
+                                                            )
+                                                        ) : (
+                                                            <h3></h3>
+                                                        )}
+                                                    </div>
+                                                </ol>
                                             </div>
                                         </div>
 
@@ -349,155 +390,3 @@ const CreateRecipe = () => {
 };
 
 export default CreateRecipe;
-
-{
-    /* <form
-                onSubmit={handleSubmit}
-                className="px-8 pt-6 pb-8 mb-4 bg-white rounded-lg shadow-md"
-            >
-                <label
-                    for="name"
-                    className="block mb-2 text-sm font-medium text-gray-500 dark:text-black"
-                >
-                    Recipe Name{" "}
-                </label>
-                <input
-                    type="text"
-                    className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    name="name"
-                    onChange={(e) =>
-                        setFormData({...formData, name: e.target.value})
-                    }
-                    value={formData.name}
-                />
-
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
-                    region
-                </label>
-                <input
-                    type="text"
-                    className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    name="region"
-                    onChange={(e) =>
-                        setFormData({...formData, region: e.target.value})
-                    }
-                    value={formData.region}
-                />
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
-                    type
-                </label>
-                <input
-                    type="text"
-                    className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    name="type"
-                    onChange={(e) =>
-                        setFormData({...formData, type: e.target.value})
-                    }
-                    value={formData.type}
-                />
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
-                    image
-                </label>
-
-                <input
-                    type="file"
-                    className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    name="image"
-                    onChange={(e) => setImage(e.target.files[0])}
-                />
-
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
-                    time (only numbers)
-                </label>
-                <input
-                    type="text"
-                    className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    name="time"
-                    onChange={(e) =>
-                        setFormData({...formData, time: e.target.value})
-                    }
-                    value={formData.time}
-                />
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
-                    service (only numbers)
-                </label>
-                <input
-                    type="text"
-                    className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    name="service"
-                    onChange={(e) =>
-                        setFormData({...formData, service: e.target.value})
-                    }
-                    value={formData.service}
-                />
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
-                    ingredients
-                </label>
-                <input
-                    type="text"
-                    className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    name="ingredients"
-                    onChange={(e) =>
-                        setFormData({...formData, ingredients: e.target.value})
-                    }
-                    value={formData.ingredients}
-                />
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
-                    instructions
-                </label>
-
-                {/* <label for="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label> */
-}
-{
-    /* <textarea
-                    rows="4"
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Instructions..."
-                    onChange={(e) =>
-                        setFormData({...formData, instructions: e.target.value})
-                    }
-                    value={formData.instructions}
-                ></textarea> */
-}
-
-{
-    /* <input
-                    type="text"
-                    className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    name="instructions"
-                /> */
-}
-{
-    /* <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
-                    tips
-                </label>
-                <input
-                    type="text"
-                    className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    name="tips"
-                    onChange={(e) =>
-                        setFormData({...formData, tips: e.target.value})
-                    }
-                    value={formData.tips}
-                />
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
-                    reviews
-                </label>
-                <input
-                    type="text"
-                    className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    name="reviews"
-                    onChange={(e) =>
-                        setFormData({...formData, reviews: e.target.value})
-                    }
-                    value={formData.reviews}
-                />
-
-                <button
-                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    type="submit"
-                >
-                    Create Recipe
-                </button>
-            </form> */
-}

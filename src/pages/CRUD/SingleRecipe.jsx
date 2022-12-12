@@ -45,8 +45,9 @@ const SingleRecipe = () => {
                             <h4 className="text-gray-700 text-base">
                                 <strong>Services: </strong> {recipe.service}
                             </h4>
-                            <h4 className="text-gray-700 text-base">
+                            <h4 className="text-gray-700 text-base"></h4>
                             <div>
+                            <h4><strong>Ingredients:</strong></h4>
                                                         {recipe.ingredients.length ? (
                                                             recipe.ingredients.map(
                                                                 (eachStep) => {
@@ -55,11 +56,20 @@ const SingleRecipe = () => {
                                                             )
                                                         ) : <h3></h3>}
                                                     </div>
-                            </h4>
-                            <h4 className="text-gray-700 text-base">
-                                <strong>Instructions: </strong>{" "}
-                                {recipe.instructions}
-                            </h4>
+                          
+                            <h4 className="text-gray-700 text-base">  </h4>
+                            <div>
+                                <h4><strong>Instructions:</strong></h4>
+                                                        {recipe.instructions.length ? (
+                                                            recipe.instructions.map(
+                                                                (eachInstruction) => {
+                                                                    return <li>{eachInstruction}</li>;
+                                                                }
+                                                            )
+                                                        ) : <h3></h3>}
+                                                    </div>
+                            
+                           
                             <h4 className="text-gray-700 text-base">
                                 <strong>Tips: </strong> {recipe.tips}
                             </h4>
