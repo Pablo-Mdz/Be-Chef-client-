@@ -7,7 +7,9 @@ import {useContext} from "react";
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
-const CreateRecipe = () => {
+const CreateRecipe = (props) => {
+
+
     const [image, setImage] = useState("");
     const {user} = useContext(AuthContext);
 
@@ -96,6 +98,7 @@ const CreateRecipe = () => {
 
                         // setFormData({});
                         setImage("");
+                        props.refresh()
                         navigate("/profile");
                     });
             });

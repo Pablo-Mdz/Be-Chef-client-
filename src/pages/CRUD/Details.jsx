@@ -5,20 +5,33 @@ import {Link} from "react-router-dom";
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
-const Details = (props, user) => {
+const Details = (props) => {
     const [search, setSearch] = useState("");
-    const filtered = props.data.filter((oneData) => {
-        if (!oneData.type) {
-            return false;
-        } else if (!oneData.name) {
-            return false;
-        } else {
-            return (
-                oneData.name.toLowerCase().includes(search.toLowerCase()) ||
-                oneData.type.toLowerCase().includes(search.toLowerCase())
-            );
-        }
-    });
+
+    const refresh = ()=> {
+        axios
+        .get(`${API_URL}/pages/CRUD/details`)
+        //   ${id}
+        .then((response) => props.setData(response.data));
+    }
+    useEffect(() => {
+      refresh()
+    }, []);
+
+    // const filtered = props.data.filter((oneData) => {
+    //     if (!oneData.type) {
+    //         return false;
+    //     } else if (!oneData.name) {
+    //         return false;
+    //     } else {
+    //         return (
+    //             oneData.name.toLowerCase().includes(search.toLowerCase()) ||
+    //             oneData.type.toLowerCase().includes(search.toLowerCase())
+    //         );
+    //     }
+    // });
+
+
 
     return (
         <div className=" bg-sky-50">
@@ -36,8 +49,8 @@ const Details = (props, user) => {
             <div className=" container w-screen px-2 md:px-12 my-6 ">
                 {/* mx-auto */}
                 <div className="flex flex-wrap-reverse -mx-1 lg:-mx-4">
-                    {filtered &&
-                        filtered.map((recipe) => (
+                    {props.data &&
+                        props.data.map((recipe) => (
                             // test
                             <>
                                 {/*  */}

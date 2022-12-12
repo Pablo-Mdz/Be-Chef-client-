@@ -23,11 +23,15 @@ const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
 function App() {
     const [data, setData] = useState([]);
-    useEffect(() => {
+
+    const refresh = ()=> {
         axios
-            .get(`${API_URL}/pages/CRUD/details`)
-            //   ${id}
-            .then((response) => setData(response.data), console.log(data));
+        .get(`${API_URL}/pages/CRUD/details`)
+        //   ${id}
+        .then((response) => setData(response.data), console.log(data));
+    }
+    useEffect(() => {
+      refresh()
     }, []);
     console.log(data)
     return (
@@ -42,7 +46,7 @@ function App() {
                     path="/profile"
                     element={
                         <IsPrivate>
-                            <ProfilePage data={data} />
+                            <ProfilePage data={data} refresh ={refresh} />
                         </IsPrivate>
                     }
                 />
@@ -67,12 +71,12 @@ function App() {
                     path="/create"
                     element={
                         <IsPrivate>
-                            <Create />
+                            <Create refresh ={refresh} />
                         </IsPrivate>
                     }
                 />
-                <Route path="/details" element={<Details data={data} />} />
-                <Route path="/single/:id" element={<SingleRecipe />} />
+                <Route path="/details" element={<Details data={data} setData={setData}/>} />
+                <Route path="/single/:id" element={<SingleRecipe refresh ={refresh} />} />
             </Routes>
               
             {/* <Footer /> */}

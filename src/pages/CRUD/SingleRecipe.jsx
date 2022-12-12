@@ -5,7 +5,7 @@ import photo from "../../images/frutas1.jpg";
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
-const SingleRecipe = () => {
+const SingleRecipe = (props) => {
     const [recipe, setRecipe] = useState(null);
     const {id} = useParams();
     const navigate = useNavigate();
@@ -15,10 +15,12 @@ const SingleRecipe = () => {
             setRecipe(response.data);
         });
     }, []);
-    const Delete = () => {
+
+    const Delete = (id) => {
         axios
             .post(`${API_URL}/pages/CRUD/${id}/delete`)
-            .then(navigate("/details"));
+            .then(props.refresh())
+            .then(navigate("/profile"));
     };
 
     return (
@@ -47,29 +49,34 @@ const SingleRecipe = () => {
                             </h4>
                             <h4 className="text-gray-700 text-base"></h4>
                             <div>
-                            <h4><strong>Ingredients:</strong></h4>
-                                                        {recipe.ingredients.length ? (
-                                                            recipe.ingredients.map(
-                                                                (eachStep) => {
-                                                                    return <li>{eachStep}</li>;
-                                                                }
-                                                            )
-                                                        ) : <h3></h3>}
-                                                    </div>
-                          
-                            <h4 className="text-gray-700 text-base">  </h4>
+                                <h4>
+                                    <strong>Ingredients:</strong>
+                                </h4>
+                                {recipe.ingredients.length ? (
+                                    recipe.ingredients.map((eachStep) => {
+                                        return <li>{eachStep}</li>;
+                                    })
+                                ) : (
+                                    <h3></h3>
+                                )}
+                            </div>
+
+                            <h4 className="text-gray-700 text-base"> </h4>
                             <div>
-                                <h4><strong>Instructions:</strong></h4>
-                                                        {recipe.instructions.length ? (
-                                                            recipe.instructions.map(
-                                                                (eachInstruction) => {
-                                                                    return <li>{eachInstruction}</li>;
-                                                                }
-                                                            )
-                                                        ) : <h3></h3>}
-                                                    </div>
-                            
-                           
+                                <h4>
+                                    <strong>Instructions:</strong>
+                                </h4>
+                                {recipe.instructions.length ? (
+                                    recipe.instructions.map(
+                                        (eachInstruction) => {
+                                            return <li>{eachInstruction}</li>;
+                                        }
+                                    )
+                                ) : (
+                                    <h3></h3>
+                                )}
+                            </div>
+
                             <h4 className="text-gray-700 text-base">
                                 <strong>Tips: </strong> {recipe.tips}
                             </h4>
@@ -85,7 +92,12 @@ const SingleRecipe = () => {
                                 #text3
                             </span>
                         </div>
-                        <button onClick={Delete}>delete</button>
+                        <button
+                            className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                            onClick={() => Delete(recipe._id)}
+                        >
+                            delete
+                        </button>
                     </div>
                 )}
             </div>
@@ -94,27 +106,3 @@ const SingleRecipe = () => {
 };
 
 export default SingleRecipe;
-
-{
-    /* <div>
-    <div className="col-sm-4">
-        <div
-            className="card"
-            style={{width: "20rem", height: "30rem"}}
-        >
-            <img
-                src={recipe.image}
-                className="card-img-top crdImg"
-                alt="..."
-            />
-
-            <div className="card-body">
-                <h5 className="card-title">{recipe.name}</h5>
-                <h5 className="card-body">
-                    {recipe.ingedients}
-                </h5>
-                <p>Created By: {recipe.region}</p>
-            </div>
-        </div>
-    </div> */
-}

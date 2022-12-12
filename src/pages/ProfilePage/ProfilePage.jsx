@@ -7,18 +7,18 @@ import {Link, NavLink} from "react-router-dom";
 function ProfilePage(props) {
     const {user} = useContext(AuthContext);
     const [search, setSearch] = useState("");
-    const filtered = props.data.filter((oneData) => {
-        if (!oneData.type) {
-            return false;
-        } else if (!oneData.name) {
-            return false;
-        } else {
-            return (
-                oneData.name.toLowerCase().includes(search.toLowerCase()) ||
-                oneData.type.toLowerCase().includes(search.toLowerCase())
-            );
-        }
-    });
+    // const filtered = props.data.filter((oneData) => {
+    //     if (!oneData.type) {
+    //         return false;
+    //     } else if (!oneData.name) {
+    //         return false;
+    //     } else {
+    //         return (
+    //             oneData.name.toLowerCase().includes(search.toLowerCase()) ||
+    //             oneData.type.toLowerCase().includes(search.toLowerCase())
+    //         );
+    //     }
+    // });
 
     return (
         <div>
@@ -92,7 +92,7 @@ function ProfilePage(props) {
 
                         <div className=" container  px-1 md:px-12 my-3 ">
                                 <div className=" -mx-1 lg:-mx-4 flex flex-wrap-reverse">
-                                    {filtered
+                                    {props.data
                                         .filter(
                                             (myrecepie) =>
                                                 myrecepie.owner === user._id
