@@ -8,13 +8,15 @@ import {useContext} from "react";
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
 const CreateRecipe = (props) => {
-
-
     const [image, setImage] = useState("");
     const {user} = useContext(AuthContext);
 
     const [ingredient, setIngredient] = useState([]);
-    const [NewIngredient, setNewIngredient] = useState([]);
+    const [NewIngredient, setNewIngredient] = useState({
+        quantity: "",
+        measure: "",
+        singleIngredient: "",
+    });
 
     const [instruction, setInstruction] = useState([]);
     const [NewInstruction, setNewInstruction] = useState([]);
@@ -36,27 +38,54 @@ const CreateRecipe = (props) => {
 
     //new ingredients
     const handleNewIngredient = (e) => {
-        const {value} = e.target;
-        console.log(value);
-        setNewIngredient(value);
+        const {name, value} = e.target;
+        setNewIngredient({
+            ...NewIngredient,
+            [name]: value,
+        });
     };
+
     const addIngredient = (e) => {
         e.preventDefault();
         setIngredient([...ingredient, NewIngredient]);
-        setNewIngredient("");
+        setNewIngredient({quantity: "", measure: "", singleIngredient: ""});
     };
 
-    //new instructions
-    const handleNewInstruction = (e) => {
-        const {value} = e.target;
-        console.log(value);
-        setNewInstruction(value);
-    };
-    const addInstruction = (e) => {
-        e.preventDefault();
-        setInstruction([...instruction, NewInstruction]);
-        setNewInstruction("");
-    };
+    // delete ingredient
+    function deleteIngredient(item) {
+        let array = [...ingredient]; 
+        let index = array.indexOf(item)
+        if (index !== -1) {
+            array.splice(index, 1);
+            setIngredient(array);
+        }
+      }
+  
+      
+      //new instructions
+      const handleNewInstruction = (e) => {
+          const {value} = e.target;
+          console.log(value);
+          setNewInstruction(value);
+        };
+        const addInstruction = (e) => {
+            e.preventDefault();
+            setInstruction([...instruction, NewInstruction]);
+            setNewInstruction("");
+        };
+        
+
+        // delete instruction
+        function deleteInstruction(item) {
+            let array = [...instruction]; 
+            let index = array.indexOf(item)
+            if (index !== -1) {
+                array.splice(index, 1);
+                setInstruction(array);
+            }
+          }
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -98,7 +127,7 @@ const CreateRecipe = (props) => {
 
                         // setFormData({});
                         setImage("");
-                        props.refresh()
+                        props.refresh();
                         navigate("/profile");
                     });
             });
@@ -120,7 +149,7 @@ const CreateRecipe = (props) => {
                         >
                             <div className="shadow overflow-hidden xl:rounded-xl ">
                                 <div className="px-4 py-5 bg-white sm:p-6">
-                                    <div className="grid grid-cols-6 gap-6">
+                                    <div className="grid grid-cols-6 gap-7">
                                         <div className="col-span-6 sm:col-span-3">
                                             <input
                                                 type="text"
@@ -134,6 +163,7 @@ const CreateRecipe = (props) => {
                                                     })
                                                 }
                                                 value={formData.name}
+                                                // required
                                             />
                                         </div>
                                         <div className="col-span-6 sm:col-span-3">
@@ -147,6 +177,7 @@ const CreateRecipe = (props) => {
                                                     })
                                                 }
                                                 value={formData.type}
+                                                // required
                                             >
                                                 <option>
                                                     Select a type of food
@@ -166,7 +197,7 @@ const CreateRecipe = (props) => {
                                         </div>
                                         <div className="col-span-6 sm:col-span-3">
                                             <select
-                                                name="type"
+                                                name="region"
                                                 className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
                                                 onChange={(e) =>
                                                     setFormData({
@@ -191,7 +222,7 @@ const CreateRecipe = (props) => {
 
                                         <div className="col-span-6 sm:col-span-3">
                                             <select
-                                                name="type"
+                                                name="service"
                                                 className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
                                                 onChange={(e) =>
                                                     setFormData({
@@ -218,7 +249,7 @@ const CreateRecipe = (props) => {
                                         </div>
                                         <div className="col-span-6 sm:col-span-3">
                                             <select
-                                                name="type"
+                                                name="time"
                                                 className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
                                                 onChange={(e) =>
                                                     setFormData({
@@ -245,7 +276,9 @@ const CreateRecipe = (props) => {
                                                 <option>1:15 Hour</option>
                                                 <option>1:30 hour</option>
                                                 <option>1:45 hour</option>
-                                                <option>2 hours or more</option>
+                                                <option>2 ~ 5 hors</option>
+                                                <option>5 ~10 hors</option>
+                                                <option>10 ~ 24 hors</option>
                                             </select>
                                         </div>
 
@@ -260,15 +293,50 @@ const CreateRecipe = (props) => {
                                             />
                                         </div>
 
-                                        <div className="col-span-6 sm:col-span-3">
+                                        {/* add quantity  */}
+                                        <div className="col-span-1 ">
+                                            <input
+                                                type="Number"
+                                                name="quantity"
+                                                placeholder="quantity  "
+                                                className="px-2 block w-32 h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                onChange={handleNewIngredient}
+                                                value={NewIngredient.quantity}
+                                            />
+                                        </div>
+                                        {/* // add measure  */}
+
+                                        <div className="col-span-2">
+                                            <select
+                                                name="measure"
+                                                className="px-2 block w-40 h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                onChange={handleNewIngredient}
+                                                value={NewIngredient.measure}
+                                            >
+                                                <option>Select measure</option>
+                                                <option>g</option>
+                                                <option>cc</option>
+                                                <option>ml</option>
+                                                <option>L</option>
+                                                <option>Kg</option>
+                                                <option>unity</option>
+                                            </select>
+                                        </div>
+
+                                        {/* // add ingredient  */}
+                                        <div className="col-span-3 sm:col-span-3">
                                             <div className="flex ">
                                                 <input
+                                                    type="text"
+                                                    name="singleIngredient"
                                                     className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
-                                                    placeholder="ingredients"
+                                                    placeholder=" add ingredients"
                                                     onChange={
                                                         handleNewIngredient
                                                     }
-                                                    value={NewIngredient}
+                                                    value={
+                                                        NewIngredient.singleIngredient
+                                                    }
                                                 />
                                                 <button
                                                     className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
@@ -277,7 +345,8 @@ const CreateRecipe = (props) => {
                                                     +
                                                 </button>
                                             </div>
-
+                                        </div>
+                                        <div className="col-span-3 sm:col-span-6">
                                             <div>
                                                 <ol className="list-decimal pl-6 text-left font-bold">
                                                     <div>
@@ -285,11 +354,23 @@ const CreateRecipe = (props) => {
                                                             ingredient.map(
                                                                 (eachStep) => {
                                                                     return (
-                                                                        <li>
-                                                                            {
-                                                                                eachStep
-                                                                            }
-                                                                        </li>
+                                                                        <div className="flex justify-between">
+                                                                            <div>
+                                                                                <ul>
+                                                                                    {`${eachStep.quantity} ${eachStep.measure} ${eachStep.singleIngredient}`}
+                                                                                </ul>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span
+                                                                                    onClick={() =>
+                                                                                        deleteIngredient(eachStep)
+                                                                                    }
+                                                                                    className="inline-block bg-gray-200 hover:bg-red-500 rounded-full px-3 py-1 hover:text-white text-sm font-semibold text-red-700 mr-2 my-1 hover:border-transparent"
+                                                                                >
+                                                                                    Delete
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
                                                                     );
                                                                 }
                                                             )
@@ -300,10 +381,10 @@ const CreateRecipe = (props) => {
                                                 </ol>
                                             </div>
                                         </div>
-
-                                        <div className="col-span-6 sm:col-span-3">
+                                        <div className="col-span-3 sm:col-span-6">
                                             <div className="flex ">
                                                 <input
+                                                    type="text"
                                                     className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
                                                     placeholder="Instructions"
                                                     onChange={
@@ -327,11 +408,25 @@ const CreateRecipe = (props) => {
                                                                     eachInstruction
                                                                 ) => {
                                                                     return (
-                                                                        <li>
-                                                                            {
-                                                                                eachInstruction
-                                                                            }
-                                                                        </li>
+                                                                        <div className="flex justify-between">
+                                                                            <div>
+                                                                                <ul>
+                                                                                    {
+                                                                                        eachInstruction
+                                                                                    }
+                                                                                </ul>
+                                                                            </div>
+                                                                            <div>
+                                                                            <span
+                                                                                    onClick={() =>
+                                                                                        deleteInstruction(eachInstruction)
+                                                                                    }
+                                                                                    className="inline-block bg-gray-200 hover:bg-red-500 rounded-full px-3 py-1 hover:text-white text-sm font-semibold text-red-700 mr-2 my-1 hover:border-transparent"
+                                                                                >
+                                                                                    Delete
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
                                                                     );
                                                                 }
                                                             )
@@ -356,21 +451,6 @@ const CreateRecipe = (props) => {
                                                     })
                                                 }
                                                 value={formData.tips}
-                                            />
-                                        </div>
-                                        <div className="col-span-6 sm:col-span-3">
-                                            <input
-                                                type="text"
-                                                placeholder="Review "
-                                                className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
-                                                name="reviews"
-                                                onChange={(e) =>
-                                                    setFormData({
-                                                        ...formData,
-                                                        reviews: e.target.value,
-                                                    })
-                                                }
-                                                value={formData.reviews}
                                             />
                                         </div>
                                     </div>

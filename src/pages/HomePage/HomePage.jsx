@@ -1,43 +1,8 @@
-// import "./HomePage.css";
-// import {Link, NavLink} from "react-router-dom";
-// import SingleRecipe from "../CRUD/SingleRecipe";
-// import photo from "../../images/quesos.jpg";
-// function HomePage() {
-//     return (
-//         <>
-//             <div className="font-mono bg-sky-300">
-//                 <NavLink to="/details">
-//                     <div className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 card">
-//                         <div className="card-body">
-//                             <button
-//                                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-//                                 type="submit"
-//                             >
-//                                 See all recepies
-//                             </button>
-//                         </div>
-//                     </div>
-//                     <SingleRecipe />
-//                 </NavLink>
-//                  {/* <img className="opacity-30 absolute"  src={photo} alt="chees" /> */}
-//             </div>
-//             {/* <!-- component --> */}
-//             {/* <!-- This is an example component --> */}
-//             {/* <img className="opacity-30"  src={photo} alt="chees" /> */}
-//         </>
-//     );
-// }
-
-// export default HomePage;
 import React from "react";
-
-//  import Navbar from "../../components/Navbar/Navbar"
-// import Footer from "components/Footer.js";
 
 function HomePage() {
     return (
         <>
-            {/* <Navbar transparent /> */}
             <main>
                 <div
                     className="relative pt-8 pb-64 flex content-center items-center justify-center"
@@ -100,15 +65,32 @@ function HomePage() {
                             <div className="lg:pt-16 pt- w-full md:w-4/12 px-4 text-center">
                                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                                     <div className="px-4 py-5 flex-auto">
-                                        <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
-                                            <i className="fas fa-award"></i>
+                                    <a href="/signup">   <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-500">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                strokeWidth={1.5}
+                                                stroke="currentColor"
+                                                className="w-6 h-6"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.33"
+                                                />
+                                            </svg>
                                         </div>
+                                        </a>
                                         <a href="/signup">
-                                        <h6 className="text-xl font-semibold">
-                                        create an account
-                                        </h6></a>
+                                            <h6 className="text-xl font-semibold">
+                                                Create an account
+                                            </h6>
+                                        </a>
                                         <p className="mt-2 mb-4 text-gray-600">
-                                        it's totally free and fast
+                                            It's totally free and fast. in your
+                                            profile you can save all your
+                                            recipes.
                                         </p>
                                     </div>
                                 </div>
@@ -117,15 +99,34 @@ function HomePage() {
                             <div className="w-full md:w-4/12 px-4 text-center">
                                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                                     <div className="px-4 py-5 flex-auto">
-                                        <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
-                                            <i className="fas fa-retweet"></i>
+                                    <a href="/create">  <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                strokeWidth={1.5}
+                                                stroke="currentColor"
+                                                className="w-6 h-6"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                                                />
+                                            </svg>
                                         </div>
+                                        </a>
                                         <a href="/create">
-                                        <h6 className="text-xl font-semibold">
-                                        share your passion for cooking
-                                        </h6></a>
+                                            <h6 className="text-xl font-semibold">
+                                                Share your best recipes
+                                            </h6>
+                                        </a>
                                         <p className="mt-2 mb-4 text-gray-600">
-                                        You can create as many recipes as you want to share with everyone!
+                                            You can create as many recipes as
+                                            you want to share with everyone. You
+                                            can post your recipes to save them
+                                            or also share your recipes with
+                                            friends and family.
                                         </p>
                                     </div>
                                 </div>
@@ -134,14 +135,38 @@ function HomePage() {
                             <div className="pt-10 w-full md:w-4/12 px-4 text-center">
                                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                                     <div className="px-4 py-5 flex-auto">
-                                        <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
-                                            <i className="fas fa-fingerprint"></i>
+                                    <a href="/details">   <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                strokeWidth={1.5}
+                                                stroke="currentColor"
+                                                className="w-6 h-6"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    d="M6.115 5.19l.319 1.913A6 6 0 008.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 002.288-4.042 1.087 1.087 0 00-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 01-.98-.314l-.295-.295a1.125 1.125 0 010-1.591l.13-.132a1.125 1.125 0 011.3-.21l.603.302a.809.809 0 001.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 001.528-1.732l.146-.292M6.115 5.19A9 9 0 1017.18 4.64M6.115 5.19A8.965 8.965 0 0112 3c1.929 0 3.716.607 5.18 1.64"
+                                                />
+                                            </svg>
                                         </div>
-                                        <h6 className="text-xl font-semibold">
-                                        share your passion for cooking
-                                        </h6>
+                                        </a>
+                                        <a href="/details">
+                                            {" "}
+                                            <h6 className="text-xl font-semibold">
+                                                Learn new recipes from the world
+                                            </h6>
+                                        </a>
+
                                         <p className="mt-2 mb-4 text-gray-600">
-                                        Share your secrets to achieve excellent results with everyone!
+                                            Here you can find a variety of
+                                            delicious recipes from all over the
+                                            world. We have a great selection of
+                                            meals from breakfast to dinner, and
+                                            from appetizers to desserts. Check
+                                            out our Recipe Finder to find the
+                                            perfect dish for you.
                                         </p>
                                     </div>
                                 </div>
@@ -150,18 +175,45 @@ function HomePage() {
 
                         <div className="flex flex-wrap items-center mt-32">
                             <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
-                                <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
-                                    <i className="fas fa-user-friends text-xl"></i>
+                                <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-amber-400">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                        className="w-8 h-8"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"
+                                        />
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"
+                                        />
+                                    </svg>
                                 </div>
                                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                                Express yourself
+                                    Express yourself
                                 </h3>
                                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
-                                Cooking is one of the greatest activities to do alone, with family or with friends. It's a way of self-expression and experimenting with different ingredients to create something new and delicious. Also enjoy the feeling of accomplishment after creating something delicious.
-                                 
+                                    Cooking is one of the greatest activities to
+                                    do alone, with family or with friends. It's
+                                    a way of self-expression and experimenting
+                                    with different ingredients to create
+                                    something new and delicious. Also enjoy the
+                                    feeling of accomplishment after creating
+                                    something delicious.
                                 </p>
                                 <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700">
-                                Cooking is a way to connect with friends and family and I find it very rewarding to share a meal with them. Experiment with recipes and trying new flavors. Cooking is an art form and as such, it should be enjoyed!
+                                    Cooking is a way to connect with friends and
+                                    family and I find it very rewarding to share
+                                    a meal with them. Experiment with recipes
+                                    and trying new flavors. Cooking is an art
+                                    form and as such, it should be enjoyed!
                                 </p>
                                 <a
                                     href="/details"
@@ -195,10 +247,12 @@ function HomePage() {
                                             ></polygon>
                                         </svg>
                                         <h4 className="text-xl font-bold text-white">
-                                        original recipes
+                                            original recipes
                                         </h4>
                                         <p className="text-md font-light mt-2 text-white">
-                                        Find all the recipes you would like to make and share all the ones you love!.
+                                            Find all the recipes you would like
+                                            to make and share all the ones you
+                                            love!.
                                         </p>
                                     </blockquote>
                                 </div>
@@ -207,7 +261,7 @@ function HomePage() {
                     </div>
                 </section>
 
-                <section className="relative py-20">
+                {/* <section className="relative py-20">
                     <div
                         className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
                         style={{height: "80px"}}
@@ -472,7 +526,7 @@ function HomePage() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 <section className="pb-20 relative block bg-gray-900">
                     <div

@@ -19,15 +19,15 @@ const Details = (props) => {
     }, []);
 
     const filtered = props.data.filter((oneData) => {
-        // if (!oneData.type) {
-        //     return false;
-        // } else 
+        if (!oneData.type) {
+            return false;
+        } else 
         if (!oneData.name) {
             return true;
         } else {
             return (
-                oneData.name.toLowerCase().includes(search.toLowerCase()) 
-                // oneData.type.toLowerCase().includes(search.toLowerCase())
+                oneData.name.toLowerCase().includes(search.toLowerCase()) ||
+                oneData.type.toLowerCase().includes(search.toLowerCase())
             );
         }
     });
@@ -35,7 +35,7 @@ const Details = (props) => {
 
 
     return (
-        <div className="font-mono bg-sky-50">
+        <div className=" bg-gray-300 ">
             <h1>Find All the recepies here!</h1>
             <input
                 placeholder="Search"
@@ -44,33 +44,33 @@ const Details = (props) => {
                 onChange={(e) => {
                     setSearch(e.target.value);
                 }}
-                className="w-96 border rounded border-gray-400 h-10 focus:outline-none pl-4 pr-8 text-gray-700 text-sm text-gray-500"
+                className=" w-96 border rounded border-gray-400 h-10 focus:outline-none pl-4 pr-8 text-gray-700 text-sm text-gray-500"
             />
         
-            <div className=" container w-screen px-2 md:px-12 my-6 ">
-                {/* mx-auto */}
-                <div className="flex flex-wrap-reverse -mx-1 lg:-mx-4">
+            <div className=" container w-screen px-2 md:px-12 my-6 mx-auto">
+                {/*  */}
+                <div className="flex flex-wrap-reverse -mx-1 lg:-mx-4 ">
                     {filtered &&
                         filtered.map((recipe) => (
                             // test
                             <>
-                                {/*  */}
+                         
                                 {/* <!-- Column --> */}
                                 <div className="my-1 px-1 w-full md:w-1/3 lg:my-4 lg:px-4 lg:w-1/5">
                                     {/* <!-- Article --> */}
-                                    <article className="overflow-hidden rounded-lg shadow-lg">
+                                    <article className="overflow-hidden rounded-2xl shadow-lg bg-gray-100 p-3">
                                         <a href={`/single/${recipe._id}`}>
                                             <img
                                                 alt="Placeholder"
-                                                className="block h-auto w-full"
+                                                className="block h-auto w-full rounded-full hover:opacity-60 "
                                                 src={recipe.image}
                                             />
                                         </a>
 
                                         <header className="flex items-center justify-between leading-tight p-2 md:p-4">
-                                            <h1 className="text-lg">
+                                            <h1 className="text-2xl">
                                                 <a
-                                                    className="no-underline hover:underline text-black text-xl "
+                                                    className="no-underline  hover:text-gray-300 text-black text-xl "
                                                     href={`/single/${recipe._id}`}
                                                 >
                                                     {recipe.name}
@@ -82,9 +82,9 @@ const Details = (props) => {
                                         </header>
 
                                         <footer className="flex justify-between leading-none p-2 md:p-4">
-                                            {/* <a className="flex items-center no-underline hover:underline text-black" href="#">
+                                            <a className="flex items-center no-underline hover:underline text-black" href="#">
                         <img alt="Placeholder" className="block rounded-full" src="https://picsum.photos/32/32/?random"/>
-                    </a> */}
+                    </a>
                                             <p className="ml-2 text-sm">
                                                 {recipe.time}
                                             </p>

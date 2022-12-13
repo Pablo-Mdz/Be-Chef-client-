@@ -45,26 +45,11 @@ function LoginPage() {
     };
 
     return (
-        <div className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div className=" ">
-                <h1>Login</h1>
+        <div className=" flex  justify-center items-center">
+            <div className=" mt-20 mb-20 ">
+                <h1 className="text-xl"><>Login</></h1>
 
-                {/* <form onSubmit={handleLoginSubmit}>
-                                <label>Email:</label>
-                                <input type="email" name="email" value={email} onChange={handleEmail} />
-
-                                <label>Password:</label>
-                                <input
-                                type="password"
-                                  name="password"
-                                value={password}
-                                onChange={handlePassword}
-                                />
-
-                                <button type="submit">Login</button>
-                            </form> */}
-
-                <div className="content-center block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+                <div className="content-center block p-6 rounded-lg shadow-lg bg-white">
                     <form onSubmit={handleLoginSubmit}>
                         <div className="form-group mb-6">
                             <label
@@ -157,16 +142,16 @@ function LoginPage() {
                         </button>
                     </form>
                 </div>
-            </div>
-
             <div className="mt-5">
                 {errorMessage && (
                     <p className="error-message">{errorMessage}</p>
                 )}
 
                 <p>Don't have an account yet?</p>
-                <Link to={"/signup"}> Sign Up</Link>
+                <Link className="hover:text-gray-300" to={"/signup"}> Sign Up</Link>
             </div>
+            </div>
+
         </div>
     );
 }
