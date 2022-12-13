@@ -79,7 +79,7 @@ function App() {
                 <Route path="/single/:id" element={<SingleRecipe refresh ={refresh} />} />
             </Routes>
               
-            {/* <Footer /> */}
+            <Footer />
 
 
         </div>

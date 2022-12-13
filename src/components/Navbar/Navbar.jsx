@@ -9,7 +9,7 @@ function Navbar() {
     const {isLoggedIn, user, logOutUser} = useContext(AuthContext);
 
     return (
-        <nav className="overflow-hidden  shadow-lg     flex items-center justify-between flex-wrap bg-sky-600 p-4 ">
+        <nav className="overflow-hidden  shadow-lg     flex items-center justify-between flex-wrap bg-sky-200 p-4">
             <div className=" w-full block flex-grow lg:flex lg:items-center lg:w-auto ">
                 <div className="text-sm lg:flex-grow ">
                     <Link

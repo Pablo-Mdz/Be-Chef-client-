@@ -18,23 +18,24 @@ const Details = (props) => {
       refresh()
     }, []);
 
-    // const filtered = props.data.filter((oneData) => {
-    //     if (!oneData.type) {
-    //         return false;
-    //     } else if (!oneData.name) {
-    //         return false;
-    //     } else {
-    //         return (
-    //             oneData.name.toLowerCase().includes(search.toLowerCase()) ||
-    //             oneData.type.toLowerCase().includes(search.toLowerCase())
-    //         );
-    //     }
-    // });
+    const filtered = props.data.filter((oneData) => {
+        // if (!oneData.type) {
+        //     return false;
+        // } else 
+        if (!oneData.name) {
+            return true;
+        } else {
+            return (
+                oneData.name.toLowerCase().includes(search.toLowerCase()) 
+                // oneData.type.toLowerCase().includes(search.toLowerCase())
+            );
+        }
+    });
 
 
 
     return (
-        <div className=" bg-sky-50">
+        <div className="font-mono bg-sky-50">
             <h1>Find All the recepies here!</h1>
             <input
                 placeholder="Search"
@@ -49,8 +50,8 @@ const Details = (props) => {
             <div className=" container w-screen px-2 md:px-12 my-6 ">
                 {/* mx-auto */}
                 <div className="flex flex-wrap-reverse -mx-1 lg:-mx-4">
-                    {props.data &&
-                        props.data.map((recipe) => (
+                    {filtered &&
+                        filtered.map((recipe) => (
                             // test
                             <>
                                 {/*  */}

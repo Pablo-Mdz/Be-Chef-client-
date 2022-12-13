@@ -25,11 +25,11 @@ const SingleRecipe = (props) => {
 
     return (
         <>
-            <div className="flex justify-center mt-5 relative">
+            <div className="flex justify-center  relative bg-sky-400">
                 {recipe && (
-                    <div className="max-w-xl rounded overflow-hidden shadow-lg ">
+                    <div className="max-w-2xl mt-5 rounded overflow-hidden shadow-lg ">
                         <img
-                            className="w-full"
+                            className="w-full h-auto"
                             src={recipe.image}
                             alt="image test"
                         />
