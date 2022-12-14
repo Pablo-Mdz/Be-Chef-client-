@@ -146,7 +146,7 @@ const CreateRecipe = (props) => {
                 <div className="px-8 pt-6 pb-8 mb-4 bg-white rounded-lg shadow-md">
                     <div className=" mt-5 md:mt-0 md:col-span-2">
                         <form
-                            className=" px-8 pt-6 pb-8 mb-4 bg-white rounded-lg shadow-md "
+                            className=" px-8 pt-6 pb-8 mb-4 bg-gray-50 rounded-lg shadow-md "
                             onSubmit={handleSubmit}
                         >
                             <div className="shadow overflow-hidden xl:rounded-xl ">
@@ -296,7 +296,7 @@ const CreateRecipe = (props) => {
                                         </div>
 
                                         {/* add quantity  */}
-                                        <div className="col-span-1 ">
+                                        <div className="col-span-2 sm:col-span-1">
                                             <input
                                                 type="Number"
                                                 name="quantity"
@@ -308,7 +308,7 @@ const CreateRecipe = (props) => {
                                         </div>
                                         {/* // add measure  */}
 
-                                        <div className="col-span-2">
+                                        <div className="col-span-1 sm:col-span-1">
                                             <select
                                                 name="measure"
                                                 className="px-2 block w-40 h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
@@ -326,7 +326,7 @@ const CreateRecipe = (props) => {
                                         </div>
 
                                         {/* // add ingredient  */}
-                                        <div className="col-span-3 sm:col-span-3">
+                                        <div className="col-span-3 sm:col-span-4">
                                             <div className="flex ">
                                                 <input
                                                     type="text"
@@ -383,7 +383,7 @@ const CreateRecipe = (props) => {
                                                 </ol>
                                             </div>
                                         </div>
-                                        <div className="col-span-3 sm:col-span-6">
+                                        <div className="col-span-6 sm:col-span-6">
                                             <div className="flex ">
                                                 <input
                                                     type="text"

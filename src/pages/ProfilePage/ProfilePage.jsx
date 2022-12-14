@@ -27,11 +27,14 @@ function ProfilePage(props) {
                         <div className=" p-8 shadow-md relative bg-gray-100">
                             <div className=" items-center">
                                 <img
-                                                    alt="img"
-                                                    className="shadow-md rounded-2xl w-40"
-                                                    src={user.imageUrl ? user.imageUrl : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" }
-                                                   
-                                                />
+                                    alt="img"
+                                    className="shadow-md rounded-2xl w-40"
+                                    src={
+                                        user.imageUrl
+                                            ? user.imageUrl
+                                            : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                                    }
+                                />
                                 <div className="text-indigo-600 ml-3 text-3xl ">
                                     <h1>
                                         Wellcome {user.name} to your Profile
@@ -46,7 +49,9 @@ function ProfilePage(props) {
                                     alt="image"
                                     className="w-10 h-10 block rounded object-cover object-top"
                                 /> */}
-                                <p className="text-gray-600 text-sm text-xl">Enjoy</p>
+                                <p className="text-gray-600 text-sm text-xl">
+                                    Enjoy
+                                </p>
                                 <div className="mt-6 flex">
                                     <Link
                                         to="/create"
@@ -87,29 +92,37 @@ function ProfilePage(props) {
                                         </svg>
                                     </div>
                                 </div>
+                               
+                                <div className=" container  px-1 md:px-50 my-3  ">
+                                    <div className=" -mx-1 md:-mx-4 flex flex-wrap-reverse">
+                                        {props.data.filter((oneData) =>(
 
-                                <div className=" container  px-1 md:px-12 my-3  ">
-                                    <div className=" -mx-1 lg:-mx-4 flex flex-wrap-reverse">
-                                        {props.data
-                                            .filter(
-                                                (myrecepie) =>
-                                                    myrecepie.owner.id === user._id
-                                            )
+                                            oneData.likes.includes(user._id)
+                                            ))
                                             .map((recipe) => (
                                                 <div>
-                                                    <div className="my-1 px-1 lg:my-2 lg:px-4 w-72 ">
+                                                       <div className="my-1 px-1 lg:my-2 lg:px-4 w-72 ">
                                                         {/* <!-- Article --> */}
                                                         <article className="overflow-hidden rounded-lg shadow-lg ">
                                                             <a
                                                                 href={`/single/${recipe._id}`}
                                                             >
-                                                                <img
-                                                                    alt="Placeholder"
-                                                                    className="block h-auto w-full"
-                                                                    src={
-                                                                        recipe.image
-                                                                    }
-                                                                />
+                                                                {!recipe.image && (
+                                                                    <img
+                                                                        alt="user image"
+                                                                        className="block h-40 w-auto rounded-2xl hover:opacity-60 "
+                                                                        src="https://cdn-icons-png.flaticon.com/512/1134/1134760.png"
+                                                                    />
+                                                                )}
+                                                                {recipe.image && (
+                                                                    <img
+                                                                        alt="user"
+                                                                        className="block h-40 w-56 rounded-2xl hover:opacity-60 "
+                                                                        src={
+                                                                            recipe.image
+                                                                        }
+                                                                    />
+                                                                )}
                                                             </a>
 
                                                             <header className="flex items-center justify-between leading-tight p-2 md:p-4">
@@ -134,6 +147,86 @@ function ProfilePage(props) {
                                                                 {/* <a className="flex items-center no-underline hover:underline text-black" href="#">
                         <img alt="Placeholder" className="block rounded-full" src="https://picsum.photos/32/32/?random"/>
                     </a> */}
+
+                                                                <p className="ml-2 text-sm">
+                                                                    {
+                                                                        recipe.time
+                                                                    }
+                                                                </p>
+                                                                <p className="ml-2 text-sm ">
+                                                                    {
+                                                                        recipe.region
+                                                                    }
+                                                                </p>
+                                                                {/* <a className="no-underline text-grey-darker hover:text-red-dark" href="#">
+                        <span className="hidden">Like</span>
+                        <i className="fa fa-heart"></i>
+                    </a> */}
+                                                            </footer>
+                                                        </article>
+                                                        {/* <!-- END Article --> */}
+                                                    </div>
+                                                   
+                                                    </div>
+                                                )
+                                        )}
+
+                                        {props.data
+                                            .filter(
+                                                (myrecepie) =>
+                                                    myrecepie.owner.id ===
+                                                    user._id
+                                            )
+
+                                            .map((recipe) => (
+                                                <div>
+                                                    <div className="my-1 px-1 lg:my-2 lg:px-4 w-72 ">
+                                                        {/* <!-- Article --> */}
+                                                        <article className="overflow-hidden rounded-lg shadow-lg ">
+                                                            <a
+                                                                href={`/single/${recipe._id}`}
+                                                            >
+                                                                {!recipe.image && (
+                                                                    <img
+                                                                        alt="user image"
+                                                                        className="block h-40 w-auto rounded-2xl hover:opacity-60 "
+                                                                        src="https://cdn-icons-png.flaticon.com/512/1134/1134760.png"
+                                                                    />
+                                                                )}
+                                                                {recipe.image && (
+                                                                    <img
+                                                                        alt="user"
+                                                                        className="block h-40 w-56 rounded-2xl hover:opacity-60 "
+                                                                        src={
+                                                                            recipe.image
+                                                                        }
+                                                                    />
+                                                                )}
+                                                            </a>
+
+                                                            <header className="flex items-center justify-between leading-tight p-2 md:p-4">
+                                                                <h1 className="text-lg">
+                                                                    <a
+                                                                        className="no-underline hover:underline text-black text-xl "
+                                                                        href={`/single/${recipe._id}`}
+                                                                    >
+                                                                        {
+                                                                            recipe.name
+                                                                        }
+                                                                    </a>
+                                                                </h1>
+                                                                <p className="text-grey-darker text-sm">
+                                                                    {
+                                                                        recipe.type
+                                                                    }
+                                                                </p>
+                                                            </header>
+
+                                                            <footer className="flex justify-between leading-none p-2 md:p-4">
+                                                                {/* <a className="flex items-center no-underline hover:underline text-black" href="#">
+                        <img alt="Placeholder" className="block rounded-full" src="https://picsum.photos/32/32/?random"/>
+                    </a> */}
+
                                                                 <p className="ml-2 text-sm">
                                                                     {
                                                                         recipe.time
@@ -167,3 +260,9 @@ function ProfilePage(props) {
 }
 
 export default ProfilePage;
+
+// {recipe.likes.includes(user._id) ? (
+//     <TwitterLikeButton onClick={() => likeBtn(recipe)}/>
+//     ) : (
+//     <TwitterLikeButton isClick={!recipe.likes.includes(user._id)} />
+// )}

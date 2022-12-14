@@ -1,6 +1,7 @@
-import React, {useEffect, useState, useContext} from "react";
 import axios from "axios";
 import {AuthContext} from "../../context/auth.context";
+import React, {useEffect, useState, useContext} from "react";
+import TwitterLikeButton from "twitter-like-button";
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
@@ -8,6 +9,8 @@ const Details = (props) => {
     const [search, setSearch] = useState("");
     const {user} = useContext(AuthContext);
     console.log(user);
+
+    const [isClick, setClick] = useState(false);
 
     const refresh = () => {
         axios
@@ -67,11 +70,20 @@ const Details = (props) => {
                                     {/* <!-- Article --> */}
                                     <article className="overflow-hidden rounded-2xl shadow-lg bg-gray-100 p-3 ">
                                         <a href={`/single/${recipe._id}`}>
-                                            <img
-                                                alt="Placeholder"
-                                                className="block h-auto w-full rounded-full hover:opacity-60 "
-                                                src={recipe.image}
-                                            />
+                                            {!recipe.image && (
+                                                <img
+                                                    alt="user image"
+                                                    className="block h-36 w-auto rounded-2xl hover:opacity-60 "
+                                                    src="https://cdn-icons-png.flaticon.com/512/1134/1134760.png"
+                                                />
+                                            )}
+                                            {recipe.image && (
+                                                <img
+                                                    alt="user"
+                                                    className="block h-40 w-auto rounded-2xl hover:opacity-60 "
+                                                    src={recipe.image}
+                                                />
+                                            )}
                                         </a>
 
                                         <header className="flex items-center justify-between leading-tight p-2 md:p-4">
@@ -95,7 +107,7 @@ const Details = (props) => {
                                             >
                                                 <img
                                                     alt="Placeholder"
-                                                    className="block rounded-full w-12"
+                                                    className="block rounded-2xl h-16 w-auto"
                                                     src={
                                                         recipe.owner.imageUser
                                                             ? recipe.owner
@@ -110,11 +122,18 @@ const Details = (props) => {
                                             <p className="ml-2 text-sm ">
                                                 {recipe.region}
                                             </p>
+
+                                            {/* <TwitterLikeButton isClick={!recipe.likes.includes(user._id)} onClick={() => likeBtn(recipe)}/> */}
+
                                             {recipe.likes.includes(user._id) ? (
-                                                <p>Liked</p>
+                                                <TwitterLikeButton
+                                                    isClick={recipe.likes.includes(
+                                                        user._id
+                                                    )}
+                                                />
                                             ) : (
                                                 <button
-                                                    class="bg-pink-500  text-white active:bg-pink-600 font-bold uppercase text-sm px-3 py-3 rounded-full shadow hover:shadow-xl outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                    class="bg-pink-500  text-white active:bg-pink-600 font-bold uppercase text-sm px-3 py-3 rounded-full shadow hover:shadow-xl outline-none focus:outline-none mr-1 mt-4 ease-linear transition-all duration-150"
                                                     type="button"
                                                     onClick={() =>
                                                         likeBtn(recipe)
