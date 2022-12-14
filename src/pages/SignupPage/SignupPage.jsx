@@ -2,12 +2,14 @@ import "./SignupPage.css";
 import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import authService from "../../services/auth.service";
+import service from "../../services/cloudinary.config";
 
 function SignupPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [errorMessage, setErrorMessage] = useState(undefined);
+    const [imageUrl, setImageUrl] = useState("");
 
     const navigate = useNavigate();
 
@@ -15,10 +17,29 @@ function SignupPage() {
     const handlePassword = (e) => setPassword(e.target.value);
     const handleName = (e) => setName(e.target.value);
 
+    const handleFileUpload = (e) => {
+        // console.log("The file to be uploaded is: ", e.target.files[0]);
+
+        const uploadData = new FormData();
+        uploadData.append("imageUrl", e.target.files[0]);
+
+        service
+            .uploadImage(uploadData)
+            .then((response) => {
+                console.log(response)
+                // console.log("response is: ", response);
+                // response carries "secure_url" which we can use to update the state
+                setImageUrl(response.secure_url);
+            })
+            .catch((err) =>
+                console.log("Error while uploading the file: ", err)
+            );
+    };
+
     const handleSignupSubmit = (e) => {
         e.preventDefault();
         // Create an object representing the request body
-        const requestBody = {email, password, name};
+        const requestBody = {email, password, name, imageUrl};
 
         // Send a request to the server using axios
         /* 
@@ -46,19 +67,19 @@ function SignupPage() {
     };
 
     return (
-        <div className=" flex  justify-center items-center">
+        <div className=" flex  justify-center items-center bg-gradient-to-r from-cyan-500 to-blue-500">
             <div className=" mt-20 mb-20 ">
-            <h1 className="text-xl">Sign Up</h1>
+                <h1 className="mb-6 text-2xl">Sign Up</h1>
 
-            <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
-                <form onSubmit={handleSignupSubmit}>
-                    <div className="form-group mb-6">
-                        <input
-                            type="text"
-                            name="name"
-                            value={name}
-                            onChange={handleName}
-                            className="form-control block
+                <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+                    <form onSubmit={handleSignupSubmit}>
+                        <div className="form-group mb-6">
+                            <input
+                                type="text"
+                                name="name"
+                                value={name}
+                                onChange={handleName}
+                                className="form-control block
         w-full
         px-3
         py-1.5
@@ -72,17 +93,17 @@ function SignupPage() {
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            id="exampleInput7"
-                            placeholder="Name"
-                        />
-                    </div>
-                    <div className="form-group mb-6">
-                        <input
-                            type="email"
-                            name="email"
-                            value={email}
-                            onChange={handleEmail}
-                            className="form-control block
+                                id="exampleInput7"
+                                placeholder="Name"
+                            />
+                        </div>
+                        <div className="form-group mb-6">
+                            <input
+                                type="email"
+                                name="email"
+                                value={email}
+                                onChange={handleEmail}
+                                className="form-control block
         w-full
         px-3
         py-1.5
@@ -96,17 +117,17 @@ function SignupPage() {
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            id="exampleInput8"
-                            placeholder="Email address"
-                        />
-                    </div>
-                    <div className="form-group mb-6">
-                        <input
-                            type="password"
-                            name="password"
-                            value={password}
-                            onChange={handlePassword}
-                            className="form-control block
+                                id="exampleInput8"
+                                placeholder="Email address"
+                            />
+                        </div>
+                        <div className="form-group mb-6">
+                            <input
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={handlePassword}
+                                className="form-control block
                         w-full
                         px-3
                         py-1.5
@@ -120,13 +141,70 @@ function SignupPage() {
                         ease-in-out
                         m-0
                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            placeholder="Password"
-                        />
-                    </div>
-                    <div className="form-group form-check text-center mb-6"></div>
-                    <button
-                        type="submit"
-                        className="
+                                placeholder="Password"
+                            />
+                        </div>
+
+                        {/* image upload  */}
+                        <div className="grid grid-cols-1 space-y-2">
+                            <label className="text-sm font-bold text-gray-500 tracking-wide">
+                                Add your photo here
+                            </label>
+                            <div className="flex items-center justify-center w-full">
+                                <label className="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
+                                    <div className="h-full w-full text-center flex flex-col items-center justify-center items-center  ">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="w-10 h-10 text-blue-400 group-hover:text-blue-600"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                                            />
+                                        </svg>
+                                        <div className="flex flex-auto max-h-48 w-2/5 mx-auto -mt-10">
+                                            <img
+                                                className="has-mask h-36 object-center"
+                                                src="https://img.freepik.com/free-vector/image-upload-concept-landing-page_52683-27130.jpg?size=338&ext=jpg"
+                                                alt="freepik image"
+                                            />
+                                        </div>
+                                        <p className="pointer-none text-gray-500 ">
+                                            <span className="text-sm">
+                                                Drag and drop
+                                            </span>{" "}
+                                            files here <br /> or{" "}
+                                            <a
+                                                href=""
+                                                id=""
+                                                className="text-blue-600 hover:underline"
+                                            >
+                                                select a file
+                                            </a>{" "}
+                                            from your computer
+                                        </p>
+                                    </div>
+                                    <input
+                                        name="imageUrl"
+                                        type="file"
+                                        onChange={(e) => handleFileUpload(e)}
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                        <p className="text-sm text-gray-300">
+                            <span>File type: jpg,jpeg,png,avif </span>
+                        </p>
+                        <div></div>
+                        <div className="form-group form-check text-center mb-6"></div>
+                        <button
+                            type="submit"
+                            className="
       px-6
       py-2.5
       bg-blue-600
@@ -143,23 +221,25 @@ function SignupPage() {
       transition
       duration-150
       ease-in-out"
-                    >
-                        Submit
-                    </button>
-                </form>
-            </div>
-            <div className="mt-5">
-                {errorMessage && (
-                    <p className="error-message">{errorMessage}</p>
-                )}
+                        >
+                            Submit
+                        </button>
+                    </form>
+                </div>
+                <div className="mt-5">
+                    {errorMessage && (
+                        <p className="error-message">{errorMessage}</p>
+                    )}
 
-                <p>Already have account?</p>
-                <Link className="hover:text-gray-300" to={"/login"}> Login</Link>
+                    <p>Already have account?</p>
+                    <Link className="hover:text-gray-300" to={"/login"}>
+                        {" "}
+                        Login
+                    </Link>
+                </div>
             </div>
+            <hr className="my-2 border-black" />
         </div>
-        <hr className="my-2 border-black" />
-        </div>
-        
     );
 }
 

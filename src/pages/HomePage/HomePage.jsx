@@ -26,10 +26,10 @@ function HomePage() {
                         <div className="items-center flex flex-wrap">
                             <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                                 <div className="pr-12">
-                                    <h1 className="text-white font-semibold text-5xl text-black">
+                                    <h1 className="text-white italic font-semibold text-5xl text-black ">
                                         Be your own chef
                                     </h1>
-                                    <p className="mt-2 text-lg text-black">
+                                    <p className="mt-2 italic text-lg text-black">
                                         Create and save your recipes to be able
                                         to use them in the future or to share
                                         them with whoever you want!

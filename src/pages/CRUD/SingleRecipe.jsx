@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import {Navigate, useNavigate, useParams} from "react-router-dom";
-import photo from "../../images/frutas1.jpg";
+import {useReactToPrint} from "react-to-print";
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
@@ -23,9 +23,20 @@ const SingleRecipe = (props) => {
             .then(navigate("/profile"));
     };
 
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+        // documentTitle: "my Recipe",
+        pageStyle: "print",
+        onafterprint: () => alert("print success"),
+    });
+
     return (
         <>
-            <div className="flex justify-center items-center relative bg-gray-300">
+            <div
+                ref={componentRef}
+                className="flex justify-center items-center relative bg-gray-300"
+            >
                 {recipe && (
                     <div className="max-w-2xl mt-5 rounded-2xl overflow-hidden shadow-lg ">
                         <img
@@ -89,12 +100,16 @@ const SingleRecipe = (props) => {
                         </div>
                         <div className="px-6 pt-4 pb-2">
                             <a href="/">
-                                <span className="inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2  hover:text-gray-400">
+                                <span className="inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-gray-700 hover:bg-gray-700 mr-2 mb-2  hover:text-white">
                                     Return Home
                                 </span>
                             </a>
-                            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                                text 2
+
+                            <span
+                                onClick={handlePrint}
+                                className="inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-blue-700 hover:bg-blue-500 mr-2 mb-2 hover:text-white hover:border-transparent"
+                            >
+                                Print
                             </span>
                             <span
                                 onClick={() => Delete(recipe._id)}

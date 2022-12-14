@@ -26,7 +26,13 @@ function ProfilePage(props) {
                     <div className=" bg-white text-gray-800 flex flex-col">
                         <div className=" p-8 shadow-md relative bg-gray-100">
                             <div className=" items-center">
-                                <div className="text-indigo-600 ml-3 text-3xl">
+                                <img
+                                                    alt="img"
+                                                    className="shadow-md rounded-2xl w-40"
+                                                    src={user.imageUrl ? user.imageUrl : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" }
+                                                   
+                                                />
+                                <div className="text-indigo-600 ml-3 text-3xl ">
                                     <h1>
                                         Wellcome {user.name} to your Profile
                                     </h1>

@@ -10,14 +10,15 @@ export default function Navbar(props) {
     return (
         <>
             <nav
-                className={
-                    (props.transparent
-                        ? "top-0 absolute z-50 w-full"
-                        : "relative shadow-lg bg-white shadow-lg") +
-                    " flex flex-wrap items-center justify-between px-2 py-3 "
-                }
+                className="bg-gradient-to-r from-gray-50 to-gray-700 flex flex-wrap items-center justify-between px-2 py-3"
+                // {
+                //     (props.transparent
+                //         ? "top-0 absolute z-50 w-full"
+                //         : "relative shadow-lg bg-white shadow-lg") +
+                //     " flex flex-wrap items-center justify-between px-2 py-3 "
+                // }
             >
-                <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+                <div className="container  px-4 mx-auto flex flex-wrap items-center justify-between">
                     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                         <Link
                             to="/"
@@ -29,7 +30,7 @@ export default function Navbar(props) {
                         {isLoggedIn && (
                             <>
                                 <button
-                                    className="block ml-5 mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-gray-300 text-black mr-4"
+                                    className=" block ml-5 mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-gray-300 text-black mr-4"
                                     onClick={logOutUser}
                                 >
                                     Logout

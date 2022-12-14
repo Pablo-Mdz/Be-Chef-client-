@@ -45,10 +45,11 @@ function LoginPage() {
     };
 
     return (
-        <div className=" flex  justify-center items-center">
+        <div className="bg-gradient-to-r from-cyan-500 to-blue-500 flex  justify-center items-center">
             <div className=" mt-20 mb-20 ">
-                <h1 className="text-xl"><>Login</></h1>
-
+               
+                <h1 className="mb-6 text-2xl"><>Login</></h1>
+       
                 <div className="content-center block p-6 rounded-lg shadow-lg bg-white">
                     <form onSubmit={handleLoginSubmit}>
                         <div className="form-group mb-6">

@@ -32,7 +32,9 @@ const CreateRecipe = (props) => {
         instructions: [],
         tips: "",
         reviews: [],
-        owner: user._id,
+        owner:{ id : user._id,
+            imageUser: user.imageUrl
+        }
     });
     const navigate = useNavigate();
 
@@ -49,7 +51,7 @@ const CreateRecipe = (props) => {
         e.preventDefault();
         setIngredient([...ingredient, NewIngredient]);
         setNewIngredient({quantity: "", measure: "", singleIngredient: ""});
-    };
+    }
 
     // delete ingredient
     function deleteIngredient(item) {

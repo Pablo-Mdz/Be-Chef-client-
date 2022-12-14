@@ -1,28 +1,29 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import axios from "axios";
-// import {useParams} from "react-router-dom";
-import {Link} from "react-router-dom";
+import { AuthContext } from "../../context/auth.context";
+
+
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
 const Details = (props) => {
     const [search, setSearch] = useState("");
-
-    const refresh = ()=> {
+    const {user} = useContext(AuthContext)
+console.log(user)
+    const refresh = () => {
         axios
-        .get(`${API_URL}/pages/CRUD/details`)
-        //   ${id}
-        .then((response) => props.setData(response.data));
-    }
+            .get(`${API_URL}/pages/CRUD/details`)
+            //   ${id}
+            .then((response) => props.setData(response.data));
+    };
     useEffect(() => {
-      refresh()
+        refresh();
     }, []);
 
     const filtered = props.data.filter((oneData) => {
         if (!oneData.type) {
             return false;
-        } else 
-        if (!oneData.name) {
+        } else if (!oneData.name) {
             return true;
         } else {
             return (
@@ -31,8 +32,6 @@ const Details = (props) => {
             );
         }
     });
-
-
 
     return (
         <div className=" bg-gray-300 ">
@@ -46,19 +45,18 @@ const Details = (props) => {
                 }}
                 className=" w-96 border rounded border-gray-400 h-10 focus:outline-none pl-4 pr-8 text-gray-700 text-sm text-gray-500"
             />
-        
-            <div className=" container w-screen px-2 md:px-12 my-6 mx-auto">
+
+            <div className=" container w-screen px-2 md:px-12 my-6 mx-auto ">
                 {/*  */}
-                <div className="flex flex-wrap-reverse -mx-1 lg:-mx-4 ">
+                <div className="flex items-stretch flex-wrap-reverse -mx-1 lg:-mx-4 ">
                     {filtered &&
                         filtered.map((recipe) => (
                             // test
                             <>
-                         
                                 {/* <!-- Column --> */}
-                                <div className="my-1 px-1 w-full md:w-1/3 lg:my-4 lg:px-4 lg:w-1/5">
+                                <div className="my-1 px-1 w-full md:w-1/3 lg:my-4 lg:px-4 lg:w-1/5 ">
                                     {/* <!-- Article --> */}
-                                    <article className="overflow-hidden rounded-2xl shadow-lg bg-gray-100 p-3">
+                                    <article className="overflow-hidden rounded-2xl shadow-lg bg-gray-100 p-3 ">
                                         <a href={`/single/${recipe._id}`}>
                                             <img
                                                 alt="Placeholder"
@@ -81,20 +79,36 @@ const Details = (props) => {
                                             </p>
                                         </header>
 
-                                        <footer className="flex justify-between leading-none p-2 md:p-4">
-                                            <a className="flex items-center no-underline hover:underline text-black" href="#">
-                        <img alt="Placeholder" className="block rounded-full" src="https://picsum.photos/32/32/?random"/>
-                    </a>
-                                            <p className="ml-2 text-sm">
+                                        <footer className="flex justify-between leading-none p-1 md:p-4">
+                                            <a
+                                                className="flex items-center no-underline hover:underline text-black "
+                                                href="#"
+                                            >
+                                                <img
+                                                    alt="Placeholder"
+                                                    className="block rounded-full w-12"
+                                                    src={recipe.owner.imageUser ? recipe.owner.imageUser : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"}
+                                                />
+                                            </a>
+                                            {/* <p className="ml-2 text-sm">
                                                 {recipe.time}
-                                            </p>
+                                            </p> */}
                                             <p className="ml-2 text-sm ">
                                                 {recipe.region}
                                             </p>
-                                            {/* <a className="no-underline text-grey-darker hover:text-red-dark" href="#">
-                        <span className="hidden">Like</span>
-                        <i className="fa fa-heart"></i>
-                    </a> */}
+                                            <button
+                                                class="bg-pink-500  text-white active:bg-pink-600 font-bold uppercase text-sm px-3 py-3 rounded-full shadow hover:shadow-xl outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                type="button"
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24"
+                                                    fill="currentColor"
+                                                    className="w-6 h-6"
+                                                >
+                                                    <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                                                </svg>
+                                            </button>
                                         </footer>
                                     </article>
                                     {/* <!-- END Article --> */}
@@ -107,6 +121,5 @@ const Details = (props) => {
         </div>
     );
 };
-
 
 export default Details;
