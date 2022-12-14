@@ -2,6 +2,8 @@ import axios from "axios";
 import React, {useEffect, useState, useRef} from "react";
 import {Navigate, useNavigate, useParams} from "react-router-dom";
 import {useReactToPrint} from "react-to-print";
+import {useContext} from "react";
+import {AuthContext} from "../../context/auth.context";
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
@@ -9,6 +11,8 @@ const SingleRecipe = (props) => {
     const [recipe, setRecipe] = useState(null);
     const {id} = useParams();
     const navigate = useNavigate();
+
+    const {user} = useContext(AuthContext)
 
     useEffect(() => {
         axios.get(`${API_URL}/pages/CRUD/${id}`).then((response) => {
@@ -104,19 +108,21 @@ const SingleRecipe = (props) => {
                                     Return Home
                                 </span>
                             </a>
-
+                            
                             <span
                                 onClick={handlePrint}
                                 className="inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-blue-700 hover:bg-blue-500 mr-2 mb-2 hover:text-white hover:border-transparent"
                             >
                                 Print
                             </span>
+                        {recipe.owner.id === user._id && 
                             <span
                                 onClick={() => Delete(recipe._id)}
                                 className="inline-block bg-gray-200 hover:bg-red-500 rounded-full px-3 py-1 hover:text-white text-sm font-semibold text-red-700 mr-2 mb-2 hover:border-transparent"
                             >
                                 Delete
-                            </span>
+                            </span> 
+                        }
                         </div>
                         {/* <button
                             className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
