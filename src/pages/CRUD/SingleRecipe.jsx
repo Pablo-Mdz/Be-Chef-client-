@@ -12,7 +12,7 @@ const SingleRecipe = (props) => {
     const {id} = useParams();
     const navigate = useNavigate();
 
-    const {user} = useContext(AuthContext)
+    const {isLoggedIn, user, logOutUser} = useContext(AuthContext);
 
     useEffect(() => {
         axios.get(`${API_URL}/pages/CRUD/${id}`).then((response) => {
@@ -39,12 +39,12 @@ const SingleRecipe = (props) => {
         <>
             <div
                 ref={componentRef}
-                className="flex justify-center items-center relative bg-gray-300"
+                className="flex justify-center items-center relative bg-gray-300 pt-5 pb-10"
             >
                 {recipe && (
-                    <div className="max-w-2xl mt-5 rounded-2xl overflow-hidden shadow-lg ">
+                    <div className="max-w-2xl mt-5 bg-gray-50 rounded-2xl overflow-hidden shadow-lg ">
                         <img
-                            className="w-full h-auto rounded-3xl"
+                            className="w-full h-auto roundedt-3xl"
                             src={recipe.image}
                             alt="image test"
                         />
@@ -103,26 +103,47 @@ const SingleRecipe = (props) => {
                             </h4>
                         </div>
                         <div className="px-6 pt-4 pb-2">
-                            <a href="/">
-                                <span className="inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-gray-700 hover:bg-gray-700 mr-2 mb-2  hover:text-white">
-                                    Return Home
-                                </span>
-                            </a>
-                            
+                            {/* <a href="/">
+                                 <span className="inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-gray-700 hover:bg-gray-700 mr-2 mb-2  hover:text-white">
+                                     Return Home
+                                 </span>
+                             </a> */}
+                            {!isLoggedIn ? (
+                                <>
+                                    <a href="/recipesHome">
+                                        <span className="inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-gray-700 hover:bg-gray-700 mr-2 mb-2  hover:text-white">
+                                            explore more recipes
+                                        </span>
+                                    </a>
+                                </>
+                            ) : (
+                                <a href="/details">
+                                    <span className="inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-gray-700 hover:bg-gray-700 mr-2 mb-2  hover:text-white">
+                                        explore more recipes
+                                    </span>
+                                </a>
+                            )}
                             <span
                                 onClick={handlePrint}
                                 className="inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-blue-700 hover:bg-blue-500 mr-2 mb-2 hover:text-white hover:border-transparent"
                             >
                                 Print
                             </span>
-                        {recipe.owner.id === user._id && 
-                            <span
-                                onClick={() => Delete(recipe._id)}
-                                className="inline-block bg-gray-200 hover:bg-red-500 rounded-full px-3 py-1 hover:text-white text-sm font-semibold text-red-700 mr-2 mb-2 hover:border-transparent"
-                            >
-                                Delete
-                            </span> 
-                        }
+                            {isLoggedIn && recipe.owner.id === user._id && (
+                                <>
+                                    <a href="/details">
+                                        {/* <span className="inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-gray-700 hover:bg-gray-700 mr-2 mb-2  hover:text-white">
+                                            explore more recipes
+                                        </span> */}
+                                    </a>
+                                    <span
+                                        onClick={() => Delete(recipe._id)}
+                                        className="inline-block bg-gray-200 hover:bg-red-500 rounded-full px-3 py-1 hover:text-white text-sm font-semibold text-red-700 mr-2 mb-2 hover:border-transparent"
+                                    >
+                                        Delete
+                                    </span>
+                                </>
+                            )}
                         </div>
                         {/* <button
                             className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"

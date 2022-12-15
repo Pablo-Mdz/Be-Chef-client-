@@ -3,50 +3,52 @@
 import "./App.css";
 import {Routes, Route} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-
 import axios from "axios";
-
 import HomePage from "./pages/HomePage/HomePage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import Footer from "./components/Navbar/Footer";
-
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
 import Create from "./pages/CRUD/Create";
 import Details from "./pages/CRUD/Details";
 import SingleRecipe from "./pages/CRUD/SingleRecipe";
+import RecipesHome from "./pages/CRUD/RecipesHome";
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
 function App() {
     const [data, setData] = useState([]);
 
-    const refresh = ()=> {
+    const refresh = () => {
         axios
-        .get(`${API_URL}/pages/CRUD/details`)
-        //   ${id}
-        .then((response) => setData(response.data), console.log(data));
-    }
+            .get(`${API_URL}/pages/CRUD/details`)
+            //   ${id}
+            .then((response) => setData(response.data), console.log(data));
+    };
     useEffect(() => {
-      refresh()
+        refresh();
     }, []);
-    console.log(data)
+    console.log(data);
     return (
-        <div className="App">
+        <div className="App ">
             <Navbar />
-           
 
             <Routes>
                 <Route path="/" element={<HomePage />} />
 
                 <Route
+                    path="/recipesHome"
+                    element={<RecipesHome data={data} refresh={refresh} />}
+                />
+
+                <Route
                     path="/profile"
                     element={
                         <IsPrivate>
-                            <ProfilePage data={data} refresh ={refresh} />
+                            <ProfilePage data={data} refresh={refresh} />
                         </IsPrivate>
                     }
                 />
@@ -71,17 +73,23 @@ function App() {
                     path="/create"
                     element={
                         <IsPrivate>
-                            <Create refresh ={refresh} />
+                            <Create refresh={refresh} />
                         </IsPrivate>
                     }
                 />
-                <Route path="/details" element={<Details data={data} setData={setData}/>} />
-                <Route path="/single/:id" element={<SingleRecipe refresh ={refresh} />} />
+
+                <Route
+                    path="/details"
+                    element={<Details data={data} setData={setData} />}
+                />
+
+                <Route
+                    path="/single/:id"
+                    element={<SingleRecipe refresh={refresh} />}
+                />
             </Routes>
-              
+
             <Footer />
-
-
         </div>
     );
 }

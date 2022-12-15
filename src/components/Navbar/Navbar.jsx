@@ -20,6 +20,7 @@ export default function Navbar(props) {
             >
                 <div className="container  px-4 mx-auto flex flex-wrap items-center justify-between">
                     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+                       
                         <Link
                             to="/"
                             className="block ml-5 mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-gray-300 text-black mr-4"
@@ -29,6 +30,7 @@ export default function Navbar(props) {
 
                         {isLoggedIn && (
                             <>
+                            
                                 <button
                                     className=" block ml-5 mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-gray-300 text-black mr-4"
                                     onClick={logOutUser}
@@ -44,7 +46,7 @@ export default function Navbar(props) {
                                         {user && user.name}'s Profile
                                     </button>
                                     {/* <img
-                                    src="../public/2.png"
+                                    src={user.imageUrl}
                                     style={{
                                         width: 50,
                                         height: 50,
@@ -54,9 +56,7 @@ export default function Navbar(props) {
                                 /> */}
                                 </Link>
 
-                                {/* <span className="block ml-5 mt-4 lg:inline-block lg:mt-0 text-teal-700 text-black mr-4">
-                                {user && user.name}
-                            </span> */}
+                               
 
                                 <Link
                                     to="/create"
@@ -64,6 +64,13 @@ export default function Navbar(props) {
                                 >
                                     <button>Create</button>
                                 </Link>
+                                <Link
+                            to="/details"
+                            className="block ml-3 mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-gray-300 text-black mr-4"
+                        >
+                            <button>All recipes</button>
+                        </Link>
+                        
                             </>
                         )}
 
@@ -83,14 +90,14 @@ export default function Navbar(props) {
                                     {" "}
                                     <button>Login</button>{" "}
                                 </Link>
-                            </>
-                        )}
                         <Link
-                            to="/details"
-                            className="block ml-3 mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-gray-300 text-black mr-4"
+                        to="/recipesHome"
+                        className="block ml-3 mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-gray-300 text-black mr-4"
                         >
                             <button>All recipes</button>
                         </Link>
+                            </>
+                        )}
                     </div>
                 </div>
             </nav>

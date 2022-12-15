@@ -14,12 +14,12 @@ function HomePage() {
                         className="absolute top-0 w-full h-full bg-center bg-cover"
                         style={{
                             backgroundImage:
-                                "url('https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1868&q=80')",
+                                "url('https://images.unsplash.com/photo-1556909211-36987daf7b4d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')",
                         }}
                     >
                         <span
                             id="blackOverlay"
-                            className="w-full h-full absolute opacity-50 bg-black"
+                            className="w-full h-full absolute opacity-25 bg-black"
                         ></span>
                     </div>
                     <div className="container relative mx-auto">
@@ -29,7 +29,7 @@ function HomePage() {
                                     <h1 className="text-white italic font-semibold text-5xl text-black ">
                                         Be your own chef
                                     </h1>
-                                    <p className="mt-2 italic text-lg text-black">
+                                    <p className="mt-2 italic text-lg pt-10 text-black">
                                         Create and save your recipes to be able
                                         to use them in the future or to share
                                         them with whoever you want!
@@ -173,7 +173,7 @@ function HomePage() {
                             </div>
                         </div>
 
-                        <div className="flex flex-wrap items-center mt-32">
+                        <div className="flex flex-wrap items-center mt-16">
                             <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
                                 <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-amber-400">
                                     <svg
@@ -261,7 +261,7 @@ function HomePage() {
                     </div>
                 </section>
 
-                {/* <section className="relative py-20">
+                 <section className="relative py-20">
                     <div
                         className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
                         style={{height: "80px"}}
@@ -288,39 +288,24 @@ function HomePage() {
                                 <img
                                     alt="..."
                                     className="max-w-full rounded-lg shadow-lg"
-                                    src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+                                    src="https://images.unsplash.com/photo-1514237487632-b60bc844a47d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                                 />
                             </div>
                             <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
                                 <div className="md:pr-12">
                                     <div className="text-pink-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-pink-300">
-                                        <i className="fas fa-rocket text-xl"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 text-black">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+</svg>
+
                                     </div>
                                     <h3 className="text-3xl font-semibold">
-                                        A growing company
+                                        A useful project
                                     </h3>
                                     <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                                        The extension comes with three pre-built
-                                        pages to help you get started faster.
-                                        You can change the text and images and
-                                        you're good to go.
+                                    This is a useful app for all the people who like cooking. It was built in JavaScript using MERN as core technologies.
                                     </p>
                                     <ul className="list-none mt-6">
-                                        <li className="py-2">
-                                            <div className="flex items-center">
-                                                <div>
-                                                    <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
-                                                        <i className="fas fa-fingerprint"></i>
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <h4 className="text-gray-600">
-                                                        Carefully crafted
-                                                        components
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                        </li>
                                         <li className="py-2">
                                             <div className="flex items-center">
                                                 <div>
@@ -330,7 +315,7 @@ function HomePage() {
                                                 </div>
                                                 <div>
                                                     <h4 className="text-gray-600">
-                                                        Amazing page examples
+                                                        MongoDB
                                                     </h4>
                                                 </div>
                                             </div>
@@ -344,7 +329,35 @@ function HomePage() {
                                                 </div>
                                                 <div>
                                                     <h4 className="text-gray-600">
-                                                        Dynamic components
+                                                        Express
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li className="py-2">
+                                            <div className="flex items-center">
+                                                <div>
+                                                    <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
+                                                        <i className="fas fa-fingerprint"></i>
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <h4 className="text-gray-600">
+                                                    React - Javascript
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li className="py-2">
+                                            <div className="flex items-center">
+                                                <div>
+                                                    <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
+                                                        <i className="fab fa-html5"></i>
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <h4 className="text-gray-600">
+                                                        NodeJs
                                                     </h4>
                                                 </div>
                                             </div>
@@ -356,7 +369,7 @@ function HomePage() {
                     </div>
                 </section>
 
-                <section className="pt-20 pb-48">
+               {/* <section className="pt-20 pb-48">
                     <div className="container mx-auto px-4">
                         <div className="flex flex-wrap justify-center text-center mb-24">
                             <div className="w-full lg:w-6/12 px-4">
@@ -527,7 +540,7 @@ function HomePage() {
                         </div>
                     </div>
                 </section> */}
-
+{/* 
                 <section className="pb-20 relative block bg-gray-900">
                     <div
                         className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
@@ -605,7 +618,7 @@ function HomePage() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
                 
             </main>
             {/* <Footer /> */}
