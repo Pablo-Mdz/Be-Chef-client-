@@ -127,7 +127,7 @@ const CreateRecipe = (props) => {
                             body
                         );
 
-                        // setFormData({});
+                      
                         setImage("");
                         props.refresh();
                         navigate("/profile");
@@ -140,13 +140,13 @@ const CreateRecipe = (props) => {
 
     return (
         <>
-            {/* <h1>create a new Reipe</h1> */}
+            
 
             <div className="mt-10 xl:mt-0">
                 <div className="px-8 pt-6 pb-8 mb-4 bg-white rounded-lg shadow-md">
                     <div className=" mt-5 md:mt-0 md:col-span-2">
                         <form
-                            className=" px-8 pt-6 pb-8 mb-4 bg-gray-50 rounded-lg shadow-md "
+                            className=" px-8 pt-6 pb-8 mb-4 bg-slate-100 rounded-lg shadow-md "
                             onSubmit={handleSubmit}
                         >
                             <div className="shadow overflow-hidden xl:rounded-xl ">
@@ -165,7 +165,7 @@ const CreateRecipe = (props) => {
                                                     })
                                                 }
                                                 value={formData.name}
-                                                // required
+                                           
                                             />
                                         </div>
                                         <div className="col-span-6 sm:col-span-3">
@@ -179,7 +179,7 @@ const CreateRecipe = (props) => {
                                                     })
                                                 }
                                                 value={formData.type}
-                                                // required
+                                      
                                             >
                                                 <option>
                                                     Select a type of food

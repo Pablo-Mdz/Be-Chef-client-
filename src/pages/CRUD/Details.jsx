@@ -1,7 +1,7 @@
 import axios from "axios";
 import {AuthContext} from "../../context/auth.context";
 import React, {useEffect, useState, useContext} from "react";
-import TwitterLikeButton from "twitter-like-button";
+
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
@@ -36,26 +36,28 @@ const Details = (props) => {
         const id = recipe._id;
         const likes = recipe.likes;
         if (likes.includes(user._id)) {
-            let index = likes.indexOf(id)
-            let newLikes = likes.slice(index ,index+1 )
-            // if (likes.indexOf(id).slice(id)) {
-                axios
-                    .put(`${API_URL}/pages/CRUD/${id}/likes`, newLikes)
-                    .then(() => refresh());
-            } else {
-                likes.push(user._id);
-                axios
-                    .put(`${API_URL}/pages/CRUD/${id}/likes`, likes)
-                    .then(() => refresh());
-            }
+            let index = likes.indexOf(id);
+            let newLikes = likes.slice(index, index + 1);
+            
+            axios
+                .put(`${API_URL}/pages/CRUD/${id}/likes`, newLikes)
+                .then(() => refresh());
+        } else {
+            likes.push(user._id);
+            axios
+                .put(`${API_URL}/pages/CRUD/${id}/likes`, likes)
+                .then(() => refresh());
+        }
     };
 
     return (
         <div className="pt-10 bg-gray-300 ">
-            <h1 className="font-semibold text-2xl mb-5">
-                Find All the recepies here!
+            <div className="">
+            <h1 className="font-semibold text-4xl mb-5">
+                Find All the recepies here
             </h1>
-            <h2>Create an account for save and </h2>
+            </div>
+            <h2 className="mb-3">Create an account for save and </h2>
             <input
                 placeholder="Search"
                 type="text"
@@ -68,11 +70,11 @@ const Details = (props) => {
             <div className=" container w-screen px-2 md:px-12 my-6 mx-auto ">
                 <div className="flex items-stretch flex-wrap-reverse -mx-1 lg:-mx-4 ">
                     {filtered &&
-                        filtered.map((recipe) => (
+                        filtered?.map((recipe) => (
                             <>
                                 <div className="my-1 px-1 w-full md:w-1/3 lg:my-4 lg:px-4 lg:w-1/5 ">
                                     <article className=" rounded-2xl shadow-lg bg-gray-100 p-3 transform h-42  duration-500 hover:scale-110 hover:bg-sky-50  rounded-lg shadow-lg ">
-                                        <a href={`/single/${recipe._id}`}>
+                                        <a href={`/single/${recipe?._id}`}>
                                             {!recipe.image && (
                                                 <img
                                                     alt="user image"
@@ -84,7 +86,7 @@ const Details = (props) => {
                                                 <img
                                                     alt="user"
                                                     className="block h-40 w-auto rounded-2xl hover:opacity-60 "
-                                                    src={recipe.image}
+                                                    src={recipe?.image}
                                                 />
                                             )}
                                         </a>
@@ -93,7 +95,7 @@ const Details = (props) => {
                                             <h1 className="text-2xl">
                                                 <a
                                                     className="no-underline  hover:text-gray-300 text-black text-xl "
-                                                    href={`/single/${recipe._id}`}
+                                                    href={`/single/${recipe?._id}`}
                                                 >
                                                     {recipe.name}
                                                 </a>
@@ -120,13 +122,15 @@ const Details = (props) => {
                                                 />
                                             </a>
                                             <p className="ml-2 text-sm pt-10">
-                                                {recipe.region}
+                                                {recipe?.region}
                                             </p>
-                                            {recipe.likes.includes(user._id) ? (
+                                            {recipe.likes.includes(
+                                                user?._id
+                                            ) ? (
                                                 <img
-                                                onClick={() =>
-                                                    likeBtn(recipe)
-                                                }
+                                                    onClick={() =>
+                                                        likeBtn(recipe)
+                                                    }
                                                     className="w-10 h-10 mt-6"
                                                     src="https://cdn.iconscout.com/icon/free/png-256/heart-suit-card-37956.png"
                                                 />

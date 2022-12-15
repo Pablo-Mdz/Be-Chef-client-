@@ -1,4 +1,3 @@
-// import "./Navbar.css";
 import {Link} from "react-router-dom";
 import {useContext} from "react";
 import {AuthContext} from "../../context/auth.context";
@@ -10,13 +9,8 @@ export default function Navbar(props) {
     return (
         <>
             <nav
-                className="bg-gradient-to-r from-gray-50 to-gray-700 flex flex-wrap items-center justify-between px-2 py-3"
-                // {
-                //     (props.transparent
-                //         ? "top-0 absolute z-50 w-full"
-                //         : "relative shadow-lg bg-white shadow-lg") +
-                //     " flex flex-wrap items-center justify-between px-2 py-3 "
-                // }
+                className="bg-gradient-to-r from-gray-50 to-gray-700 flex flex-wrap items-center justify-between px-2 py-4"
+               
             >
                 <div className="container  px-4 mx-auto flex flex-wrap items-center justify-between">
                     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">

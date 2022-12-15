@@ -25,7 +25,6 @@ function App() {
     const refresh = () => {
         axios
             .get(`${API_URL}/pages/CRUD/details`)
-            //   ${id}
             .then((response) => setData(response.data), console.log(data));
     };
     useEffect(() => {

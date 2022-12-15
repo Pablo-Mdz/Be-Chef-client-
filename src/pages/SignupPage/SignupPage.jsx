@@ -67,11 +67,11 @@ function SignupPage() {
     };
 
     return (
-        <div className=" flex  justify-center items-center bg-gradient-to-r from-cyan-500 to-blue-500">
-            <div className=" mt-20 mb-20 ">
-                <h1 className="mb-6 text-2xl">Sign Up</h1>
+        <div className=" flex  justify-center items-center bg-[url('https://images.unsplash.com/photo-1556910101-a533e487de15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-cover ">
+            <div className=" mt-5 mb-10 ">
+                <h1 className="mb-8 text-slate-900 underline text-bold text-3xl">Sign Up</h1>
 
-                <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+                <div className="block p-6 rounded-lg shadow-lg bg-slate-100 max-w-md">
                     <form onSubmit={handleSignupSubmit}>
                         <div className="form-group mb-6">
                             <input
@@ -151,11 +151,11 @@ function SignupPage() {
                                 Add your photo here
                             </label>
                             <div className="flex items-center justify-center w-full">
-                                <label className="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
+                                <label className="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center ">
                                     <div className="h-full w-full text-center flex flex-col items-center justify-center items-center  ">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            className="w-10 h-10 text-blue-400 group-hover:text-blue-600"
+                                            className="w-10 h-10 text-blue-400 group-hover:text-blue-600 "
                                             fill="none"
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"
@@ -219,7 +219,7 @@ function SignupPage() {
                         </button>
                     </form>
                 </div>
-                <div className="mt-5">
+                <div className="mt-5 text-slate-300">
                     {errorMessage && (
                         <p className="error-message">{errorMessage}</p>
                     )}

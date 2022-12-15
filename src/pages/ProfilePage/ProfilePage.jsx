@@ -2,14 +2,13 @@ import "./ProfilePage.css";
 import {useContext} from "react";
 import React, {useEffect, useState} from "react";
 import {AuthContext} from "../../context/auth.context";
-import {Link, NavLink} from "react-router-dom";
+import {Link, Navigate, NavLink, useNavigate} from "react-router-dom";
 import axios from "axios";
 
 function ProfilePage(props) {
     const {user} = useContext(AuthContext);
     const [search, setSearch] = useState("");
     const [savedRecipe, setSaved] = useState(false);
-
     const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
     const filtered = props.data.filter((oneData) => {
@@ -25,14 +24,7 @@ function ProfilePage(props) {
         }
     });
 
-    const refresh = () => {
-        axios
-            .get(`${API_URL}/pages/CRUD/details`)
-            .then((response) => props.setData(response.data));
-    };
-    useEffect(() => {
-        refresh();
-    }, []);
+  
 
     const likeBtn = (recipe) => {
         const id = recipe._id;
@@ -43,12 +35,7 @@ function ProfilePage(props) {
 
             axios
                 .put(`${API_URL}/pages/CRUD/${id}/likes`, newLikes)
-                .then(() => refresh());
-        } else {
-            likes.push(user._id);
-            axios
-                .put(`${API_URL}/pages/CRUD/${id}/likes`, likes)
-                .then(() => refresh());
+                .then(() => props.refresh())
         }
     };
 
@@ -57,30 +44,37 @@ function ProfilePage(props) {
             <div className="  container mx-auto  py-10 px-10 relative mt- mb-20 ">
                 <div className=" w-full rounded-lg h-full lg:overflow-hidden overflow-auto lg:flex-row flex-col shadow-2xl ">
                     <div className=" bg-white text-gray-800 flex flex-col">
-                           
                         <div className=" p-8 shadow-md relative bg-gray-100 ">
                             <div className=" items-center">
-                                <img
-                                    alt="img"
-                                    className="shadow-md rounded-2xl w-40"
-                                    src={
-                                        user.imageUrl
-                                            ? user.imageUrl
-                                            : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                                    }
-                                />
-                                <div className="text-indigo-600 ml-3 text-3xl ">
-                                    <h1>
-                                        Wellcome {user.name} to your Profile
-                                    </h1>
+                                <div >
+                                    <img
+                                        alt="img"
+                                        className="shadow-md justify-left rounded-2xl w-40 mr-40 position-static"
+                                        src={
+                                            user.imageUrl
+                                                ? user.imageUrl
+                                                : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                                        }
+                                    />
+                                    <div className="text-indigo-600 ml-3 text-3xl ">
+                                        <h1>
+                                            Wellcome {user.name} to your Profile
+                                        </h1>
+                                    </div>
                                 </div>
 
-                                <h2 className="font-medium text-lg mt-6 text-xl">
-                                    Recipes you have created on Be Chef.
+                                <h2 className="font-medium text-lg mt-6 text-2xl">
+                                {!savedRecipe
+                                            ? "Recipes you have created on Be Chef"
+                                            : "Saved recipes"}
+                                    
                                 </h2>
 
                                 <p className="text-gray-600 text-sm text-xl">
-                                    Enjoy
+                                {!savedRecipe
+                                            ? "Create a new Recepie"
+                                            : "Enjoy all the saved recipes"}
+                                    
                                 </p>
                                 <div className="mt-6 flex">
                                     <Link
@@ -131,6 +125,7 @@ function ProfilePage(props) {
                                             <path d="M21 21l-4.35-4.35" />
                                         </svg>
                                     </div>
+                                    
                                 </div>
                                 {savedRecipe ? (
                                     <div className=" container  px-1 md:px-50 my-3  ">
@@ -143,8 +138,9 @@ function ProfilePage(props) {
                                                 )
                                                 .map((recipe) => (
                                                     <div>
+                                                        
                                                         <div className="my-1 px-1 lg:my-2 lg:px-4 w-72 ">
-                                                            <article className="overflow-hidden rounded-lg shadow-lg ">
+                                                            <article className="overflow-hidden rounded-lg shadow-lg duration-500 hover:scale-105">
                                                                 <a
                                                                     href={`/single/${recipe._id}`}
                                                                 >
@@ -208,7 +204,7 @@ function ProfilePage(props) {
                                                                     </p>
                                                                     {recipe.likes.includes(
                                                                         user._id
-                                                                    ) ? (
+                                                                    ) && (
                                                                         <img
                                                                             onClick={() =>
                                                                                 likeBtn(
@@ -216,24 +212,8 @@ function ProfilePage(props) {
                                                                                 )
                                                                             }
                                                                             className="w-10 h-10 mt-6"
-                                                                            src="https://cdn.iconscout.com/icon/free/png-256/heart-suit-card-37956.png"
+                                                                            src="https://cdn.iconscout.com/icon/premium/png-256-thumb/delete-52-103683.png"
                                                                         />
-                                                                    ) : (
-                                                                        <a
-                                                                            className="w-10 h-10 mt-6"
-                                                                            type="button"
-                                                                            onClick={() =>
-                                                                                likeBtn(
-                                                                                    recipe
-                                                                                )
-                                                                            }
-                                                                        >
-                                                                            <img
-                                                                                src="https://cdn.iconscout.com/icon/free/png-256/heart-1161-457786.png"
-                                                                                alt="like"
-                                                                            />
-                                                                            <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
-                                                                        </a>
                                                                     )}
                                                                 </footer>
                                                             </article>
@@ -256,7 +236,7 @@ function ProfilePage(props) {
                                                 .map((recipe) => (
                                                     <div>
                                                         <div className="my-1 px-1  py-5 lg:my-2 lg:px-4 w-72 ">
-                                                            <article className="transform h-64  duration-500 hover:scale-110 hover:bg-sky-50  rounded-lg shadow-lg  ">
+                                                            <article className="transform h-64  duration-500 hover:scale-105 hover:bg-sky-50  rounded-lg shadow-lg  ">
                                                                 <a
                                                                     href={`/single/${recipe._id}`}
                                                                 >
@@ -326,8 +306,4 @@ function ProfilePage(props) {
 
 export default ProfilePage;
 
-// {recipe.likes.includes(user._id) ? (
-//     <TwitterLikeButton onClick={() => likeBtn(recipe)}/>
-//     ) : (
-//     <TwitterLikeButton isClick={!recipe.likes.includes(user._id)} />
-// )}
+

@@ -19,7 +19,6 @@ function LoginPage() {
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         const requestBody = {email, password};
-
         // Send a request to the server using axios
         /* 
     axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/login`)
@@ -45,12 +44,12 @@ function LoginPage() {
     };
 
     return (
-        <div className="bg-gradient-to-r from-cyan-500 to-blue-500 flex  justify-center items-center">
+        <div className="bg-[url('https://images.unsplash.com/photo-1635321350281-e2a91ecffd00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2846&q=80')] bg-cover bg-center flex  justify-center items-center">
             <div className=" mt-20 mb-20 ">
                
-                <h1 className="mb-6 text-2xl"><>Login</></h1>
+                <h1 className="mb-6 text-slate-200 underline text-bold text-2xl"><>Login</></h1>
        
-                <div className="content-center block p-6 rounded-lg shadow-lg bg-white">
+                <div className="content-center block p-6 rounded-lg shadow-lg bg-slate-100">
                     <form onSubmit={handleLoginSubmit}>
                         <div className="form-group mb-6">
                             <label
@@ -81,8 +80,6 @@ function LoginPage() {
                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 placeholder="Enter email"
                             />
-                            {/* <small id="emailHelp" className="block mt-1 text-xs text-gray-600">We'll never share your email with anyone
-                    else.</small> */}
                         </div>
                         <div className="form-group mb-6">
                             <label
@@ -113,12 +110,6 @@ function LoginPage() {
                                 placeholder="Password"
                             />
                         </div>
-                        {/* <div class="form-group form-check mb-6"> */}
-                        {/* <input type="checkbox"
-                        class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                        id="exampleCheck1">
-                    <label class="form-check-label inline-block text-gray-800" for="exampleCheck1">Check me out</label> */}
-                        {/* </div> */}
                         <button
                             type="submit"
                             className="

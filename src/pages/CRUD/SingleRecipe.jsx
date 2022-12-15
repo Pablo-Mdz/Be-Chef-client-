@@ -30,7 +30,7 @@ const SingleRecipe = (props) => {
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
-        // documentTitle: "my Recipe",
+        documentTitle: "BE CHEF",
         pageStyle: "print",
         onafterprint: () => alert("print success"),
     });
@@ -63,7 +63,7 @@ const SingleRecipe = (props) => {
                                 <strong>Services: </strong> {recipe.service}
                             </h4>
                             <div className="text-start  p-6">
-                                <div className="grid  justify-items-start text-base">
+                                <div className="grid list-inside justify-items-start text-base">
                                     <h4>
                                         <strong>Ingredients:</strong>
                                     </h4>
@@ -81,7 +81,7 @@ const SingleRecipe = (props) => {
                                 </div>
 
                                 <h4 className="text-gray-700 text-base"> </h4>
-                                <div className="grid content-start justify-items-start pt-6">
+                                <div className="grid content-start list-inside justify-items-start pt-6">
                                     <h4>
                                         <strong>Instructions:</strong>
                                     </h4>
@@ -89,7 +89,11 @@ const SingleRecipe = (props) => {
                                         recipe.instructions.map(
                                             (eachInstruction) => {
                                                 return (
-                                                    <li>{eachInstruction}</li>
+                                                  
+                                                        <li>
+                                                            {eachInstruction}
+                                                        </li>
+                                                   
                                                 );
                                             }
                                         )
