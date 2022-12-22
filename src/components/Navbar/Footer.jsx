@@ -3,7 +3,7 @@ import React from "react";
 export default function Footer() {
     return (
         <>
-            <footer className="static bg-gradient-to-r from-gray-50 to-gray-700 pt-4 pb-3 ">
+            <footer className="sticky top-[100vh] w-screen bg-gradient-to-r from-gray-50 to-gray-700 pt-4 pb-3 ">
                 <div
                     className="bottom-auto top-0  left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
                     style={{height: "80px"}}
@@ -35,7 +35,6 @@ export default function Footer() {
                                 bootcamp. It does not have any commercial or
                                 lucrative purpose.
                             </h5>
-                            
                         </div>
                         {/* <div>
                             <img
@@ -52,7 +51,8 @@ export default function Footer() {
                                     </span>
                                     <ul className="list-unstyled">
                                         <li>
-                                            <a target="_blank"
+                                            <a
+                                                target="_blank"
                                                 className="text-slate-300 hover:text-white font-semibold block pb-2 text-sm"
                                                 href="https://github.com/Pablo-Mdz"
                                             >
@@ -60,7 +60,8 @@ export default function Footer() {
                                             </a>
                                         </li>
                                         <li>
-                                            <a target="_blank"
+                                            <a
+                                                target="_blank"
                                                 className="text-slate-300 hover:text-white font-semibold block pb-2 text-sm"
                                                 href="https://www.linkedin.com/in/pablo-cigoy/"
                                             >
@@ -68,7 +69,8 @@ export default function Footer() {
                                             </a>
                                         </li>
                                         <li>
-                                            <a target="_blank"
+                                            <a
+                                                target="_blank"
                                                 className="text-slate-300 hover:text-white font-semibold block pb-2 text-sm"
                                                 href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md"
                                             >
@@ -86,7 +88,11 @@ export default function Footer() {
                             <div className="text-sm text-gray-800 font-semibold py-1">
                                 Copyright © {new Date().getFullYear()}
                                 {""} Final Project Ironhack Berlin 2022 by {""}
-                                <a className="hover:text-slate-300" target="_blank" href="https://github.com/Pablo-Mdz/Be-Chef-client-">
+                                <a
+                                    className="hover:text-slate-300"
+                                    target="_blank"
+                                    href="https://github.com/Pablo-Mdz/Be-Chef-client-"
+                                >
                                     Pablo Cigoy
                                 </a>
                             </div>
