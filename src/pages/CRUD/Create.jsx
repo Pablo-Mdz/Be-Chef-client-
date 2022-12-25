@@ -206,6 +206,7 @@ const CreateRecipe = (props) => {
                                                 <option>Asia</option>
                                                 <option>Africa</option>
                                                 <option>Oceania</option>
+                                                <option>Other</option>
                                             </select>
                                         </div>
 
