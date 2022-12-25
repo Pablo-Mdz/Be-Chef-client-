@@ -32,9 +32,7 @@ const CreateRecipe = (props) => {
         instructions: [],
         tips: "",
         reviews: [],
-        owner:{ id : user._id,
-            imageUser: user.imageUrl
-        }
+        owner: {id: user._id, imageUser: user.imageUrl},
     });
     const navigate = useNavigate();
 
@@ -51,43 +49,39 @@ const CreateRecipe = (props) => {
         e.preventDefault();
         setIngredient([...ingredient, NewIngredient]);
         setNewIngredient({quantity: "", measure: "", singleIngredient: ""});
-    }
+    };
 
     // delete ingredient
     function deleteIngredient(item) {
-        let array = [...ingredient]; 
-        let index = array.indexOf(item)
+        let array = [...ingredient];
+        let index = array.indexOf(item);
         if (index !== -1) {
             array.splice(index, 1);
             setIngredient(array);
         }
-      }
-  
-      
-      //new instructions
-      const handleNewInstruction = (e) => {
-          const {value} = e.target;
-          console.log(value);
-          setNewInstruction(value);
-        };
-        const addInstruction = (e) => {
-            e.preventDefault();
-            setInstruction([...instruction, NewInstruction]);
-            setNewInstruction("");
-        };
-        
+    }
 
-        // delete instruction
-        function deleteInstruction(item) {
-            let array = [...instruction]; 
-            let index = array.indexOf(item)
-            if (index !== -1) {
-                array.splice(index, 1);
-                setInstruction(array);
-            }
-          }
+    //new instructions
+    const handleNewInstruction = (e) => {
+        const {value} = e.target;
+        console.log(value);
+        setNewInstruction(value);
+    };
+    const addInstruction = (e) => {
+        e.preventDefault();
+        setInstruction([...instruction, NewInstruction]);
+        setNewInstruction("");
+    };
 
-
+    // delete instruction
+    function deleteInstruction(item) {
+        let array = [...instruction];
+        let index = array.indexOf(item);
+        if (index !== -1) {
+            array.splice(index, 1);
+            setInstruction(array);
+        }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -127,7 +121,6 @@ const CreateRecipe = (props) => {
                             body
                         );
 
-                      
                         setImage("");
                         props.refresh();
                         navigate("/profile");
@@ -140,8 +133,6 @@ const CreateRecipe = (props) => {
 
     return (
         <>
-            
-
             <div className="mt-10 xl:mt-0">
                 <div className="px-8 pt-6 pb-8 mb-4 bg-white rounded-lg shadow-md">
                     <div className=" mt-5 md:mt-0 md:col-span-2">
@@ -165,7 +156,6 @@ const CreateRecipe = (props) => {
                                                     })
                                                 }
                                                 value={formData.name}
-                                           
                                             />
                                         </div>
                                         <div className="col-span-6 sm:col-span-3">
@@ -179,7 +169,6 @@ const CreateRecipe = (props) => {
                                                     })
                                                 }
                                                 value={formData.type}
-                                      
                                             >
                                                 <option>
                                                     Select a type of food
@@ -212,9 +201,7 @@ const CreateRecipe = (props) => {
                                                 <option>Select Region</option>
                                                 <option>European</option>
                                                 <option>Sud America</option>
-                                                <option>
-                                                    Central America{" "}
-                                                </option>
+                                                <option>Central America</option>
                                                 <option>Nord America</option>
                                                 <option>Asia</option>
                                                 <option>Africa</option>
@@ -247,6 +234,7 @@ const CreateRecipe = (props) => {
                                                 <option>10</option>
                                                 <option>15</option>
                                                 <option>20</option>
+                                                <option>+ 20</option>
                                             </select>
                                         </div>
                                         <div className="col-span-6 sm:col-span-3">
@@ -262,8 +250,7 @@ const CreateRecipe = (props) => {
                                                 value={formData.time}
                                             >
                                                 <option>
-                                                    Select the Time to
-                                                    ingredient
+                                                    Select the Time to prepare
                                                 </option>
                                                 <option>10 min.</option>
                                                 <option>15 min.</option>
@@ -281,6 +268,7 @@ const CreateRecipe = (props) => {
                                                 <option>2 ~ 5 hors</option>
                                                 <option>5 ~10 hors</option>
                                                 <option>10 ~ 24 hors</option>
+                                                <option>+ 24 hors</option>
                                             </select>
                                         </div>
 
@@ -300,7 +288,7 @@ const CreateRecipe = (props) => {
                                             <input
                                                 type="Number"
                                                 name="quantity"
-                                                placeholder="quantity  "
+                                                placeholder="quantity"
                                                 className="px-2 block w-32 h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
                                                 onChange={handleNewIngredient}
                                                 value={NewIngredient.quantity}
@@ -322,6 +310,7 @@ const CreateRecipe = (props) => {
                                                 <option>L</option>
                                                 <option>Kg</option>
                                                 <option>unity</option>
+                                                <option>.</option>
                                             </select>
                                         </div>
 
@@ -365,7 +354,9 @@ const CreateRecipe = (props) => {
                                                                             <div>
                                                                                 <span
                                                                                     onClick={() =>
-                                                                                        deleteIngredient(eachStep)
+                                                                                        deleteIngredient(
+                                                                                            eachStep
+                                                                                        )
                                                                                     }
                                                                                     className="inline-block bg-gray-200 hover:bg-red-500 rounded-full px-3 py-1 hover:text-white text-sm font-semibold text-red-700 mr-2 my-1 hover:border-transparent"
                                                                                 >
@@ -419,9 +410,11 @@ const CreateRecipe = (props) => {
                                                                                 </ul>
                                                                             </div>
                                                                             <div>
-                                                                            <span
+                                                                                <span
                                                                                     onClick={() =>
-                                                                                        deleteInstruction(eachInstruction)
+                                                                                        deleteInstruction(
+                                                                                            eachInstruction
+                                                                                        )
                                                                                     }
                                                                                     className="inline-block bg-gray-200 hover:bg-red-500 rounded-full px-3 py-1 hover:text-white text-sm font-semibold text-red-700 mr-2 my-1 hover:border-transparent"
                                                                                 >
