@@ -276,7 +276,7 @@ const CreateRecipe = (props) => {
                                         <div className="col-span-6 sm:col-span-3">
                                             <input
                                                 type="file"
-                                                className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                className="px-2 py-1 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
                                                 name="image"
                                                 onChange={(e) =>
                                                     setImage(e.target.files[0])

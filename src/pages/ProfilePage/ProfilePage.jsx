@@ -65,15 +65,15 @@ function ProfilePage(props) {
 
                                 <h2 className="font-medium text-lg mt-6 text-2xl">
                                 {!savedRecipe
-                                            ? "Recipes you have created on Be Chef"
+                                            ? "Your recipes on Be Chef"
                                             : "Saved recipes"}
                                     
                                 </h2>
 
                                 <p className="text-gray-600 text-sm text-xl">
                                 {!savedRecipe
-                                            ? "Create a new Recepie"
-                                            : "Enjoy all the saved recipes"}
+                                            ? ""
+                                            : "Enjoy your selected recipes"}
                                     
                                 </p>
                                 <div className="mt-6 flex">
@@ -81,11 +81,11 @@ function ProfilePage(props) {
                                         to="/create"
                                         className="bg-indigo-500 text-white py-2 hover:bg-blue-800 text-sm px-3 rounded focus:outline-none"
                                     >
-                                        <button>New Recipe</button>
+                                        <button>Create recipe</button>
                                     </Link>
                                     <Link to="/details">
                                         <button className="ml-4 bg-indigo-500 text-white hover:bg-blue-800 py-2 text-sm px-3 rounded focus:outline-none border border-gray-400">
-                                            All recepies
+                                            Discover other recepies
                                         </button>
                                     </Link>
 
@@ -127,10 +127,12 @@ function ProfilePage(props) {
                                     </div>
                                     
                                 </div>
+                                {/* //saved  */}
+                                
                                 {savedRecipe ? (
-                                    <div className=" container  px-1 md:px-50 my-3  ">
-                                        <div className=" -mx-1 md:-mx-4 flex flex-wrap-reverse py-5">
-                                            {props.data
+                                    <div className=" container w-screen px-2 md:px-12 my-6 mx-auto  ">
+                                        <div className=" flex items-stretch flex-wrap-reverse -mx-1 lg:-mx-4">
+                                            {filtered
                                                 .filter((oneData) =>
                                                     oneData.likes.includes(
                                                         user._id
@@ -140,21 +142,21 @@ function ProfilePage(props) {
                                                     <div>
                                                         
                                                         <div className="my-1 px-1 lg:my-2 lg:px-4 w-72 ">
-                                                            <article className="overflow-hidden rounded-lg shadow-lg duration-500 hover:scale-105">
+                                                            <article className="transform  duration-500 hover:shadow-2xl rounded-lg shadow-md ">
                                                                 <a
                                                                     href={`/single/${recipe._id}`}
                                                                 >
                                                                     {!recipe.image && (
                                                                         <img
                                                                             alt="user image"
-                                                                            className="block h-40 w-auto rounded-2xl hover:opacity-60 "
+                                                                            className="block h-40 w-auto rounded-t-2xl  "
                                                                             src="https://cdn-icons-png.flaticon.com/512/1134/1134760.png"
                                                                         />
                                                                     )}
                                                                     {recipe.image && (
                                                                         <img
                                                                             alt="user"
-                                                                            className="block h-40 w-56 rounded-2xl hover:opacity-60 "
+                                                                            className="block h-40 w-56 rounded-t-2xl  "
                                                                             src={
                                                                                 recipe.image
                                                                             }
@@ -164,7 +166,7 @@ function ProfilePage(props) {
                                                                 <header className="flex items-center justify-between leading-tight p-2 md:p-4">
                                                                     <h1 className="text-lg">
                                                                         <a
-                                                                            className="no-underline hover:underline text-black text-xl "
+                                                                            className="no-underline hover:text-blue-800 text-black text-xl "
                                                                             href={`/single/${recipe._id}`}
                                                                         >
                                                                             {
@@ -224,8 +226,8 @@ function ProfilePage(props) {
                                     </div>
                                 ) : (
                                     // created
-                                    <div className=" container  px-1 md:px-50 my-3  ">
-                                        <div className=" -mx-1 md:-mx-4 flex flex-wrap-reverse py-5">
+                                    <div className=" container  px-2 md:px-12 my-6 mx-auto   ">
+                                        <div className=" flex items-stretch flex-wrap-reverse -mx-1 lg:-mx-4">
                                             {filtered
                                                 .filter(
                                                     (myrecepie) =>
@@ -236,21 +238,21 @@ function ProfilePage(props) {
                                                 .map((recipe) => (
                                                     <div>
                                                         <div className="my-1 px-1  py-5 lg:my-2 lg:px-4 w-72 ">
-                                                            <article className="transform h-64  duration-500 hover:scale-105 hover:bg-sky-50  rounded-lg shadow-lg  ">
+                                                            <article className="transform  duration-500 hover:shadow-2xl rounded-lg shadow-md  ">
                                                                 <a
                                                                     href={`/single/${recipe._id}`}
                                                                 >
                                                                     {!recipe.image && (
                                                                         <img
                                                                             alt="user image"
-                                                                            className="block h-40 w-auto rounded-2xl hover:opacity-30 "
+                                                                            className="block h-48 w-56 rounded-t-2xl  "
                                                                             src="https://cdn-icons-png.flaticon.com/512/1134/1134760.png"
                                                                         />
                                                                     )}
                                                                     {recipe.image && (
                                                                         <img
                                                                             alt="user"
-                                                                            className="block h-40 w-56 rounded-2xl hover:opacity-60 "
+                                                                            className="block h-48 w-56 rounded-t-2xl  "
                                                                             src={
                                                                                 recipe.image
                                                                             }
@@ -258,10 +260,10 @@ function ProfilePage(props) {
                                                                     )}
                                                                 </a>
 
-                                                                <header className="flex items-center justify-between leading-tight p-2 md:p-4 ">
+                                                                <header className="flex items-center justify-between leading-tight p-2 md:p-4  ">
                                                                     <h1 className="text-lg">
                                                                         <a
-                                                                            className="no-underline hover:text-gray-400 text-black text-xl "
+                                                                            className="no-underline hover:text-blue-800 text-black text-xl "
                                                                             href={`/single/${recipe._id}`}
                                                                         >
                                                                             {
@@ -276,7 +278,7 @@ function ProfilePage(props) {
                                                                     </p>
                                                                 </header>
 
-                                                                <footer className="flex justify-between leading-none p- md:p-2">
+                                                                <footer className="flex justify-between leading-none p- md:p-4">
                                                                     <p className="ml-2 text-sm">
                                                                         {
                                                                             recipe.time

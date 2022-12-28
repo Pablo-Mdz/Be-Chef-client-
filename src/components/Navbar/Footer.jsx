@@ -46,14 +46,14 @@ export default function Footer() {
                         <div className="w-full lg:w-6/12 px-4">
                             <div className="flex flex-wrap items-top mb-6">
                                 <div className="w-full lg:w-4/12 px-4 ml-auto">
-                                    <span className="block uppercase texthover:text-white text-sm font-semibold mb-2">
+                                    <span className="block uppercase  text-white  text-sm font-semibold mb-2">
                                         Useful Links
                                     </span>
                                     <ul className="list-unstyled">
                                         <li>
                                             <a
                                                 target="_blank"
-                                                className="text-slate-300 hover:text-white font-semibold block pb-2 text-sm"
+                                                className="text-slate-400 hover:text-white font-semibold block pb-2 text-sm"
                                                 href="https://github.com/Pablo-Mdz"
                                             >
                                                 Github
@@ -62,7 +62,7 @@ export default function Footer() {
                                         <li>
                                             <a
                                                 target="_blank"
-                                                className="text-slate-300 hover:text-white font-semibold block pb-2 text-sm"
+                                                className="text-slate-400 hover:text-white font-semibold block pb-2 text-sm"
                                                 href="https://www.linkedin.com/in/pablo-cigoy/"
                                             >
                                                 Linkedin
@@ -71,7 +71,7 @@ export default function Footer() {
                                         <li>
                                             <a
                                                 target="_blank"
-                                                className="text-slate-300 hover:text-white font-semibold block pb-2 text-sm"
+                                                className="text-slate-400 hover:text-white font-semibold block pb-2 text-sm"
                                                 href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md"
                                             >
                                                 MIT License

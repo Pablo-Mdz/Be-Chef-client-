@@ -43,11 +43,25 @@ const SingleRecipe = (props) => {
             >
                 {recipe && (
                     <div className="max-w-2xl mt-5 bg-gray-50 rounded-2xl overflow-hidden shadow-lg ">
-                        <img
+                        {!recipe.image && (
+                            <img
+                                alt="user image"
+                                className="w-full h-auto  rounded-t-2xl"
+                                src="https://cdn-icons-png.flaticon.com/512/1134/1134760.png"
+                            />
+                        )}
+                        {recipe.image && (
+                            <img
+                                alt="user"
+                                className="w-full h-auto  rounded-t-2xl "
+                                src={recipe?.image}
+                            />
+                        )}
+                        {/* <img
                             className="w-full h-auto roundedt-3xl"
                             src={recipe.image}
                             alt="image test"
-                        />
+                        /> */}
                         <div className="px-6 py-4 place-self-start">
                             <div className="font-bold text-4xl mb-2 ">
                                 {recipe.name}
@@ -89,11 +103,7 @@ const SingleRecipe = (props) => {
                                         recipe.instructions.map(
                                             (eachInstruction) => {
                                                 return (
-                                                  
-                                                        <li>
-                                                            {eachInstruction}
-                                                        </li>
-                                                   
+                                                    <li>{eachInstruction}</li>
                                                 );
                                             }
                                         )
