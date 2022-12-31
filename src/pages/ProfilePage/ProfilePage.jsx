@@ -237,7 +237,7 @@ function ProfilePage(props) {
 
                                                 .map((recipe) => (
                                                     <div>
-                                                        <div className="my-1 px-1  py-5 lg:my-2 lg:px-4 w-72 ">
+                                                        <div className="my-1 mx-1 px-1  py-5 lg:my-2 lg:px-4 w-72 ">
                                                             <article className="transform  duration-500 hover:shadow-2xl rounded-lg shadow-md  ">
                                                                 <a
                                                                     href={`/single/${recipe._id}`}
