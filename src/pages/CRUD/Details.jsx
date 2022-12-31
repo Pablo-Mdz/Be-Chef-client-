@@ -112,7 +112,7 @@ const Details = (props) => {
                                             >
                                                 <img
                                                     alt="Placeholder"
-                                                    className="block object-cover rounded-full h-12 w-12"
+                                                    className="block object-cover rounded-full h-14 w-14"
                                                     src={
                                                         recipe.owner.imageUser
                                                             ? recipe.owner

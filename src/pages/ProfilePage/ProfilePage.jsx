@@ -1,9 +1,10 @@
 import "./ProfilePage.css";
 import {useContext} from "react";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {AuthContext} from "../../context/auth.context";
-import {Link, Navigate, NavLink, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from "axios";
+// react-router-dom => Navigate, NavLink, useNavigate ||  React => useEffect
 
 function ProfilePage(props) {
     const {user} = useContext(AuthContext);
@@ -24,8 +25,6 @@ function ProfilePage(props) {
         }
     });
 
-  
-
     const likeBtn = (recipe) => {
         const id = recipe._id;
         const likes = recipe.likes;
@@ -35,7 +34,7 @@ function ProfilePage(props) {
 
             axios
                 .put(`${API_URL}/pages/CRUD/${id}/likes`, newLikes)
-                .then(() => props.refresh())
+                .then(() => props.refresh());
         }
     };
 
@@ -46,7 +45,7 @@ function ProfilePage(props) {
                     <div className=" bg-white text-gray-800 flex flex-col">
                         <div className=" p-8 shadow-md relative bg-gray-100 ">
                             <div className=" items-center">
-                                <div >
+                                <div>
                                     <img
                                         alt="img"
                                         className="shadow-md justify-left rounded-2xl w-40 mr-40 position-static"
@@ -64,17 +63,15 @@ function ProfilePage(props) {
                                 </div>
 
                                 <h2 className="font-medium text-lg mt-6 text-2xl">
-                                {!savedRecipe
-                                            ? "Your recipes on Be Chef"
-                                            : "Saved recipes"}
-                                    
+                                    {!savedRecipe
+                                        ? "Your recipes on Be Chef"
+                                        : "Saved recipes"}
                                 </h2>
 
                                 <p className="text-gray-600 text-sm text-xl">
-                                {!savedRecipe
-                                            ? ""
-                                            : "Enjoy your selected recipes"}
-                                    
+                                    {!savedRecipe
+                                        ? ""
+                                        : "Enjoy your selected recipes"}
                                 </p>
                                 <div className="mt-6 flex">
                                     <Link
@@ -125,10 +122,9 @@ function ProfilePage(props) {
                                             <path d="M21 21l-4.35-4.35" />
                                         </svg>
                                     </div>
-                                    
                                 </div>
                                 {/* //saved  */}
-                                
+
                                 {savedRecipe ? (
                                     <div className=" container w-screen px-2 md:px-12 my-6 mx-auto  ">
                                         <div className=" flex items-stretch flex-wrap-reverse -mx-1 lg:-mx-4">
@@ -140,7 +136,6 @@ function ProfilePage(props) {
                                                 )
                                                 .map((recipe) => (
                                                     <div>
-                                                        
                                                         <div className="my-1 px-1 lg:my-2 lg:px-4 w-72 ">
                                                             <article className="transform  duration-500 hover:shadow-2xl rounded-lg shadow-md ">
                                                                 <a
@@ -187,14 +182,10 @@ function ProfilePage(props) {
                                                                     >
                                                                         <img
                                                                             alt="Placeholder"
-                                                                            className="block rounded-2xl h-16 w-auto"
+                                                                            className="block object-cover rounded-full h-14 w-14"
                                                                             src={
-                                                                                recipe
-                                                                                    .owner
-                                                                                    .imageUser
-                                                                                    ? recipe
-                                                                                          .owner
-                                                                                          .imageUser
+                                                                                recipe.owner.imageUser
+                                                                                    ? recipe.owner.imageUser
                                                                                     : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
                                                                             }
                                                                         />
@@ -307,5 +298,3 @@ function ProfilePage(props) {
 }
 
 export default ProfilePage;
-
-

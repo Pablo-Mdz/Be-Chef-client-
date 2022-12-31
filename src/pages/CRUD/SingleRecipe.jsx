@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, {useEffect, useState, useRef} from "react";
-import {Navigate, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useReactToPrint} from "react-to-print";
 import {useContext} from "react";
 import {AuthContext} from "../../context/auth.context";
@@ -12,8 +12,8 @@ const SingleRecipe = (props) => {
     const {id} = useParams();
     const navigate = useNavigate();
 
-    const {isLoggedIn, user, logOutUser} = useContext(AuthContext);
-
+    const {isLoggedIn, user} = useContext(AuthContext);
+    // , logOutUser
     useEffect(() => {
         axios.get(`${API_URL}/pages/CRUD/${id}`).then((response) => {
             setRecipe(response.data);
@@ -57,11 +57,6 @@ const SingleRecipe = (props) => {
                                 src={recipe?.image}
                             />
                         )}
-                        {/* <img
-                            className="w-full h-auto roundedt-3xl"
-                            src={recipe.image}
-                            alt="image test"
-                        /> */}
                         <div className="px-6 py-4 place-self-start">
                             <div className="font-bold text-4xl mb-2 ">
                                 {recipe.name}
@@ -117,11 +112,6 @@ const SingleRecipe = (props) => {
                             </h4>
                         </div>
                         <div className="px-6 pt-4 pb-2">
-                            {/* <a href="/">
-                                 <span className="inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-gray-700 hover:bg-gray-700 mr-2 mb-2  hover:text-white">
-                                     Return Home
-                                 </span>
-                             </a> */}
                             {!isLoggedIn ? (
                                 <>
                                     <a href="/recipesHome">
@@ -145,11 +135,7 @@ const SingleRecipe = (props) => {
                             </span>
                             {isLoggedIn && recipe.owner.id === user._id && (
                                 <>
-                                    <a href="/details">
-                                        {/* <span className="inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-gray-700 hover:bg-gray-700 mr-2 mb-2  hover:text-white">
-                                            explore more recipes
-                                        </span> */}
-                                    </a>
+                                    <a href="/details"></a>
                                     <span
                                         onClick={() => Delete(recipe._id)}
                                         className="inline-block bg-gray-200 hover:bg-red-500 rounded-full px-3 py-1 hover:text-white text-sm font-semibold text-red-700 mr-2 mb-2 hover:border-transparent"
@@ -159,12 +145,6 @@ const SingleRecipe = (props) => {
                                 </>
                             )}
                         </div>
-                        {/* <button
-                            className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                            onClick={() => Delete(recipe._id) }
-                        >
-                            delete
-                        </button> */}
                     </div>
                 )}
             </div>
