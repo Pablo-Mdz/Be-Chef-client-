@@ -12,16 +12,16 @@ const CreateRecipe = (props) => {
     const {user} = useContext(AuthContext);
     const {id} = useParams();
 
-    const [edit, setEdit] = useState(false);
+    // const [edit, setEdit] = useState(false);
 
     // to edit and find the id
 
-    useEffect(() => {
-        if (props.data)
-            setEdit(props.data.find((element) => element._id === id));
-        setInstruction([...edit.instructions]);
-        // setNewIngredient([...edit.ingredients]);
-    }, []);
+    // useEffect(() => {
+    //     if (props.data)
+    //         setEdit(props.data.find((element) => element._id === id));
+    //     setInstruction([...edit.instructions]);
+    //     // setNewIngredient([...edit.ingredients]);
+    // }, []);
 
     const [ingredient, setIngredient] = useState([]);
     const [NewIngredient, setNewIngredient] = useState({
@@ -168,10 +168,10 @@ const CreateRecipe = (props) => {
                                                     })
                                                 }
                                                 value={
-                                                    edit
-                                                        ? edit.name
-                                                        :
-                                                         formData.name
+                                                    // edit
+                                                    //     ? edit.name
+                                                    //     :
+                                                    formData.name
                                                 }
                                             />
                                         </div>
