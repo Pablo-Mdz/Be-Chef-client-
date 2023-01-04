@@ -3,6 +3,7 @@ import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import authService from "../../services/auth.service";
 import service from "../../services/cloudinary.config";
+import {Alert} from "@material-tailwind/react";
 
 function SignupPage() {
     const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ function SignupPage() {
         service
             .uploadImage(uploadData)
             .then((response) => {
-                console.log(response)
+                console.log(response);
                 // console.log("response is: ", response);
                 // response carries "secure_url" which we can use to update the state
                 setImageUrl(response.secure_url);
@@ -67,9 +68,11 @@ function SignupPage() {
     };
 
     return (
-        <div className=" flex  justify-center items-center bg-[url('https://images.unsplash.com/photo-1556910101-a533e487de15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-cover ">
+        <div className=" flex  justify-center items-center  bg-[url('https://images.unsplash.com/photo-1556910101-a533e487de15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-cover ">
             <div className=" mt-5 mb-10 ">
-                <h1 className="mb-8 text-slate-900 underline text-bold text-3xl">Sign Up</h1>
+                <h1 className="mb-8 text-slate-900 underline text-bold text-3xl">
+                    Sign Up
+                </h1>
 
                 <div className="block p-6 rounded-lg shadow-lg bg-slate-100 max-w-md">
                     <form onSubmit={handleSignupSubmit}>
@@ -176,10 +179,9 @@ function SignupPage() {
                                         </div>
                                         <p className="pointer-none text-gray-500 ">
                                             <span className="text-sm">
-                                                Upload 
+                                                Upload
                                             </span>{" "}
-                                            an image here <br /> 
-                                          
+                                            an image here <br />
                                         </p>
                                     </div>
                                     <input
@@ -194,7 +196,13 @@ function SignupPage() {
                             <span>File type: jpg,jpeg,png,avif </span>
                         </p>
                         <div></div>
-                        <div className="form-group form-check text-center mb-6"></div>
+                        <div className="form-group form-check text-center mb-6">
+                            {errorMessage && (
+                                <Alert className="error-message ">
+                                    {errorMessage}
+                                </Alert>
+                            )}
+                        </div>
                         <button
                             type="submit"
                             className="
@@ -219,11 +227,7 @@ function SignupPage() {
                         </button>
                     </form>
                 </div>
-                <div className="mt-5 text-slate-300">
-                    {errorMessage && (
-                        <p className="error-message">{errorMessage}</p>
-                    )}
-
+                <div className="mt-5 text-slate-300 justify-center items-center content-center ">
                     <p>Already have account?</p>
                     <Link className="hover:text-gray-300" to={"/login"}>
                         {" "}
