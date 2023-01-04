@@ -84,8 +84,8 @@ const Details = (props) => {
                                             )}
                                             {recipe.image && (
                                                 <img
-                                                    alt="user"
-                                                    className="block h-40 w-auto rounded-2xl  "
+                                                alt="recipe image"
+                                                className="block h-40 w-full object-cover rounded-2xl"
                                                     src={recipe?.image}
                                                 />
                                             )}

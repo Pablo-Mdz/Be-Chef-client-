@@ -143,15 +143,15 @@ function ProfilePage(props) {
                                                                 >
                                                                     {!recipe.image && (
                                                                         <img
-                                                                            alt="user image"
+                                                                            alt="recipe image"
                                                                             className="block h-40 w-auto rounded-t-2xl  "
                                                                             src="https://cdn-icons-png.flaticon.com/512/1134/1134760.png"
                                                                         />
                                                                     )}
                                                                     {recipe.image && (
                                                                         <img
-                                                                            alt="user"
-                                                                            className="block h-40 w-56 rounded-t-2xl  "
+                                                                            alt="recipe image"
+                                                                            className="block h-40 w-full object-cover rounded-t-2xl"
                                                                             src={
                                                                                 recipe.image
                                                                             }
@@ -184,8 +184,12 @@ function ProfilePage(props) {
                                                                             alt="Placeholder"
                                                                             className="block object-cover rounded-full h-14 w-14"
                                                                             src={
-                                                                                recipe.owner.imageUser
-                                                                                    ? recipe.owner.imageUser
+                                                                                recipe
+                                                                                    .owner
+                                                                                    .imageUser
+                                                                                    ? recipe
+                                                                                          .owner
+                                                                                          .imageUser
                                                                                     : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
                                                                             }
                                                                         />
@@ -236,14 +240,14 @@ function ProfilePage(props) {
                                                                     {!recipe.image && (
                                                                         <img
                                                                             alt="user image"
-                                                                            className="block h-48 w-56 rounded-t-2xl  "
+                                                                            className="block h-40 w-auto rounded-t-2xl  "
                                                                             src="https://cdn-icons-png.flaticon.com/512/1134/1134760.png"
                                                                         />
                                                                     )}
                                                                     {recipe.image && (
                                                                         <img
-                                                                            alt="user"
-                                                                            className="block h-48 w-56 rounded-t-2xl  "
+                                                                            alt="recipe image"
+                                                                            className="block h-40 w-full object-cover rounded-t-2xl"
                                                                             src={
                                                                                 recipe.image
                                                                             }
