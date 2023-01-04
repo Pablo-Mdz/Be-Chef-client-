@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, {useEffect, useState, useRef} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {useReactToPrint} from "react-to-print";
 import {useContext} from "react";
 import {AuthContext} from "../../context/auth.context";
@@ -11,6 +11,8 @@ const SingleRecipe = (props) => {
     const [recipe, setRecipe] = useState(null);
     const {id} = useParams();
     const navigate = useNavigate();
+    
+
 
     const {isLoggedIn, user} = useContext(AuthContext);
     // , logOutUser
@@ -133,6 +135,7 @@ const SingleRecipe = (props) => {
                             >
                                 Print
                             </span>
+                            {/* <Link  to={`/edit/${id}`}> Edit</Link> */}
                             {isLoggedIn && recipe.owner.id === user._id && (
                                 <>
                                     <a href="/details"></a>

@@ -31,6 +31,8 @@ function App() {
         refresh();
     }, []);
     console.log(data);
+
+
     return (
         <div className="App ">
             <Navbar />
@@ -86,6 +88,12 @@ function App() {
                     path="/single/:id"
                     element={<SingleRecipe refresh={refresh} />}
                 />
+                <Route
+                path="/edit/:id"
+                element={<Create refresh={refresh} data={data} />}
+                />
+
+
             </Routes>
 
             <Footer />

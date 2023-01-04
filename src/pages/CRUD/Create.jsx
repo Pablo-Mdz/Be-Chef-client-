@@ -1,6 +1,6 @@
 import React from "react";
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useState, useEffect} from "react";
+import {useNavigate, useParams} from "react-router-dom";
 import {AuthContext} from "../../context/auth.context";
 import axios from "axios";
 import {useContext} from "react";
@@ -10,6 +10,18 @@ const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 const CreateRecipe = (props) => {
     const [image, setImage] = useState("");
     const {user} = useContext(AuthContext);
+    const {id} = useParams();
+
+    const [edit, setEdit] = useState(false);
+
+    // to edit and find the id
+
+    useEffect(() => {
+        if (props.data)
+            setEdit(props.data.find((element) => element._id === id));
+        setInstruction([...edit.instructions]);
+        // setNewIngredient([...edit.ingredients]);
+    }, []);
 
     const [ingredient, setIngredient] = useState([]);
     const [NewIngredient, setNewIngredient] = useState({
@@ -155,7 +167,12 @@ const CreateRecipe = (props) => {
                                                         name: e.target.value,
                                                     })
                                                 }
-                                                value={formData.name}
+                                                value={
+                                                    edit
+                                                        ? edit.name
+                                                        :
+                                                         formData.name
+                                                }
                                             />
                                         </div>
                                         <div className="col-span-6 sm:col-span-3">
