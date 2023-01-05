@@ -54,10 +54,10 @@ const Details = (props) => {
         <div className="pt-10 bg-gray-300 ">
             <div className="">
             <h1 className="font-semibold text-4xl mb-5">
-                Find All the recepies here
+                Save your favourite recipes on your profile!
             </h1>
             </div>
-            <h2 className="mb-3">Create an account for save and </h2>
+            <h2 className="mb-3">Search by name or type of food </h2>
             <input
                 placeholder="Search"
                 type="text"
