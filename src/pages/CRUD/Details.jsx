@@ -78,14 +78,14 @@ const Details = (props) => {
                                             {!recipe.image && (
                                                 <img
                                                     alt="user image"
-                                                    className="block h-40 w-auto rounded-2xl  "
+                                                    className="block h-40 w-auto rounded-t-2xl  "
                                                     src="https://cdn-icons-png.flaticon.com/512/1134/1134760.png"
                                                 />
                                             )}
                                             {recipe.image && (
                                                 <img
                                                 alt="recipe image"
-                                                className="block h-40 w-full object-cover rounded-2xl"
+                                                className="block h-40 w-full object-cover rounded-t-2xl"
                                                     src={recipe?.image}
                                                 />
                                             )}
