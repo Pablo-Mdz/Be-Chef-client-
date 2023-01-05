@@ -47,6 +47,15 @@ export default function Footer() {
                                             <a
                                                 target="_blank"
                                                 className="text-slate-400 hover:text-white font-semibold block pb-2 text-sm"
+                                                href="https:/pablocigoy.com/"
+                                            >
+                                                Personal web page
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                target="_blank"
+                                                className="text-slate-400 hover:text-white font-semibold block pb-2 text-sm"
                                                 href="https://github.com/Pablo-Mdz"
                                             >
                                                 Github
