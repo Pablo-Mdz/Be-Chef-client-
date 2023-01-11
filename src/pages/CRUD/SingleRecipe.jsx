@@ -11,8 +11,6 @@ const SingleRecipe = (props) => {
     const [recipe, setRecipe] = useState(null);
     const {id} = useParams();
     const navigate = useNavigate();
-    
-
 
     const {isLoggedIn, user} = useContext(AuthContext);
     // , logOutUser
@@ -33,7 +31,7 @@ const SingleRecipe = (props) => {
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
         documentTitle: "BE CHEF",
-        pageStyle: "print",
+        // pageStyle: "print",
         onafterprint: () => alert("print success"),
     });
 

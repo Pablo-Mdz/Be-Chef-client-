@@ -59,7 +59,7 @@ const Details = (props) => {
             </div>
             <h2 className="mb-3">Search by name or type of food </h2>
             <input
-                placeholder="Search"
+                placeholder="Search by name or type of food "
                 type="text"
                 value={search}
                 onChange={(e) => {
