@@ -31,7 +31,7 @@ export default function Footer() {
                             </h4>
                             <h5 className="text-lg mt-0 mb-2 text-gray-700">
                                 This page was created for educational purposes
-                                as a final project of the Ironhack berlin
+                                as a final project of the Ironhack Berlin
                                 bootcamp. It does not have any commercial or
                                 lucrative purpose.
                             </h5>
