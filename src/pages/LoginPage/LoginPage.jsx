@@ -19,6 +19,8 @@ function LoginPage() {
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         const requestBody = {email, password};
+
+        //this is using axios
         // Send a request to the server using axios
         /* 
     axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/login`)
@@ -46,9 +48,10 @@ function LoginPage() {
     return (
         <div className="bg-[url('https://images.unsplash.com/photo-1635321350281-e2a91ecffd00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2846&q=80')] bg-cover bg-center flex  justify-center items-center">
             <div className=" mt-20 mb-20 ">
-               
-                <h1 className="mb-6 text-slate-200 underline text-bold text-2xl"><>Login</></h1>
-       
+                <h1 className="mb-6 text-slate-200 underline text-bold text-2xl">
+                    <>Login</>
+                </h1>
+
                 <div className="content-center block p-6 rounded-lg shadow-lg bg-slate-100">
                     <form onSubmit={handleLoginSubmit}>
                         <div className="form-group mb-6">
@@ -134,16 +137,18 @@ function LoginPage() {
                         </button>
                     </form>
                 </div>
-            <div className="mt-5">
-                {errorMessage && (
-                    <p className="error-message">{errorMessage}</p>
-                )}
+                <div className="mt-5">
+                    {errorMessage && (
+                        <p className="error-message">{errorMessage}</p>
+                    )}
 
-                <p>Don't have an account yet?</p>
-                <Link className="hover:text-gray-300" to={"/signup"}> Sign Up</Link>
+                    <p>Don't have an account yet?</p>
+                    <Link className="hover:text-gray-300" to={"/signup"}>
+                        {" "}
+                        Sign Up
+                    </Link>
+                </div>
             </div>
-            </div>
-
         </div>
     );
 }
