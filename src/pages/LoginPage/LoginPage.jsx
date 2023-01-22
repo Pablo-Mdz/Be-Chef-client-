@@ -137,13 +137,13 @@ function LoginPage() {
                         </button>
                     </form>
                 </div>
-                <div className="mt-5">
+                <div className="text-white mt-5">
                     {errorMessage && (
                         <p className="error-message">{errorMessage}</p>
                     )}
 
                     <p>Don't have an account yet?</p>
-                    <Link className="hover:text-gray-300" to={"/signup"}>
+                    <Link className=" text-white hover:text-gray-300" to={"/signup"}>
                         {" "}
                         Sign Up
                     </Link>
