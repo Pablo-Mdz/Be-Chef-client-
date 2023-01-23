@@ -4,7 +4,7 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import {useReactToPrint} from "react-to-print";
 import {useContext} from "react";
 import {AuthContext} from "../../context/auth.context";
-// test
+
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
