@@ -14,7 +14,7 @@ const SingleRecipe = (props) => {
     const navigate = useNavigate();
 
     const {isLoggedIn, user} = useContext(AuthContext);
-    // , logOutUser
+    // logOutUser
     useEffect(() => {
         axios.get(`${API_URL}/pages/CRUD/${id}`).then((response) => {
             setRecipe(response.data);
