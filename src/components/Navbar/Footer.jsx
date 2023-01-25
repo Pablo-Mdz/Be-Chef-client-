@@ -89,7 +89,8 @@ export default function Footer() {
                         <div className="w-full md:w-4/12 px-4 mx-auto text-center">
                             <div className="text-sm text-gray-800 font-semibold py-1">
                                 Copyright © {new Date().getFullYear()}
-                                {""} Final Project Ironhack Berlin 2022 by {""}
+                                {""} Final Project - Ironhack Bootcamp - Berlin
+                                2022 by {""}
                                 <a
                                     className="hover:text-slate-300"
                                     target="_blank"
