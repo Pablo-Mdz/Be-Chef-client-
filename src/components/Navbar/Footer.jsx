@@ -32,7 +32,7 @@ export default function Footer() {
                             <h5 className="text-lg mt-0 mb-2 text-gray-700">
                                 This page was created for educational purposes
                                 as a final project of the Ironhack Berlin
-                                bootcamp. It does not have any commercial or
+                                bootcamp, It does not have any commercial or
                                 lucrative purpose.
                             </h5>
                         </div>
@@ -49,7 +49,7 @@ export default function Footer() {
                                                 className="text-slate-400 hover:text-white font-semibold block pb-2 text-sm"
                                                 href="https:/pablocigoy.com/"
                                             >
-                                                Personal web page
+                                                My Personal web page
                                             </a>
                                         </li>
                                         <li>
