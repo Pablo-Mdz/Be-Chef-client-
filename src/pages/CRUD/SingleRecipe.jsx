@@ -5,7 +5,6 @@ import {useReactToPrint} from "react-to-print";
 import {useContext} from "react";
 import {AuthContext} from "../../context/auth.context";
 
-
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
 const SingleRecipe = (props) => {
@@ -32,7 +31,7 @@ const SingleRecipe = (props) => {
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
         documentTitle: "BE CHEF",
-        // pageStyle: "print",
+        pageStyle: "print",
         onafterprint: () => alert("print success"),
     });
 
