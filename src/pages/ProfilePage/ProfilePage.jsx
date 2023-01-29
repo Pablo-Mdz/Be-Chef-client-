@@ -64,14 +64,14 @@ function ProfilePage(props) {
 
                                 <h2 className="font-medium text-lg mt-6 text-2xl">
                                     {!savedRecipe
-                                        ? "Your recipes on Be Chef"
-                                        : "Saved recipes"}
+                                        ? "This are your recipes on Be Chef"
+                                        : "Saved recipes from other Chefs"}
                                 </h2>
 
                                 <p className="text-gray-600 text-sm text-xl">
                                     {!savedRecipe
                                         ? ""
-                                        : "Enjoy your selected recipes"}
+                                        : "Enjoy your favourites recipes"}
                                 </p>
                                 <div className="mt-6 flex">
                                     <Link
