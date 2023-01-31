@@ -78,11 +78,11 @@ function ProfilePage(props) {
                                         to="/create"
                                         className="bg-indigo-500 text-white py-2 hover:bg-blue-800 text-sm px-3 rounded focus:outline-none"
                                     >
-                                        <button>Create a new recipe</button>
+                                        <button>Create a new RECIPE</button>
                                     </Link>
                                     <Link to="/details">
                                         <button className="ml-4 bg-indigo-500 text-white hover:bg-blue-800 py-2 text-sm px-3 rounded focus:outline-none border border-gray-400">
-                                            Discover other recepies HERE!
+                                            Discover other recepies!
                                         </button>
                                     </Link>
 
@@ -184,9 +184,7 @@ function ProfilePage(props) {
                                                                             alt="Placeholder"
                                                                             className="block object-cover rounded-full h-14 w-14"
                                                                             src={
-                                                                                recipe
-                                                                                    .owner
-                                                                                    .imageUser
+                                                                                recipe.owner.imageUser
                                                                                     ? recipe
                                                                                           .owner
                                                                                           .imageUser

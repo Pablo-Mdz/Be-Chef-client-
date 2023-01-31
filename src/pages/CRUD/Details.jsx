@@ -2,7 +2,6 @@ import axios from "axios";
 import {AuthContext} from "../../context/auth.context";
 import React, {useEffect, useState, useContext} from "react";
 
-
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
 const Details = (props) => {
@@ -38,7 +37,7 @@ const Details = (props) => {
         if (likes.includes(user._id)) {
             let index = likes.indexOf(id);
             let newLikes = likes.slice(index, index + 1);
-            
+
             axios
                 .put(`${API_URL}/pages/CRUD/${id}/likes`, newLikes)
                 .then(() => refresh());
@@ -53,11 +52,11 @@ const Details = (props) => {
     return (
         <div className="pt-10 bg-gray-300 ">
             <div className="">
-            <h1 className="font-semibold text-4xl mb-5">
-                Save your favourite recipes on your profile!
-            </h1>
+                <h1 className="font-semibold text-4xl mb-5">
+                    Save your favourite recipes on your profile!!
+                </h1>
             </div>
-            <h2 className="mb-3">Search by name or type of food </h2>
+            <h2 className="mb-3">Search by recipe NAME or TYPE </h2>
             <input
                 placeholder="Search by name or type of food "
                 type="text"
@@ -73,7 +72,9 @@ const Details = (props) => {
                         filtered?.map((recipe) => (
                             <>
                                 <div className="my-1 px-1 w-full md:w-1/3 lg:my-4 lg:px-4 lg:w-1/5 ">
-                                <article className=" rounded-2xl shadow-lg bg-gray-100 p-3 transform h-42  duration-500 hover:shadow-2xl  rounded-lg shadow-md ">  {/* hover:scale-110 hover:bg-sky-50 hover:opacity-100*/}
+                                    <article className=" rounded-2xl shadow-lg bg-gray-100 p-3 transform h-42  duration-500 hover:shadow-2xl  rounded-lg shadow-md ">
+                                        {" "}
+                                        {/* hover:scale-110 hover:bg-sky-50 hover:opacity-100*/}
                                         <a href={`/single/${recipe?._id}`}>
                                             {!recipe.image && (
                                                 <img
@@ -84,13 +85,12 @@ const Details = (props) => {
                                             )}
                                             {recipe.image && (
                                                 <img
-                                                alt="recipe image"
-                                                className="block h-40 w-full object-cover rounded-t-2xl"
+                                                    alt="recipe image"
+                                                    className="block h-40 w-full object-cover rounded-t-2xl"
                                                     src={recipe?.image}
                                                 />
                                             )}
                                         </a>
-
                                         <header className="flex items-center justify-around leading-tight p-2 md:p-3">
                                             <h1 className="text-2xl">
                                                 <a
@@ -104,7 +104,6 @@ const Details = (props) => {
                                                 {recipe.type}
                                             </p>
                                         </header>
-
                                         <footer className="flex justify-between leading-none p-1 md:p-4">
                                             <a
                                                 className="flex items-center no-underline hover:underline text-black "
