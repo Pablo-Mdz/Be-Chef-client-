@@ -53,7 +53,7 @@ const Details = (props) => {
         <div className="pt-10 bg-gray-300 ">
             <div className="">
                 <h1 className="font-semibold text-4xl mb-5">
-                    Save your favourite recipes on your profile!!
+                    Save your favourite recipes on your profile.
                 </h1>
             </div>
             <h2 className="mb-3">Search by recipe NAME or TYPE </h2>

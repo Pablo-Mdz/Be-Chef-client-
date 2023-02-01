@@ -5,7 +5,7 @@ import {AuthContext} from "../../context/auth.context";
 import {Link} from "react-router-dom";
 import axios from "axios";
 // react-router-dom => Navigate, NavLink, useNavigate ||  React => useEffect
-
+// test
 function ProfilePage(props) {
     const {user} = useContext(AuthContext);
     const [search, setSearch] = useState("");
@@ -184,7 +184,9 @@ function ProfilePage(props) {
                                                                             alt="Placeholder"
                                                                             className="block object-cover rounded-full h-14 w-14"
                                                                             src={
-                                                                                recipe.owner.imageUser
+                                                                                recipe
+                                                                                    .owner
+                                                                                    .imageUser
                                                                                     ? recipe
                                                                                           .owner
                                                                                           .imageUser
