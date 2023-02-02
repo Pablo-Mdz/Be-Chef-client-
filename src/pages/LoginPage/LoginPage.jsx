@@ -3,7 +3,7 @@ import {useState, useContext} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../../context/auth.context";
 import authService from "../../services/auth.service";
-
+// login page
 function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -143,7 +143,10 @@ function LoginPage() {
                     )}
 
                     <p>Don't have an account yet?</p>
-                    <Link className=" text-white hover:text-gray-300" to={"/signup"}>
+                    <Link
+                        className=" text-white hover:text-gray-300"
+                        to={"/signup"}
+                    >
                         {" "}
                         Sign Up
                     </Link>
