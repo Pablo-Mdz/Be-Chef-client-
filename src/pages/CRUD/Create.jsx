@@ -327,6 +327,9 @@ const CreateRecipe = (props) => {
                                                 <option>ml</option>
                                                 <option>L</option>
                                                 <option>Kg</option>
+                                                <option>Cup</option>
+                                                <option>Table spoon</option>
+                                                <option>Cafe spoon</option>
                                                 <option>unity</option>
                                                 <option>.</option>
                                             </select>
