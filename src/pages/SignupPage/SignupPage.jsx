@@ -4,7 +4,7 @@ import {Link, useNavigate} from "react-router-dom";
 import authService from "../../services/auth.service";
 import service from "../../services/cloudinary.config";
 import {Alert} from "@material-tailwind/react";
-//try
+//
 function SignupPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

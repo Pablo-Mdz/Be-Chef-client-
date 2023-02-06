@@ -5,7 +5,7 @@ import {AuthContext} from "../../context/auth.context";
 import {Link} from "react-router-dom";
 import axios from "axios";
 // react-router-dom => Navigate, NavLink, useNavigate ||  React => useEffect
-
+//
 function ProfilePage(props) {
     const {user} = useContext(AuthContext);
     const [search, setSearch] = useState("");

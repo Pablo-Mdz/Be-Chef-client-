@@ -8,7 +8,7 @@ const Details = (props) => {
     const [search, setSearch] = useState("");
     const {user} = useContext(AuthContext);
     console.log(user);
-
+    // using axios
     const refresh = () => {
         axios
             .get(`${API_URL}/pages/CRUD/details`)
