@@ -3,7 +3,7 @@ import {AuthContext} from "../../context/auth.context";
 import React, {useEffect, useState, useContext} from "react";
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
-
+// done
 const Details = (props) => {
     const [search, setSearch] = useState("");
     const {user} = useContext(AuthContext);
