@@ -3,12 +3,11 @@ import {AuthContext} from "../../context/auth.context";
 import React, {useEffect, useState, useContext} from "react";
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
-// done 
 const Details = (props) => {
+    
     const [search, setSearch] = useState("");
     const {user} = useContext(AuthContext);
     console.log(user);
-    // using axios
     const refresh = () => {
         axios
             .get(`${API_URL}/pages/CRUD/details`)
@@ -74,7 +73,6 @@ const Details = (props) => {
                                 <div className="my-1 px-1 w-full md:w-1/3 lg:my-4 lg:px-4 lg:w-1/5 ">
                                     <article className=" rounded-2xl shadow-lg bg-gray-100 p-3 transform h-42  duration-500 hover:shadow-2xl  rounded-lg shadow-md ">
                                         {" "}
-                                        {/* hover:scale-110 hover:bg-sky-50 hover:opacity-100*/}
                                         <a href={`/single/${recipe?._id}`}>
                                             {!recipe.image && (
                                                 <img
