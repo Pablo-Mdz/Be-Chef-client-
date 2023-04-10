@@ -1,20 +1,20 @@
-import React from "react";
-import {useState, useEffect} from "react";
-import {useNavigate, useParams} from "react-router-dom";
-import {AuthContext} from "../../context/auth.context";
-import axios from "axios";
-import {useContext} from "react";
+import React from "react"
+import { useState, useEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import { AuthContext } from "../../context/auth.context"
+import axios from "axios"
+import { useContext } from "react"
 // using fetch
-const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
+const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005"
 
 const CreateRecipe = (props) => {
-    const [image, setImage] = useState("");
-    const {user} = useContext(AuthContext);
-    const {id} = useParams();
+    const [image, setImage] = useState("")
+    const { user } = useContext(AuthContext)
+    const { id } = useParams()
 
     // const [edit, setEdit] = useState(false);
 
-    // to edit and find the id
+    // to edit and find id
 
     // useEffect(() => {
     //     if (props.data)
@@ -23,15 +23,15 @@ const CreateRecipe = (props) => {
     //     // setNewIngredient([...edit.ingredients]);
     // }, []);
 
-    const [ingredient, setIngredient] = useState([]);
+    const [ingredient, setIngredient] = useState([])
     const [NewIngredient, setNewIngredient] = useState({
         quantity: "",
         measure: "",
         singleIngredient: "",
-    });
+    })
 
-    const [instruction, setInstruction] = useState([]);
-    const [NewInstruction, setNewInstruction] = useState([]);
+    const [instruction, setInstruction] = useState([])
+    const [NewInstruction, setNewInstruction] = useState([])
 
     const [formData, setFormData] = useState({
         name: "",
@@ -44,75 +44,75 @@ const CreateRecipe = (props) => {
         instructions: [],
         tips: "",
         reviews: [],
-        owner: {id: user._id, imageUser: user.imageUrl},
-    });
-    const navigate = useNavigate();
+        owner: { id: user._id, imageUser: user.imageUrl },
+    })
+    const navigate = useNavigate()
 
     //new ingredients
     const handleNewIngredient = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target
         setNewIngredient({
             ...NewIngredient,
             [name]: value,
-        });
-    };
+        })
+    }
 
     const addIngredient = (e) => {
-        e.preventDefault();
-        setIngredient([...ingredient, NewIngredient]);
-        setNewIngredient({quantity: "", measure: "", singleIngredient: ""});
-    };
+        e.preventDefault()
+        setIngredient([...ingredient, NewIngredient])
+        setNewIngredient({ quantity: "", measure: "", singleIngredient: "" })
+    }
 
     // delete ingredient
     function deleteIngredient(item) {
-        let array = [...ingredient];
-        let index = array.indexOf(item);
+        let array = [...ingredient]
+        let index = array.indexOf(item)
         if (index !== -1) {
-            array.splice(index, 1);
-            setIngredient(array);
+            array.splice(index, 1)
+            setIngredient(array)
         }
     }
 
     //new instructions
     const handleNewInstruction = (e) => {
-        const {value} = e.target;
-        console.log(value);
-        setNewInstruction(value);
-    };
+        const { value } = e.target
+        console.log(value)
+        setNewInstruction(value)
+    }
     const addInstruction = (e) => {
-        e.preventDefault();
-        setInstruction([...instruction, NewInstruction]);
-        setNewInstruction("");
-    };
+        e.preventDefault()
+        setInstruction([...instruction, NewInstruction])
+        setNewInstruction("")
+    }
 
     // delete instruction
     function deleteInstruction(item) {
-        let array = [...instruction];
-        let index = array.indexOf(item);
+        let array = [...instruction]
+        let index = array.indexOf(item)
         if (index !== -1) {
-            array.splice(index, 1);
-            setInstruction(array);
+            array.splice(index, 1)
+            setInstruction(array)
         }
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        const data = new FormData();
-        data.append("file", image);
-        data.append("upload_preset", "auh8nzbq");
-        data.append("cloud_name", "be-chef");
+        const data = new FormData()
+        data.append("file", image)
+        data.append("upload_preset", "auh8nzbq")
+        data.append("cloud_name", "be-chef")
 
         fetch("https://api.cloudinary.com/v1_1/be-chef/image/upload", {
             method: "post",
             body: data,
         })
             .then((resp) => {
-                return resp.json();
+                return resp.json()
             })
             .then((data) => {
-                data && console.log(data.url);
-                return data.url;
+                data && console.log(data.url)
+                return data.url
             })
             .then((image) => {
                 const body = {
@@ -120,8 +120,8 @@ const CreateRecipe = (props) => {
                     image,
                     ingredients: ingredient,
                     instructions: instruction,
-                };
-                console.log(" body before axios", body);
+                }
+                console.log(" body before axios", body)
                 axios
                     .post(`${API_URL}/pages/CRUD/create`, body)
 
@@ -131,36 +131,36 @@ const CreateRecipe = (props) => {
                             response,
                             formData,
                             body
-                        );
+                        )
 
-                        setImage("");
-                        props.refresh();
-                        navigate("/profile");
-                    });
-            });
+                        setImage("")
+                        props.refresh()
+                        navigate("/profile")
+                    })
+            })
 
-        setFormData("");
-    };
-    formData.image && console.log(formData.image);
+        setFormData("")
+    }
+    formData.image && console.log(formData.image)
 
     return (
         <>
             <div className="mt-10 xl:mt-0">
-                <div className="px-8 pt-6 pb-8 mb-4 bg-white rounded-lg shadow-md">
-                    <div className=" mt-5 md:mt-0 md:col-span-2">
+                <div className="mb-4 rounded-lg bg-white px-8 pt-6 pb-8 shadow-md">
+                    <div className=" mt-5 md:col-span-2 md:mt-0">
                         <form
-                            className=" px-8 pt-6 pb-8 mb-4 bg-slate-100 rounded-lg shadow-md "
+                            className=" mb-4 rounded-lg bg-slate-100 px-8 pt-6 pb-8 shadow-md "
                             onSubmit={handleSubmit}
                         >
-                            <div className="shadow overflow-hidden xl:rounded-xl ">
-                                <div className="px-4 py-5 bg-white sm:p-6">
+                            <div className="overflow-hidden shadow xl:rounded-xl ">
+                                <div className="bg-white px-4 py-5 sm:p-6">
                                     <div className="grid grid-cols-6 gap-7">
                                         <div className="col-span-6 sm:col-span-3">
                                             <input
                                                 type="text"
                                                 name="name"
                                                 placeholder="Recepie name "
-                                                className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                className="md:text-md block h-10 w-full rounded-md  border border-gray-300 bg-white px-2 font-medium shadow-lg focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                                                 onChange={(e) =>
                                                     setFormData({
                                                         ...formData,
@@ -178,7 +178,7 @@ const CreateRecipe = (props) => {
                                         <div className="col-span-6 sm:col-span-3">
                                             <select
                                                 name="type"
-                                                className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                className="md:text-md block h-10 w-full rounded-md  border border-gray-300 bg-white px-2 font-medium shadow-lg focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                                                 onChange={(e) =>
                                                     setFormData({
                                                         ...formData,
@@ -206,7 +206,7 @@ const CreateRecipe = (props) => {
                                         <div className="col-span-6 sm:col-span-3">
                                             <select
                                                 name="region"
-                                                className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                className="md:text-md block h-10 w-full rounded-md  border border-gray-300 bg-white px-2 font-medium shadow-lg focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                                                 onChange={(e) =>
                                                     setFormData({
                                                         ...formData,
@@ -230,7 +230,7 @@ const CreateRecipe = (props) => {
                                         <div className="col-span-6 sm:col-span-3">
                                             <select
                                                 name="service"
-                                                className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                className="md:text-md block h-10 w-full rounded-md  border border-gray-300 bg-white px-2 font-medium shadow-lg focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                                                 onChange={(e) =>
                                                     setFormData({
                                                         ...formData,
@@ -258,7 +258,7 @@ const CreateRecipe = (props) => {
                                         <div className="col-span-6 sm:col-span-3">
                                             <select
                                                 name="time"
-                                                className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                className="md:text-md block h-10 w-full rounded-md  border border-gray-300 bg-white px-2 font-medium shadow-lg focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                                                 onChange={(e) =>
                                                     setFormData({
                                                         ...formData,
@@ -293,7 +293,7 @@ const CreateRecipe = (props) => {
                                         <div className="col-span-6 sm:col-span-3">
                                             <input
                                                 type="file"
-                                                className="px-2 py-1 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                className="md:text-md block h-10 w-full rounded-md border  border-gray-300 bg-white px-2 py-1 font-medium shadow-lg focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                                                 name="image"
                                                 onChange={(e) =>
                                                     setImage(e.target.files[0])
@@ -307,7 +307,7 @@ const CreateRecipe = (props) => {
                                                 type="Number"
                                                 name="quantity"
                                                 placeholder="quantity"
-                                                className="px-2 block w-32 h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                className="md:text-md block h-10 w-32 rounded-md  border border-gray-300 bg-white px-2 font-medium shadow-lg focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                                                 onChange={handleNewIngredient}
                                                 value={NewIngredient.quantity}
                                             />
@@ -317,7 +317,7 @@ const CreateRecipe = (props) => {
                                         <div className="col-span-1 sm:col-span-1">
                                             <select
                                                 name="measure"
-                                                className="px-2 block w-40 h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                className="md:text-md block h-10 w-40 rounded-md  border border-gray-300 bg-white px-2 font-medium shadow-lg focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                                                 onChange={handleNewIngredient}
                                                 value={NewIngredient.measure}
                                             >
@@ -341,7 +341,7 @@ const CreateRecipe = (props) => {
                                                 <input
                                                     type="text"
                                                     name="singleIngredient"
-                                                    className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                    className="md:text-md block h-10 w-full rounded-md  border border-gray-300 bg-white px-2 font-medium shadow-lg focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                                                     placeholder=" add ingredients"
                                                     onChange={
                                                         handleNewIngredient
@@ -351,7 +351,7 @@ const CreateRecipe = (props) => {
                                                     }
                                                 />
                                                 <button
-                                                    className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                                                    className="rounded border border-blue-500 bg-transparent py-2 px-4 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white"
                                                     onClick={addIngredient}
                                                 >
                                                     +
@@ -379,13 +379,13 @@ const CreateRecipe = (props) => {
                                                                                             eachStep
                                                                                         )
                                                                                     }
-                                                                                    className="inline-block bg-gray-200 hover:bg-red-500 rounded-full px-3 py-1 hover:text-white text-sm font-semibold text-red-700 mr-2 my-1 hover:border-transparent"
+                                                                                    className="my-1 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-red-700 hover:border-transparent hover:bg-red-500 hover:text-white"
                                                                                 >
                                                                                     Delete
                                                                                 </span>
                                                                             </div>
                                                                         </div>
-                                                                    );
+                                                                    )
                                                                 }
                                                             )
                                                         ) : (
@@ -399,7 +399,7 @@ const CreateRecipe = (props) => {
                                             <div className="flex ">
                                                 <input
                                                     type="text"
-                                                    className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                    className="md:text-md block h-10 w-full rounded-md  border border-gray-300 bg-white px-2 font-medium shadow-lg focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                                                     placeholder="Instructions"
                                                     onChange={
                                                         handleNewInstruction
@@ -407,7 +407,7 @@ const CreateRecipe = (props) => {
                                                     value={NewInstruction}
                                                 />
                                                 <button
-                                                    className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                                                    className="rounded border border-blue-500 bg-transparent py-2 px-4 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white"
                                                     onClick={addInstruction}
                                                 >
                                                     +
@@ -437,13 +437,13 @@ const CreateRecipe = (props) => {
                                                                                             eachInstruction
                                                                                         )
                                                                                     }
-                                                                                    className="inline-block bg-gray-200 hover:bg-red-500 rounded-full px-3 py-1 hover:text-white text-sm font-semibold text-red-700 mr-2 my-1 hover:border-transparent"
+                                                                                    className="my-1 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-red-700 hover:border-transparent hover:bg-red-500 hover:text-white"
                                                                                 >
                                                                                     Delete
                                                                                 </span>
                                                                             </div>
                                                                         </div>
-                                                                    );
+                                                                    )
                                                                 }
                                                             )
                                                         ) : (
@@ -459,7 +459,7 @@ const CreateRecipe = (props) => {
                                                 type="text"
                                                 name="tips"
                                                 placeholder="Some secret left?... "
-                                                className="px-2 block w-full h-10 font-medium  border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-md"
+                                                className="md:text-md block h-10 w-full rounded-md  border border-gray-300 bg-white px-2 font-medium shadow-lg focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                                                 onChange={(e) =>
                                                     setFormData({
                                                         ...formData,
@@ -471,10 +471,10 @@ const CreateRecipe = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="justify-center px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                <div className="justify-center bg-gray-50 px-4 py-3 text-right sm:px-6">
                                     <button
                                         type="submit"
-                                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                        className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                     >
                                         Save Recepie
                                     </button>
@@ -485,7 +485,7 @@ const CreateRecipe = (props) => {
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default CreateRecipe;
+export default CreateRecipe

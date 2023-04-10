@@ -133,6 +133,7 @@ const SingleRecipe = (props) => {
                                 Print
                             </span>
                             {/* <Link  to={`/edit/${id}`}> Edit</Link> */}
+                            {/* <Link  to={`/edit/${id}`}> Edit</Link> */}
                             {isLoggedIn && recipe.owner.id === user._id && (
                                 <>
                                     <a href="/details"></a>
