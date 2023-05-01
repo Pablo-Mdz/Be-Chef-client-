@@ -15,12 +15,12 @@ const CreateRecipe = (props) => {
     // to edit and find id
     const [edit, setEdit] = useState(false);
     
-        // useEffect(() => {
-        //     if (props.data)
-        //         setEdit(props.data.find((element) => element._id === id));
-        //     setInstruction([...edit.instructions]);
-        //     // setNewIngredient([...edit.ingredients]);
-        // }, []);
+        useEffect(() => {
+            if (props.data)
+                setEdit(props.data.find((element) => element._id === id));
+            setInstruction([...edit.instructions]);
+            // setNewIngredient([...edit.ingredients]);
+        }, []);
 
 
     const [ingredient, setIngredient] = useState([])
