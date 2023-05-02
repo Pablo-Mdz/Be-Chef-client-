@@ -15,7 +15,7 @@ import Details from "./pages/CRUD/Details"
 import SingleRecipe from "./pages/CRUD/SingleRecipe"
 import RecipesHome from "./pages/CRUD/RecipesHome"
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage"
-//d
+
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005"
 
 function App() {

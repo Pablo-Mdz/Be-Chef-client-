@@ -12,7 +12,7 @@ const CreateRecipe = (props) => {
     const { user } = useContext(AuthContext)
     const { id } = useParams()
 
-    // to edit and find id
+    // to edit and find id e
     const [edit, setEdit] = useState(false);
     
         // useEffect(() => {

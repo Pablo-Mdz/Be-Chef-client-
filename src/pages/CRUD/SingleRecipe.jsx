@@ -13,7 +13,7 @@ const SingleRecipe = (props) => {
     const navigate = useNavigate()
 
     const { isLoggedIn, user } = useContext(AuthContext)
-//call the recioe ID
+
     useEffect(() => {
         axios.get(`${API_URL}/pages/CRUD/${id}`).then((response) => {
             setRecipe(response.data)
