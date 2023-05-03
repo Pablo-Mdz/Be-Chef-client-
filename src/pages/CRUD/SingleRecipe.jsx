@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { useReactToPrint } from "react-to-print"
 import { useContext } from "react"
 import { AuthContext } from "../../context/auth.context"
-//e
+//dopple useeffect
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005"
 
 const SingleRecipe = (props) => {
