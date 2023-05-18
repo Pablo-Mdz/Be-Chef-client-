@@ -12,16 +12,14 @@ const CreateRecipe = (props) => {
     const { user } = useContext(AuthContext)
     const { id } = useParams()
 
-    // to edit and find id e
-    const [edit, setEdit] = useState(false);
-    
-        // useEffect(() => {
-        //     if (props.data)
-        //         setEdit(props.data.find((element) => element._id === id));
-        //     setInstruction([...edit.instructions]);
-        //     // setNewIngredient([...edit.ingredients]);
-        // }, []);
+    const [edit, setEdit] = useState(false)
 
+    // useEffect(() => {
+    //     if (props.data)
+    //         setEdit(props.data.find((element) => element._id === id));
+    //     setInstruction([...edit.instructions]);
+    //     // setNewIngredient([...edit.ingredients]);
+    // }, []);
 
     const [ingredient, setIngredient] = useState([])
     const [NewIngredient, setNewIngredient] = useState({
@@ -29,10 +27,8 @@ const CreateRecipe = (props) => {
         measure: "",
         singleIngredient: "",
     })
-
     const [instruction, setInstruction] = useState([])
     const [NewInstruction, setNewInstruction] = useState([])
-
     const [formData, setFormData] = useState({
         name: "",
         region: "",
@@ -48,7 +44,6 @@ const CreateRecipe = (props) => {
     })
     const navigate = useNavigate()
 
-    //new ingredients
     const handleNewIngredient = (e) => {
         const { name, value } = e.target
         setNewIngredient({
@@ -63,7 +58,6 @@ const CreateRecipe = (props) => {
         setNewIngredient({ quantity: "", measure: "", singleIngredient: "" })
     }
 
-    // delete ingredient
     function deleteIngredient(item) {
         let array = [...ingredient]
         let index = array.indexOf(item)
@@ -73,7 +67,6 @@ const CreateRecipe = (props) => {
         }
     }
 
-    //new instructions
     const handleNewInstruction = (e) => {
         const { value } = e.target
         console.log(value)
@@ -85,7 +78,6 @@ const CreateRecipe = (props) => {
         setNewInstruction("")
     }
 
-    // delete instruction
     function deleteInstruction(item) {
         let array = [...instruction]
         let index = array.indexOf(item)
