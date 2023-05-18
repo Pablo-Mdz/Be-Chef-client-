@@ -28,8 +28,6 @@ function SignupPage() {
             .uploadImage(uploadData)
             .then((response) => {
                 console.log(response);
-                // console.log("response is: ", response);
-                // response carries "secure_url" which we can use to update the state
                 setImageUrl(response.secure_url);
             })
             .catch((err) =>
@@ -39,29 +37,15 @@ function SignupPage() {
 
     const handleSignupSubmit = (e) => {
         e.preventDefault();
-        // Create an object representing the request body
         const requestBody = {email, password, name, imageUrl};
 
-        // Send a request to the server using axios
-        /* 
-    const authToken = localStorage.getItem("authToken");
-    axios.post(
-      `${process.env.REACT_APP_SERVER_URL}/auth/signup`, 
-      requestBody, 
-      { headers: { Authorization: `Bearer ${authToken}` },
-    })
-    .then((response) => {})
-    */
-
-        // Or using a service
+        
         authService
             .signup(requestBody)
             .then((response) => {
-                // If the POST request is successful redirect to the login page
                 navigate("/login");
             })
             .catch((error) => {
-                // If the request resolves with an error, set the error message in the state
                 const errorDescription = error.response.data.message;
                 setErrorMessage(errorDescription);
             });
