@@ -11,9 +11,7 @@ function SignupPage() {
     const [name, setName] = useState("");
     const [errorMessage, setErrorMessage] = useState(undefined);
     const [imageUrl, setImageUrl] = useState("");
-
     const navigate = useNavigate();
-
     const handleEmail = (e) => setEmail(e.target.value);
     const handlePassword = (e) => setPassword(e.target.value);
     const handleName = (e) => setName(e.target.value);
