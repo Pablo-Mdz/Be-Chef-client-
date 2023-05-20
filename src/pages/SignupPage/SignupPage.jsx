@@ -1,62 +1,59 @@
-import "./SignupPage.css";
-import {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import authService from "../../services/auth.service";
-import service from "../../services/cloudinary.config";
-import {Alert} from "@material-tailwind/react";
+import "./SignupPage.css"
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import authService from "../../services/auth.service"
+import service from "../../services/cloudinary.config"
+import { Alert } from "@material-tailwind/react"
 
 function SignupPage() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
-    const [errorMessage, setErrorMessage] = useState(undefined);
-    const [imageUrl, setImageUrl] = useState("");
-    const navigate = useNavigate();
-    const handleEmail = (e) => setEmail(e.target.value);
-    const handlePassword = (e) => setPassword(e.target.value);
-    const handleName = (e) => setName(e.target.value);
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [name, setName] = useState("")
+    const [errorMessage, setErrorMessage] = useState(undefined)
+    const [imageUrl, setImageUrl] = useState("")
+    const navigate = useNavigate()
+    const handleEmail = (e) => setEmail(e.target.value)
+    const handlePassword = (e) => setPassword(e.target.value)
+    const handleName = (e) => setName(e.target.value)
 
     const handleFileUpload = (e) => {
-        // console.log("The file to be uploaded is: ", e.target.files[0]);
-
-        const uploadData = new FormData();
-        uploadData.append("imageUrl", e.target.files[0]);
+        const uploadData = new FormData()
+        uploadData.append("imageUrl", e.target.files[0])
 
         service
             .uploadImage(uploadData)
             .then((response) => {
-                console.log(response);
-                setImageUrl(response.secure_url);
+                console.log(response)
+                setImageUrl(response.secure_url)
             })
             .catch((err) =>
                 console.log("Error while uploading the file: ", err)
-            );
-    };
+            )
+    }
 
     const handleSignupSubmit = (e) => {
-        e.preventDefault();
-        const requestBody = {email, password, name, imageUrl};
+        e.preventDefault()
+        const requestBody = { email, password, name, imageUrl }
 
-        
         authService
             .signup(requestBody)
             .then((response) => {
-                navigate("/login");
+                navigate("/login")
             })
             .catch((error) => {
-                const errorDescription = error.response.data.message;
-                setErrorMessage(errorDescription);
-            });
-    };
+                const errorDescription = error.response.data.message
+                setErrorMessage(errorDescription)
+            })
+    }
 
     return (
-        <div className=" flex  justify-center items-center  bg-[url('https://images.unsplash.com/photo-1556910101-a533e487de15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-cover ">
+        <div className=" flex  items-center justify-center  bg-[url('https://images.unsplash.com/photo-1556910101-a533e487de15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-cover ">
             <div className=" mt-5 mb-10 ">
-                <h1 className="mb-8 text-slate-900 underline text-bold text-3xl">
+                <h1 className="text-bold mb-8 text-3xl text-slate-900 underline">
                     Sign Up
                 </h1>
 
-                <div className="block p-6 rounded-lg shadow-lg bg-slate-100 max-w-md">
+                <div className="block max-w-md rounded-lg bg-slate-100 p-6 shadow-lg">
                     <form onSubmit={handleSignupSubmit}>
                         <div className="form-group mb-6">
                             <input
@@ -64,20 +61,20 @@ function SignupPage() {
                                 name="name"
                                 value={name}
                                 onChange={handleName}
-                                className="form-control block
+                                className="form-control m-0
+        block
         w-full
-        px-3
-        py-1.5
-        text-base
+        rounded
+        border
+        border-solid
+        border-gray-300
+        bg-white bg-clip-padding
+        px-3 py-1.5 text-base
         font-normal
         text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
         transition
         ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
                                 id="exampleInput7"
                                 placeholder="Name"
                             />
@@ -88,20 +85,20 @@ function SignupPage() {
                                 name="email"
                                 value={email}
                                 onChange={handleEmail}
-                                className="form-control block
+                                className="form-control m-0
+        block
         w-full
-        px-3
-        py-1.5
-        text-base
+        rounded
+        border
+        border-solid
+        border-gray-300
+        bg-white bg-clip-padding
+        px-3 py-1.5 text-base
         font-normal
         text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
         transition
         ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
                                 id="exampleInput8"
                                 placeholder="Email address"
                             />
@@ -112,35 +109,35 @@ function SignupPage() {
                                 name="password"
                                 value={password}
                                 onChange={handlePassword}
-                                className="form-control block
+                                className="form-control m-0
+                        block
                         w-full
-                        px-3
-                        py-1.5
-                        text-base
+                        rounded
+                        border
+                        border-solid
+                        border-gray-300
+                        bg-white bg-clip-padding
+                        px-3 py-1.5 text-base
                         font-normal
                         text-gray-700
-                        bg-white bg-clip-padding
-                        border border-solid border-gray-300
-                        rounded
                         transition
                         ease-in-out
-                        m-0
-                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
                                 placeholder="Password"
                             />
                         </div>
 
                         {/* image upload  */}
                         <div className="grid grid-cols-1 space-y-2">
-                            <label className="text-sm font-bold text-gray-500 tracking-wide">
+                            <label className="text-sm font-bold tracking-wide text-gray-500">
                                 Add your photo here
                             </label>
-                            <div className="flex items-center justify-center w-full">
-                                <label className="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center ">
-                                    <div className="h-full w-full text-center flex flex-col items-center justify-center items-center  ">
+                            <div className="flex w-full items-center justify-center">
+                                <label className="group flex h-60 w-full flex-col rounded-lg border-4 border-dashed p-10 text-center ">
+                                    <div className="flex h-full w-full flex-col items-center items-center justify-center text-center  ">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            className="w-10 h-10 text-blue-400 group-hover:text-blue-600 "
+                                            className="h-10 w-10 text-blue-400 group-hover:text-blue-600 "
                                             fill="none"
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"
@@ -152,7 +149,7 @@ function SignupPage() {
                                                 d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                                             />
                                         </svg>
-                                        <div className="flex flex-auto max-h-48 w-2/5 mx-auto -mt-10">
+                                        <div className="mx-auto -mt-10 flex max-h-48 w-2/5 flex-auto">
                                             <img
                                                 className="has-mask h-36 object-center"
                                                 src="https://img.freepik.com/free-vector/image-upload-concept-landing-page_52683-27130.jpg?size=338&ext=jpg"
@@ -178,7 +175,7 @@ function SignupPage() {
                             <span>File type: jpg,jpeg,png,avif </span>
                         </p>
                         <div></div>
-                        <div className="form-group form-check text-center mb-6">
+                        <div className="form-group form-check mb-6 text-center">
                             {errorMessage && (
                                 <Alert className="error-message ">
                                     {errorMessage}
@@ -188,28 +185,28 @@ function SignupPage() {
                         <button
                             type="submit"
                             className="
+      rounded
+      bg-blue-600
       px-6
       py-2.5
-      bg-blue-600
-      text-white
-      font-medium
       text-xs
-      leading-tight
+      font-medium
       uppercase
-      rounded
+      leading-tight
+      text-white
       shadow-md
-      hover:bg-blue-700 hover:shadow-lg
-      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-      active:bg-blue-800 active:shadow-lg
-      transition
-      duration-150
-      ease-in-out"
+      transition duration-150
+      ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700
+      focus:shadow-lg focus:outline-none
+      focus:ring-0
+      active:bg-blue-800
+      active:shadow-lg"
                         >
                             Submit
                         </button>
                     </form>
                 </div>
-                <div className="mt-5 text-slate-300 justify-center items-center content-center ">
+                <div className="mt-5 content-center items-center justify-center text-slate-300 ">
                     <p>Already have account?</p>
                     <Link className="hover:text-gray-300" to={"/login"}>
                         {" "}
@@ -219,7 +216,7 @@ function SignupPage() {
             </div>
             <hr className="my-2 border-black" />
         </div>
-    );
+    )
 }
 
-export default SignupPage;
+export default SignupPage
