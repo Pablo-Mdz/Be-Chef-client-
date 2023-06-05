@@ -15,7 +15,7 @@ const CreateRecipe = (props) => {
 
     const [edit, setEdit] = useState(false)
 
-    // useEffect(() => {
+    
     // useEffect(() => {
     //     if (props.data)
     //         setEdit(props.data.find((element) => element._id === id));
