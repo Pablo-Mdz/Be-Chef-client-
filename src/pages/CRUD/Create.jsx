@@ -14,6 +14,7 @@ const CreateRecipe = (props) => {
     const { id } = useParams()
 
     const [edit, setEdit] = useState(false)
+    // const [edit, setEdit] = useState(true)
 
     
     // useEffect(() => {
